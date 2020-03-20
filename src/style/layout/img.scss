@@ -1,0 +1,57 @@
+.bg-img{
+    @include flex-box(flex-end, center);
+    position: absolute;
+    top: 0;
+    height: 450px;
+    width: 100%;
+    transition: all .6s;
+    .center-font{
+        height: 70%;
+        width: 100%;
+        .fontLeft-enter,
+        .fontLeft-leave-to{
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        .fontLeft-enter-active,
+        .fontLeft-leave-active{
+            transition: all 5s;
+        }
+        .fontRight-enter,
+        .fontRight-leave-to{
+            opacity: 0;
+            transform: translateY(-100px);
+        }
+        .fontRight-enter-active,
+        .fontRight-leave-active{
+            transition: all 5s;
+        }
+        .el-col{
+            font-family: YouYuan;
+            color: white;
+            &:first-child{
+                height: 25%;
+                text-align: center;
+                @include flex-center;
+                .text-top{
+                    font-size: 33px;
+                }
+            }
+            &:last-child{
+                height: 60%;
+                text-align: right;
+                @include flex-box(flex-end,flex-end);
+                .text-bottom{
+                    padding:0px 50px 30px 0px;
+                    font-size: 16px;
+                }
+            }
+            
+        }
+    }
+}
+@media screen and (max-width: 600px){
+    .bg-img{
+        height: 300px;
+    }
+}

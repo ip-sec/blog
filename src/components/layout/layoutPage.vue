@@ -1,0 +1,66 @@
+<template>
+    <el-container>
+        <transition name="header" appear>
+            <el-header v-if="headShow">
+                <layout-header></layout-header>
+            </el-header>
+        </transition>
+        <el-main :style="{background:bgColor}">
+            <transition :name="$store.state.trans" mode="out-in" appear>
+                <router-view></router-view>
+            </transition>
+        </el-main>
+        <el-footer ref="refFooter" :style="{background:bgColor}">
+            <layout-footer></layout-footer>
+        </el-footer>
+        <layout-nav></layout-nav>
+        <layout-caledar></layout-caledar>
+        <el-backtop></el-backtop>
+    <!-- <canvas ref="refCanvas" :width="pageWidth" :height="pageHeight"></canvas> -->
+    </el-container>
+</template>
+
+<script>
+import layoutHeader from './layoutHeader'
+import layoutFooter from './layoutFooter'
+import layoutNav from './layoutNav'
+import layoutCaledar from './layoutCaledar'
+export default {
+    name: 'layoutPage',
+    data () {
+        return {
+            bgColor: 'white',
+            headShow: true
+        }
+    },
+    components:{
+        layoutHeader,
+        layoutFooter,
+        layoutNav,
+        layoutCaledar
+    },
+    mounted () {
+        this.checkBgColor()
+        this.watchMouse()
+    },
+    watch:{
+        '$store.state.openPage' : function (to, from) {
+            to ?  this.bgColor = 'rgb(225,238,220)' : this.bgColor = 'white'
+        }
+    },
+    methods:{
+        checkBgColor () {
+            this.$store.state.openPage ?  this.bgColor = 'rgb(225,238,220)' : this.bgColor = 'white'
+        },
+        watchMouse () {
+            // window.onwheel = (e) => {
+            //     console.log(e.wheelDelta)
+            // }
+        }
+    }
+}
+</script>
+    
+<style lang="scss" scoped>
+    @import '@/style/layout/page.scss';
+</style>

@@ -1,0 +1,42 @@
+.time-item{
+    padding: 20px;
+    .el-row{
+        height: auto;
+        display: flex;
+        justify-content: center;
+        &:first-child{
+            .el-col{
+                height: auto;
+                .list-enter,
+                .list-leave-to{
+                    opacity: 0;
+                    transform: translateX(150px);
+                }
+                .list-enter-active,
+                .list-leave-active{
+                    transition: all 2s;
+                }
+                .el-timeline-item{
+                    .span-right{
+                        float: right;
+                    }
+                    .el-timeline-item__tail{
+                        border-left-color: #E36049;
+                    }
+                    .el-timeline-item__node{
+                        background: #E36049;
+                    }
+                }
+                
+            }
+        }
+        &:last-child{
+            .el-col{
+                height: 60px;
+                .el-loading-mask{
+                    background: none;
+                }
+            }
+        }
+    }
+}

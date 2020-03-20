@@ -1,0 +1,79 @@
+    // @function px-rem( $px ){
+    //     @return $px/$designWidth*10 + rem;
+    // }
+    // $designWidth : 1024;
+    @function trans-random( $px ){
+        @return (random()*100) - (random()*100) + $px;
+    }
+    @mixin flex-center{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    @mixin flex-box($item, $content){
+        display: flex;
+        align-items: $item;
+        justify-content: $content;
+        flex-wrap: wrap;
+    }
+    @mixin vue-trans($trans, $time){
+        .tansY-enter,
+        .tansY-leave-to{
+            opacity: 0;
+            transform: $trans;
+        }
+        .transY-enter-active,
+        .transY-leave-active{
+            transition: all $time + s;
+        }
+    }
+    @mixin list-item {
+        @for $i from  1 through $num {
+            $time: ($i * 10) + ms;
+            .trans-#{$i} {
+                transition: all .3s linear;
+                animation: anima-#{$i} 0.6s;
+                animation-delay: $time;
+            }
+            @keyframes anima-#{$i} {
+                0%{
+                    opacity: 0;
+                    @if $i == 1 {
+                        transform: translateX(-100px) translateY(-100px);
+                    }
+                    @else if $i == 2{
+                        transform: translateX(0px) translateY(-100px);
+                    }
+                    @else if $i == 3{
+                        transform: translateX(100px) translateY(-100px);
+                    }
+                    @else if $i == 4{
+                        transform: translateX(-100px) translateY(100px);
+                    }
+                    @else if $i == 5{
+                        transform: translateX(100px) translateY(100px);
+                    }
+                }
+
+                100%{
+                    opacity: 1;
+                    @if $i == 1 {
+                        transform: translateX(0);
+                    }
+                    @else if $i == 2{
+                        transform: translateY(0);
+                    }
+                    @else if $i == 3{
+                        transform: translateY(0);
+                    }
+                    @else if $i == 4{
+                        transform: translateY(0);
+                    }
+                    @else if $i == 5{
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+        
+    }
