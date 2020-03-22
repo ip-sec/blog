@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import layoutHeader from './layoutHeader'
-import layoutFooter from './layoutFooter'
-import layoutNav from './layoutNav'
-import layoutCaledar from './layoutCaledar'
+import layoutHeader from './components/layoutHeader'
+import layoutFooter from './components/layoutFooter'
+import layoutNav from '../components/Nav/index'
+import layoutCaledar from '../components/Caledar/index'
 export default {
     name: 'layoutPage',
     data () {

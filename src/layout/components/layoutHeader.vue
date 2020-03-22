@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {launchFullscreen,exitFullscreen} from '@/assets/js/common'
+import {launchFullscreen,exitFullscreen} from '@/utils/common'
 export default {
     name: 'layoutHeader',
     data() {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const layout = () => import('../components/layout/layoutPage')
+const layout = () => import('../layout/layoutPage')
 
 Vue.use(Router)
 

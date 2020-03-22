@@ -43,6 +43,24 @@ const state = {
         { id: 3, imgUrl: require('@/assets/img/layout-img-3.jpg')},
         { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
         { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
+    ],
+    infoItem: [
+        { id: 1, imgUrl: '', context: '我是美食家sssssssss' },
+        { id: 2, imgUrl: '', context: '我是美食家' },
+        { id: 3, imgUrl: '', context: '我是美食家' },
+        { id: 4, imgUrl: '', context: '我是美食家' },
+        { id: 5, imgUrl: '', context: '我是美食家' },
+        { id: 6, imgUrl: '', context: '我是美食家' },
+        { id: 7, imgUrl: '', context: '我是美食家' },
+        { id: 8, imgUrl: '', context: '我是美食家' },
+        { id: 9, imgUrl: '', context: '我是美食家我是美食家我是美食家我是美食家我是美食家我是美食家我是美食家' },
+        { id: 10, imgUrl: '', context: '我是美食家' },
+        { id: 11, imgUrl: '', context: '我是美食家' },
+        { id: 12, imgUrl: '', context: '我是美食家' },
+        { id: 13, imgUrl: '', context: '我是美食家' },
+        { id: 14, imgUrl: '', context: '我是美食家' },
+        { id: 15, imgUrl: '', context: '我是美食家' },
+        { id: 16, imgUrl: '', context: '我是美食家' },
     ]
 
 }

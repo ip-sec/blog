@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import getPageSize from '@/utilsmixins/getPageSize'
+import getPageSize from '@/utils/mixins/getPageSize'
 export default {
     name: 'admin',
     data () {

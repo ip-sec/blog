@@ -1,12 +1,18 @@
 <template>
     <layout-main>
-        <central-slot></central-slot>
+        <div class="photo-container">
+            <el-row class="photo-flex">
+                <el-col :xs="24" :sm="24" :md="15" :lg="15">
+                    <central-slot></central-slot>
+                </el-col>
+            </el-row>
+        </div>
     </layout-main>
 </template>
 
 <script>
-import layoutMain from '@/components/layout/layoutMain'
-import CentralSlot from './components/main'
+import layoutMain from '@/layout/components/layoutMain'
+import CentralSlot from './components/photo-tab'
 export default {
     name: 'photo',
     data () {
@@ -21,6 +27,17 @@ export default {
 }
 </script>
     
-<style>
-
+<style lang="scss"> 
+.photo-container{
+    .photo-flex{
+        display: flex;
+        justify-content: center;
+        padding: 40px 10px;
+        .el-col{
+            background: white;
+            padding: 10px;
+        }
+        
+    }
+}
 </style>

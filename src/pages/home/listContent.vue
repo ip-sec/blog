@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import layoutMain from '@/components/layout/layoutMain'
+import layoutMain from '@/layout/components/layoutMain'
 export default {
     name: 'homeChildren',
     data() {
