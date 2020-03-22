@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {throttleTwo} from '@/assets/js/common'
+import {throttleTwo} from '@/utils/common'
 export default {
     name: 'messageCentral',
     data() {

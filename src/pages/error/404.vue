@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import getPageSize from '@/assets/js/mixins/getPageSize'
+import getPageSize from '@/utils/mixins/getPageSize'
 export default {
     name: 'error-404',
     mixins: [getPageSize],

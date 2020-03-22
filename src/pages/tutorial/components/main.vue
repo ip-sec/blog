@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {throttle} from '../../../assets/js/common.js'
+import {throttle} from '@/utils/common.js'
 export default {
     name: 'tutorialCentral',
     data () {

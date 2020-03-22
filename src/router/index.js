@@ -31,7 +31,7 @@ export default new Router({
             component: layout,
             children:[
                 { path: '', meta:{ index: 2 }, component: () => import('@/pages/tutorial/index') },
-                { path: 'pages/:id', meta:{ index: 2 }, component: () => import('@/pages/home/listContent') }
+                { path: 'pages/:id', meta:{ index: 2 }, component: () => import('@/pages/tutorial/listContent') }
             ]
         },
         {
