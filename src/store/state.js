@@ -1,10 +1,8 @@
 const state = {
     dialogTableVisible: false,//日历插件显示
-    activeIndex: '1',//监听路由切换后改变导航状态
     openPage: false,
     drawer: false,
     trans: 'left',
-    isPageNum: 0,
     menu:[
         { key: 1, name: '教程', linkto: '/home' },
         { key: 2, name: '日志', linkto: '/tutorial'},

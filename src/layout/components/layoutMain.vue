@@ -28,7 +28,7 @@
 export default {
     data () {
         return {
-            bgImg: this.$store.state.bgImg[parseInt(this.$store.state.activeIndex)-1].imgUrl
+            bgImg: this.$store.state.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
     destroyed () {

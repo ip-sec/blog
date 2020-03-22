@@ -29,7 +29,7 @@ $none: none;
                 height: 100%;
                 .el-button{
                     background: $none;
-                    &:hover{
+                    &:hover,&:focus{
                         border-color: #E36049;
                         i{
                             color: #E36049;
@@ -45,8 +45,11 @@ $none: none;
                 .el-button{
                     background: $none;
                     border-width: 0px;
-                    &:hover{
+                    &:hover,&:focus{
                         background: $none;
+                        i{
+                            color: #E36049;
+                        }
                     }
                     span{
                         i{

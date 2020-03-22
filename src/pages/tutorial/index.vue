@@ -60,6 +60,9 @@ export default {
                 height: 60px;
                 .el-loading-mask{
                     background: none;
+                    .path{
+                        stroke: #E36049;
+                    }
                 }
             }
         }

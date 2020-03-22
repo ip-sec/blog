@@ -30,7 +30,7 @@ export default {
     data () {
         return {
             bgColor: 'white',
-            headShow: true
+            headShow: true,
         }
     },
     components:{

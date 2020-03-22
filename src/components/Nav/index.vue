@@ -27,6 +27,11 @@ export default {
         height: 100% !important;
         .el-drawer__header{
             color: white;
+            >span{
+                &:focus{
+                    outline: none;
+                }
+            }
             .el-drawer__close-btn{
                 transition: all 0.6s;
                 &:hover{

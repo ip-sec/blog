@@ -35,5 +35,17 @@ export default {
 <style lang="scss">
     .trans-top{
         transform: translateY(-4%);
+        &:last-child{
+            .el-pagination{
+                .btn-prev,.btn-next,li.number{
+                    &:hover{
+                        color: #E36049;
+                    }
+                }
+                .active{
+                    color: #E36049;
+                }
+            }
+        }
     }
 </style>
