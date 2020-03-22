@@ -17,7 +17,7 @@
 <script>
 import layoutMain from '@/layout/components/layoutMain'
 import CentralSlot from './components/about'
-import {throttle} from '@/utils/common.js'
+import getPageScroll from '@/utils/mixins/getPageScroll.js'
 export default {
     name: 'tutorial',
     data () {
@@ -29,9 +29,7 @@ export default {
         CentralSlot,
         layoutMain
     },
-    mounted () {
-        this.loadPhoto()
-    },
+    mixins:[getPageScroll],
     methods:{
         morePhoto () {
             this.loading = true
@@ -40,15 +38,6 @@ export default {
                 this.loading = false
                 this.$store.state.timeData.push(pushPhoto)
             },1000)
-        },
-        getDomScroll () {
-            let scrollTop = document.documentElement.scrollTop||document.body.scrollTop
-            let windowHeight = document.documentElement.clientHeight || document.body.clientHeight
-            let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight
-            Math.ceil(scrollTop + windowHeight + 1) >= scrollHeight ? this.morePhoto() : ''
-        },
-        loadPhoto () {
-            window.onscroll = throttle(this.getDomScroll,600)
         }
     }
 }
