@@ -1,9 +1,8 @@
-import server from '@/assets/utils/request'
+import server from '../utils/request'
 //请求前台主页数据
-export function home(data){
+export function home(){
     return server({
-        url: '/base/home',
-        type: 'get',
-        params: ''
+        url: 'http://localhost/admin/base/home',
+        type: 'get'
     })
 }

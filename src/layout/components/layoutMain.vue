@@ -31,6 +31,9 @@ export default {
             bgImg: this.$store.state.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
+    created(){
+        document.title = this.$route.meta.title
+    },
     destroyed () {
         this.$store.state.drawer = false
     }

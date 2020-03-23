@@ -12,11 +12,11 @@ export default {
 
         }
     },
-    // created () {
-    //     if(document.getElementById('loading')){
-    //         document.body.removeChild(document.getElementById('loading'))
-    //     }
-    // },
+    created () {
+        // if(document.getElementById('loading')){
+        //     document.body.removeChild(document.getElementById('loading'))
+        // }
+    },
     watch:{
         '$route' : function(to, from) {
             let that = this

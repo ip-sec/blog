@@ -23,6 +23,9 @@ export default {
             
         }
     },
+    created(){
+        document.title = this.$route.meta.title
+    },
     mixins: [getPageSize],
     methods: {
 

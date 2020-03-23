@@ -1,5 +1,5 @@
 const http = (data) => {
-    const message = ''
+    let message = ''
     switch(data){
         case 400:
             message = '请求错误'

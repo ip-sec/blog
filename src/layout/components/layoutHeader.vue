@@ -5,7 +5,7 @@
                 <router-link to="/home" tag="div"><span class="logo">Tina Blog</span></router-link>
             </el-col>
             <el-col :xs="1" :sm="1" :md="14" :lg="14" class="hidden-sm-and-down">
-                <el-menu :default-active="activeIndex" active-text-color="rgba(13,13,13)" mode="horizontal">
+                <el-menu :default-active="$route.meta.index+''" active-text-color="rgba(13,13,13)" mode="horizontal">
                     <el-menu-item v-for="(value, index) in $store.state.menu" :key="index" :index="value.key+''"><router-link :to="value.linkto" tag="span" :style="{display:'block'}">{{value.name}}</router-link></el-menu-item>
                 </el-menu>
             </el-col>
@@ -33,7 +33,6 @@ export default {
     name: 'layoutHeader',
     data() {
         return {
-            activeIndex: '1',
             switchAutio: false,
             openPage: this.$store.state.openPage,
             max: false

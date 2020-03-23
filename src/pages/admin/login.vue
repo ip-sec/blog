@@ -33,6 +33,7 @@
 
 <script>
 import getPageSize from '@/utils/mixins/getPageSize'
+import data from '../../utils/request'
 export default {
     name: 'login',
     data () {
@@ -47,6 +48,14 @@ export default {
                 checked: false
             }
         }
+    },
+    created() {
+        this.$store.dispatch('home/home').then(()=>{
+            console.log(true)
+        }).catch(()=>{
+            console.log(false)
+        })
+        document.title = this.$route.meta.title
     },
     mixins: [getPageSize],
     methods: {
