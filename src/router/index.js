@@ -10,28 +10,28 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: 'home',
+            redirect: 'tutorial',
         },
         {
-            path: '/home',
+            path: '/tutorial',
             meta:{
                 index: 1
             },
             component: layout,
             children:[
-                { path: '', meta:{ index: 1, title: '幻想天地' }, component: () => import('@/pages/home/index') },
-                { path: 'pages/:id', meta:{ index: 1 }, component: () => import('@/pages/home/listContent') }
+                { path: '', meta:{ index: 1, title: '幻想天地' }, component: () => import('@/pages/tutorial/index') },
+                { path: 'pages/:id', meta:{ index: 1 }, component: () => import('@/pages/tutorial/listContent') }
             ]
         },
         {
-            path: '/tutorial',
+            path: '/diary',
             meta:{
                 index: 2
             },
             component: layout,
             children:[
-                { path: '', meta:{ index: 2, title: '日志' }, component: () => import('@/pages/tutorial/index') },
-                { path: 'pages/:id', meta:{ index: 2 }, component: () => import('@/pages/tutorial/listContent') }
+                { path: '', meta:{ index: 2, title: '日志' }, component: () => import('@/pages/diary/index') },
+                { path: 'pages/:id', meta:{ index: 2 }, component: () => import('@/pages/diary/listContent') }
             ]
         },
         {

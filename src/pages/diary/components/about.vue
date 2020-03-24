@@ -6,9 +6,8 @@
                     <h4><router-link :to="'/tutorial/pages/'+item.id" tag="span" :style="{cursor: 'pointer'}">{{ item.title }}</router-link></h4>
                     <p><span>介绍: </span> {{ item.context }}</p>
                     <span class="span-right">
-                        <i class="el-icon-view">111</i>
-                        <i class="el-icon-thumb">222</i>
-                        <i class="el-icon-chat-line-square">333</i>
+                        <i class="el-icon-view">&nbsp;111</i>
+                        <i class="el-icon-thumb">&nbsp;222</i>
                     </span>
                 </el-card>
             </el-timeline-item>
@@ -40,6 +39,10 @@ export default {
     .el-timeline-item{
         .span-right{
             float: right;
+            i{
+                font-size: 13px;
+                color: #444444;
+            }
         }
         .el-timeline-item__tail{
             border-left-color: #E36049;

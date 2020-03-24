@@ -2,7 +2,7 @@
     <div class="layout-page">
         <el-row>
             <el-col :xs="14" :sm="12" :md="5" :lg="5">
-                <router-link to="/home" tag="div"><span class="logo">Tina Blog</span></router-link>
+                <router-link to="/tutorial" tag="div"><span class="logo">Tina Blog</span></router-link>
             </el-col>
             <el-col :xs="1" :sm="1" :md="14" :lg="14" class="hidden-sm-and-down">
                 <el-menu :default-active="$route.meta.index+''" active-text-color="rgba(13,13,13)" mode="horizontal">

@@ -8,12 +8,11 @@
                     </div>
                 </el-image>
                 <span class="span-right">
-                    <i class="el-icon-view">111</i>
-                    <i class="el-icon-thumb">222</i>
-                    <i class="el-icon-chat-line-square">333</i>
+                    <i class="el-icon-view">&nbsp;111</i>
+                    <i class="el-icon-thumb">&nbsp;222</i>
                 </span>
             </div>
-            <router-link :to="'/home/pages/'+item.id" tag="div">
+            <router-link :to="'/tutorial/pages/'+item.id" tag="div">
                 <div class="imgInfo">
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.upDate }}</p>
@@ -52,5 +51,5 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '@/style/home.scss';
+    @import '@/style/tutorial.scss';
 </style>

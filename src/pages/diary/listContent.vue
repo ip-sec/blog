@@ -7,7 +7,7 @@
 <script>
 import layoutMain from '@/layout/components/layoutMain'
 export default {
-    name: 'homeChildren',
+    name: 'diaryChildren',
     data() {
         return {
             data:[

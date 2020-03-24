@@ -1,13 +1,14 @@
 <template>
     <layout-main>
-        <div class="time-item">
-            <el-row :gutter="10">
-                <el-col :xs="24" :sm="24" :md="14" :lg="14">
+        <div class="trans-top">
+            <transition name="tutorialList" appear mode="out-in">
+                <el-row >
                     <central-slot></central-slot>
-                </el-col>
-            </el-row>
-            <el-row :gutter="10">
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" v-loading="loading">
+                </el-row>
+            </transition>
+            <el-row>
+                <el-col :span="24" :style="{textAlign: 'center'}">
+                    <el-pagination :page-size="6" :pager-count="7" layout="prev, pager, next" :total="30"></el-pagination>
                 </el-col>
             </el-row>
         </div>
@@ -16,56 +17,35 @@
 
 <script>
 import layoutMain from '@/layout/components/layoutMain'
-import CentralSlot from './components/about'
-import getPageScroll from '@/utils/mixins/getPageScroll.js'
+import CentralSlot from './components/Card'
 export default {
     name: 'tutorial',
     data () {
         return {
-            loading: false
+            
         }
     },
     components:{
         CentralSlot,
         layoutMain
-    },
-    mixins:[getPageScroll],
-    methods:{
-        morePhoto () {
-            this.loading = true
-            const pushPhoto = { id: this.$store.state.timeData.length+1, dateTime: new Date().toLocaleDateString(), title: '发布说说', context: '这是一篇文章'}
-            setTimeout(() => {
-                this.loading = false
-                this.$store.state.timeData.push(pushPhoto)
-            },1000)
-        }
     }
 }
 </script>
     
 <style lang="scss">
-    .time-item{
-    padding: 20px;
-    .el-row{
-        height: auto;
-        display: flex;
-        justify-content: center;
-        &:first-child{
-            .el-col{
-                height: auto; 
-            }
-        }
+    .trans-top{
+        transform: translateY(-4%);
         &:last-child{
-            .el-col{
-                height: 60px;
-                .el-loading-mask{
-                    background: none;
-                    .path{
-                        stroke: #E36049;
+            .el-pagination{
+                .btn-prev,.btn-next,li.number{
+                    &:hover{
+                        color: #E36049;
                     }
+                }
+                .active{
+                    color: #E36049;
                 }
             }
         }
     }
-}
 </style>
