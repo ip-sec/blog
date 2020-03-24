@@ -1,23 +1,36 @@
-import { home } from '../../api/home'
+import { head, message } from '../../api/home'
 const state = {
-    id: 1
+    menu: null,//导航条
+    message: null,//留言信息
 }
 
 const mutations = {
-    SET_ID: (state,id) => {
-        state.id = id
+    SET_MENU: (state,menu) => {
+        state.menu = menu
+    },
+    SET_MESSAGE: (state,message) => {
+        state.message = message
     }
 }
 
 const actions = {
-    home( {commit} ){
+    menuFun( {commit} ){
         return new Promise((resolve,reject)=>{
-            home().then(()=>{
-                commit('SET_ID',id)
-                console.log(1)
+            head().then(response => {
+                commit('SET_MENU',response.data)
                 resolve()
             })
-        }).catch((error)=>{
+        }).catch(error => {
+            reject(error)
+        })
+    },
+    messageFun( {commit} ){
+        return new Promise((resolve,reject)=>{
+            message().then(response => {
+                commit('SET_MESSAGE',response.data)
+                resolve()
+            })
+        }).catch(error => {
             reject(error)
         })
     }

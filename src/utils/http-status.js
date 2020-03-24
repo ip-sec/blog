@@ -1,6 +1,9 @@
 const http = (data) => {
     let message = ''
     switch(data){
+        case 200:
+            message = '请求成功'
+            break
         case 400:
             message = '请求错误'
             break

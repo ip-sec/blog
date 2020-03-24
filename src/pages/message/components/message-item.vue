@@ -1,13 +1,14 @@
 <template>
-    <ul class="infinite-list"
-    infinite-scroll-delay = "200ms"
-    style="overflow:auto">
-        <li v-for="(item, index) in data" :key="index" class="infinite-list-item">
-            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-            <div class="info">
-                {{ item.context }}
-            </div>
-        </li>
+    <ul class="infinite-list" infinite-scroll-delay = "200ms" style="overflow:auto">
+        <transition-group name="item" appear>
+            <li v-for="item in $store.state.home.message" :key="item.id" class="infinite-list-item">
+                <el-avatar :src="item.avatar"></el-avatar>
+                <div class="info">
+                    {{ item.message }}
+                </div>
+                <div class="dateTime">{{ item.datetime }}</div>
+            </li>
+        </transition-group>
     </ul>
 </template>
 
@@ -16,14 +17,28 @@ export default {
     name: 'messageCentral',
     data() {
         return {
-            data: this.$store.state.infoItem
+
         }
+    },
+    created () {
+        this.$store.dispatch('home/messageFun').then(() => {
+            
+        }).catch(() => {
+
+        })
     }
-    
 }
 </script>
 
 <style lang="scss" scoped>
+    .item-enter,
+    .item-leave-to{
+        opacity: 0;
+    }
+    .item-enter-active,
+    .item-leave-active{
+        transition: all 2s;
+    }
     .infinite-list-item{
         display: flex;
         align-items: center;
@@ -38,7 +53,7 @@ export default {
             color: white;
             background: #688cec;
             letter-spacing: normal;
-            &::after{
+            &::before{
                 content: '';
                 position: absolute;
                 left: -4px;
@@ -51,6 +66,13 @@ export default {
                 border-left: 4px solid #688cec;
                 border-bottom: 4px solid #688cec;
             }
+        }
+        .dateTime{
+            position: relative;
+            bottom: 0;
+            padding: 10px 0px 0px 5px;
+            font-size: 12px;
+            color: #868686;
         }
     }
 </style>

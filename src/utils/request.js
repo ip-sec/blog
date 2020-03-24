@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import httpStatus from './http-status'
+import getTime from './datetime'
 
 const service = axios.create({
-    baseUrl: '',
+    baseURL: process.env.BASE_API,
     timeout: 5000,
     withCredentials: true
 })
@@ -19,15 +20,24 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     response => {
-        console.log(response.status)
         if(response.status !== 200){
             Message({
                 message: httpStatus(response.status) || 'error',
                 type: 'error',
-                center: true,
-                duration: 5 * 1000
+                center: true
             })
         }else{
+            response.data.data.forEach((item) => {
+                if(item.datetime != undefined){
+                    item.datetime = getTime(item.datetime)
+                }
+
+            })
+            Message({
+                message: httpStatus(response.status),
+                type: 'success',
+                center: true
+            })
             return response.data
         }
     },

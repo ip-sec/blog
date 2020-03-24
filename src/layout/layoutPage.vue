@@ -30,8 +30,17 @@ export default {
     data () {
         return {
             bgColor: 'white',
-            headShow: true,
+            headShow: false,
         }
+    },
+    created () {
+        this.$store.dispatch('home/menuFun').then(()=>{
+            this.headShow = true
+        }).catch(()=>{
+            this.$message({
+                message: 'error,加载失败'
+            })
+        })
     },
     components:{
         layoutHeader,

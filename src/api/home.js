@@ -1,8 +1,15 @@
 import server from '../utils/request'
 //请求前台主页数据
-export function home(){
+export function head(){
     return server({
-        url: 'http://localhost/admin/base/home',
+        url: '/admin/navs',
+        type: 'get'
+    })
+}
+
+export function message(){
+    return server({
+        url: '/admin/messages',
         type: 'get'
     })
 }

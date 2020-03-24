@@ -50,11 +50,6 @@ export default {
         }
     },
     created() {
-        this.$store.dispatch('home/home').then(()=>{
-            console.log(true)
-        }).catch(()=>{
-            console.log(false)
-        })
         document.title = this.$route.meta.title
     },
     mixins: [getPageSize],

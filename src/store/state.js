@@ -3,13 +3,6 @@ const state = {
     openPage: false,
     drawer: false,
     trans: 'left',
-    menu:[
-        { key: 1, name: '教程', linkto: '/home' },
-        { key: 2, name: '日志', linkto: '/tutorial'},
-        { key: 3, name: '相册', linkto: '/photo' },
-        { key: 4, name: '留言', linkto: '/message' },
-        { key: 5, name: '关于', linkto: '/isme' }
-    ],//导航条
     imgData: [
         { id: 1, url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg', srcList: ['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
         'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg']},
@@ -41,24 +34,6 @@ const state = {
         { id: 3, imgUrl: require('@/assets/img/layout-img-3.jpg')},
         { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
         { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
-    ],
-    infoItem: [
-        { id: 1, imgUrl: '', context: '我是美食家sssssssss' },
-        { id: 2, imgUrl: '', context: '我是美食家' },
-        { id: 3, imgUrl: '', context: '我是美食家' },
-        { id: 4, imgUrl: '', context: '我是美食家' },
-        { id: 5, imgUrl: '', context: '我是美食家' },
-        { id: 6, imgUrl: '', context: '我是美食家' },
-        { id: 7, imgUrl: '', context: '我是美食家' },
-        { id: 8, imgUrl: '', context: '我是美食家' },
-        { id: 9, imgUrl: '', context: '我是美食家我是美食家我是美食家我是美食家我是美食家我是美食家我是美食家' },
-        { id: 10, imgUrl: '', context: '我是美食家' },
-        { id: 11, imgUrl: '', context: '我是美食家' },
-        { id: 12, imgUrl: '', context: '我是美食家' },
-        { id: 13, imgUrl: '', context: '我是美食家' },
-        { id: 14, imgUrl: '', context: '我是美食家' },
-        { id: 15, imgUrl: '', context: '我是美食家' },
-        { id: 16, imgUrl: '', context: '我是美食家' },
     ]
 
 }
