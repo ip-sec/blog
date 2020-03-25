@@ -22,7 +22,7 @@
             </el-col>
         </el-row>
         <audio ref="myAutio">
-            <source src="@/assets/mp3/1.mp3" type="audio/mpeg">
+            <source src="http://localhost:80/0/4/1.mp3" type="audio/mpeg">
         </audio>
     </div>
 </template>

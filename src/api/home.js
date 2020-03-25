@@ -6,17 +6,17 @@ export function head(){
         type: 'get'
     })
 }
-
+//请求前台留言数据
 export function message(){
     return service({
         url: '/admin/messages',
         type: 'get'
     })
 }
-
-export function diary(){
+//请求前台日志数据
+export function diary(params = ''){
     return service({
-        url: '/admin/diary',
+        url: '/admin/diarys/' + params,
         type: 'get'
     })
 }

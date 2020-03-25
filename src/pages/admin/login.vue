@@ -87,9 +87,10 @@ export default {
         .login-trans-leave-active{
             transition: all 2s;
         }
-        >.el-main{
+        .el-main{
             @include flex-center;
-            >.el-form{
+            .el-form{
+                transition: all .6s;
                 width: 550px;
                 border-radius: 4px;
                 padding: 25px;

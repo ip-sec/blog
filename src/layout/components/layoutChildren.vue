@@ -1,41 +1,25 @@
 <template>
-    <layout-children>
-        <div style="min-height:500px">
-            <el-header>
-                <h2>解决nginx跨域问题</h2>
-            </el-header>
-            <div class="basic-info">
-                <p>发布时间：2020/3/23</p>
-                <p>
-                    <i class="el-icon-view">&nbsp;122</i>
-                    <i class="el-icon-thumb">&nbsp;122</i>
-                </p>
-            </div>
-            <div class="content">
-                <div class="img-content">
-                    
-                </div>
-            </div>
-            <div class="like">
-                <el-button icon="el-icon-thumb" circle ></el-button>
-            </div>
+    <layout-main>
+        <div class="content-contain">
+            <el-row>
+                <el-col :xs="22" :sm="22" :md="16" :lg="16">
+                    <slot></slot>
+                </el-col>
+            </el-row>
         </div>
-    </layout-children>
+    </layout-main>
 </template>
 
 <script>
-import layoutChildren from '@/layout/components/layoutChildren'
+import layoutMain from './layoutMain'
 export default {
-    name: 'tutorialChildren',
+    name: 'layoutChildren',
     data() {
         return {
-            data:[
-                { id:1, context: '<div>123</div>'}
-                ]
         }
     },
     components:{
-        layoutChildren
+        layoutMain
     }
 }
 </script>
@@ -49,6 +33,7 @@ export default {
                 position: relative;
                 transition: all .6s;
                 min-height: 500px;
+                padding: 20px;
                 border-radius: 4px;
                 background: rgba($color: #ffffff, $alpha: .7);
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);

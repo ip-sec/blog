@@ -65,6 +65,7 @@ export default {
             @include flex-center;
             &:first-child .el-col{
                 position: relative;
+                transition: all .6s;
                 height: 500px;
                 padding: 20px;
                 overflow-y: scroll;
@@ -86,6 +87,7 @@ export default {
                 }
             }
             &:last-child .el-col{
+                transition: all .6s;
                 margin-top: 20px;
                 border-radius: 4px;
                 background: rgba($color: #ffffff, $alpha: .7);

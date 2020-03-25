@@ -12,7 +12,7 @@
                     <el-divider>关于网站</el-divider>
                     <p>个人网站会进行不间隔的更新，当然是分享以及记录工作中遇到的坑和日常吐槽~</p>
                     <p>由于博主是个电影控，也会不定期的推送一些百度云电影资源的链接~</p>
-                    <p>以及搬砖一些实用的软件~当然，手动建博纯属手痒~哈哈哈嗝~</p>
+                    <p>以及更新音乐播放内容~当然，手动建博纯属手痒~哈哈哈嗝~</p>
                     <central-slot></central-slot>
                 </el-col>
             </el-row>
@@ -44,8 +44,9 @@ export default {
             @include flex-center;
             .el-col{
                 position: relative;
-                height: 500px;
-                padding: 20px;
+                transition: all .6s;
+                min-height: 500px;
+                padding: 20px 20px 60px 20px;
                 background: white;
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
                 text-align: center;

@@ -12,7 +12,7 @@
                     <i class="el-icon-thumb">&nbsp;222</i>
                 </span>
             </div>
-            <router-link :to="'/tutorial/pages/'+item.id" tag="div">
+            <router-link @click.native="getChildren(item.id)" :to="'/tutorial/pages/'+item.id" tag="div">
                 <div class="imgInfo">
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.upDate }}</p>
@@ -33,20 +33,14 @@ export default {
             itemData: this.$store.state.itemData
         }
     },
-    // mounted () {
-    //     this.setItem()
+    // created (){
+    //     this.$store.dispatch('home/tutorial', '').then(()=>{}).catch(()=>{})
     // },
-    methods:{
-        // setItem () {
-        //     this.watchSize()
-        //     window.onresize = () => {
-        //         throttle(this.watchSize(),2000)
-        //     }
-        // },
-        // watchSize () {
-        //     this.itemData = new PhotoLayout(this.$store.state.itemData)
-        // }
-    }
+    // methods:{
+    //     getChildren(id){
+    //         this.$store.dispatch('home/tutorial', id ).then(()=>{}).catch(()=>{})
+    //     }
+    // }
 }
 </script>
 

@@ -17,21 +17,21 @@
         //     border-radius: 0;
         //     background: rgba(145, 145, 145, 0.2);
         // }
-        #loading{
-            z-index: 99990;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: radial-gradient(#415058,#263238,#28343a);
-            height: 100%;
-            width: 100%;
-            @include flex-center;
-            img{
-                z-index: 99999;
-                height: 100px;
-                width: 100px;
-            }
-        }
+        // #loading{
+        //     z-index: 99990;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     background: radial-gradient(#415058,#263238,#28343a);
+        //     height: 100%;
+        //     width: 100%;
+        //     @include flex-center;
+        //     img{
+        //         z-index: 99999;
+        //         height: 100px;
+        //         width: 100px;
+        //     }
+        // }
         #app {
             // font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,'youyuan',sans-serif;
             font-family: 'youyuan';

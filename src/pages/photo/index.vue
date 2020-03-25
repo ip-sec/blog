@@ -34,6 +34,7 @@ export default {
         justify-content: center;
         padding: 40px 10px;
         .el-col{
+            transition: all .6s;
             background: white;
             padding: 10px;
         }

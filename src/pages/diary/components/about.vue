@@ -1,15 +1,17 @@
 <template>
     <el-timeline>
         <transition-group name="list" tag="ul" class="el-timeline">
-            <el-timeline-item v-for="item in timeData" :key="item.id" :timestamp="item.dateTime" placement="top">
-                <el-card>
-                    <h4><router-link :to="'/tutorial/pages/'+item.id" tag="span" :style="{cursor: 'pointer'}">{{ item.title }}</router-link></h4>
-                    <p><span>介绍: </span> {{ item.context }}</p>
-                    <span class="span-right">
-                        <i class="el-icon-view">&nbsp;111</i>
-                        <i class="el-icon-thumb">&nbsp;222</i>
-                    </span>
-                </el-card>
+            <el-timeline-item v-for="item in $store.state.home.diary" :key="item.id" :timestamp="item.datetime" placement="top">
+                <router-link @click.native="getChildren(item.id)" :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
+                    <el-card>
+                        <h4>{{ item.title }}</h4>
+                        <p><span>介绍: </span> {{ item.introduction }}</p>
+                        <span class="span-right">
+                            <i class="el-icon-view">&nbsp;{{ item.view_num }}</i>
+                            <i class="el-icon-thumb">&nbsp;{{ item.like_num }}</i>
+                        </span>
+                    </el-card>
+                </router-link>
             </el-timeline-item>
         </transition-group>
     </el-timeline>
@@ -19,10 +21,19 @@
 export default {
     data () {
         return {
-            timeData: this.$store.state.timeData
+
+        }
+    },
+    created (){
+        this.$store.dispatch('home/diary', '').then(()=>{}).catch(()=>{})
+    },
+    methods:{
+        getChildren(id){
+            this.$store.dispatch('home/diary', id ).then(()=>{}).catch(()=>{})
         }
     }
 }
+
 </script>
 
 <style lang="scss">

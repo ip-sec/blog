@@ -11,7 +11,7 @@ export default {
             Math.ceil(scrollTop + windowHeight + 1) >= scrollHeight ? this.morePhoto() : ''
         },
         loadPhoto () {
-            window.onscroll = throttle(this.getDomScroll,600)
+            window.onscroll = throttle(this.getDomScroll,300)
         }
     },
 }

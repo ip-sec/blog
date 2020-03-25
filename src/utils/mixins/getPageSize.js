@@ -18,7 +18,7 @@ export default {
             this.pageHeight = height + 'px'
         },
         getPageResize () {
-            window.onresize = throttle(this.getPageSize,600)
+            window.onresize = throttle(this.getPageSize,300)
         }
     }
 }

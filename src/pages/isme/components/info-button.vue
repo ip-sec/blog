@@ -38,8 +38,7 @@ export default {
     name: 'ismeCentral',
     data () {
         return {
-            circleUrl: require('@/assets/img/logo.png'),
-            fit: 'cover'
+            
         }
     }
 }

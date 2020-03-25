@@ -34,7 +34,7 @@ export default {
         }
     },
     created () {
-        this.$store.dispatch('home/menuFun').then(()=>{
+        this.$store.dispatch('home/menu').then(()=>{
             this.headShow = true
         }).catch(()=>{
             this.$message({

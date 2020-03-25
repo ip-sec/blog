@@ -1,5 +1,12 @@
-const getTime = (time) => {
-    let date = new Date(parseInt(time)).toLocaleDateString()
+const getTime = (data) => {
+    let date = data
+    if(Object.prototype.toString.call(date) === '[object Array]'){
+        date.forEach((item)=>{
+            item.datetime = new Date(parseInt(item.datetime)).toLocaleDateString()
+        })
+    }else{
+        date.datetime = new Date(parseInt(date.datetime)).toLocaleDateString()
+    }
     return date
 }
 

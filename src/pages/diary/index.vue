@@ -25,6 +25,15 @@ export default {
             loading: false
         }
     },
+    beforeRouteLeave (to, from, next) {
+        if(to.path.indexOf(from.path) > -1){
+            setTimeout(()=>{
+                next()
+            },400)
+        }else{
+            next()
+        }
+    },
     components:{
         CentralSlot,
         layoutMain
@@ -33,11 +42,11 @@ export default {
     methods:{
         morePhoto () {
             this.loading = true
-            const pushPhoto = { id: this.$store.state.timeData.length+1, dateTime: new Date().toLocaleDateString(), title: '发布说说', context: '这是一篇文章'}
-            setTimeout(() => {
-                this.loading = false
-                this.$store.state.timeData.push(pushPhoto)
-            },1000)
+            // const pushPhoto = { id: this.$store.state.timeData.length+1, dateTime: new Date().toLocaleDateString(), title: '发布说说', context: '这是一篇文章'}
+            // setTimeout(() => {
+            //     this.loading = false
+            //     this.$store.state.timeData.push(pushPhoto)
+            // },1000)
         }
     }
 }
@@ -53,6 +62,7 @@ export default {
         &:first-child{
             .el-col{
                 height: auto; 
+                transition: all .6s;
             }
         }
         &:last-child{

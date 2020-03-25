@@ -27,12 +27,7 @@ service.interceptors.response.use(
                 center: true
             })
         }else{
-            response.data.data.forEach((item) => {
-                if(item.datetime != undefined){
-                    item.datetime = getTime(item.datetime)
-                }
-
-            })
+            getTime(response.data.data)
             Message({
                 message: httpStatus(response.status),
                 type: 'success',

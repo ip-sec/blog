@@ -1,6 +1,6 @@
 <template>
     <ul class="infinite-list" infinite-scroll-delay = "200ms" style="overflow:auto">
-        <transition-group name="item" appear>
+        <transition-group name="el-zoom-in-top" appear>
             <li v-for="item in $store.state.home.message" :key="item.id" class="infinite-list-item">
                 <el-avatar :src="item.avatar"></el-avatar>
                 <div class="info">
@@ -21,7 +21,7 @@ export default {
         }
     },
     created () {
-        this.$store.dispatch('home/messageFun').then(() => {
+        this.$store.dispatch('home/message').then(() => {
             
         }).catch(() => {
 
@@ -31,14 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .item-enter,
-    .item-leave-to{
-        opacity: 0;
-    }
-    .item-enter-active,
-    .item-leave-active{
-        transition: all 2s;
-    }
     .infinite-list-item{
         display: flex;
         align-items: center;
