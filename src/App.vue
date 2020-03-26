@@ -29,4 +29,5 @@ export default {
 
 <style lang="scss">
     @import './style/body.scss';
+    @import './style/element-ui.scss';
 </style>

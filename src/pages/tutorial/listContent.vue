@@ -1,24 +1,24 @@
 <template>
     <layout-children>
         <div style="min-height:500px">
-            <el-header>
-                <h2>解决nginx跨域问题</h2>
-            </el-header>
-            <div class="basic-info">
-                <p>发布时间：2020/3/23</p>
-                <p>
-                    <i class="el-icon-view">&nbsp;122</i>
-                    <i class="el-icon-thumb">&nbsp;122</i>
-                </p>
-            </div>
-            <div class="content">
-                <div class="img-content">
-                    
+            <div v-if="$store.state.home.children">
+                <el-header>
+                    <h2>{{ $store.state.home.children.title }}</h2>
+                </el-header>
+                <div class="basic-info">
+                    <p>发布时间：{{ $store.state.home.children.datetime }}</p>
+                    <p>
+                        <i class="el-icon-view">&nbsp;{{ $store.state.home.children.view_num }}</i>
+                        <i class="el-icon-thumb">&nbsp;{{ $store.state.home.children.like_num }}</i>
+                    </p>
+                </div>
+                <div class="content" v-html="$store.state.home.children.content">
+                </div>
+                <div class="like">
+                    <el-button icon="el-icon-thumb" circle ></el-button>
                 </div>
             </div>
-            <div class="like">
-                <el-button icon="el-icon-thumb" circle ></el-button>
-            </div>
+            <div v-else style="min-height:500px" v-loading="true"></div>
         </div>
     </layout-children>
 </template>
@@ -29,10 +29,15 @@ export default {
     name: 'tutorialChildren',
     data() {
         return {
-            data:[
-                { id:1, context: '<div>123</div>'}
-                ]
+
         }
+    },
+    created() {
+        this.$store.dispatch('home/tutorial', '/'+this.$route.params.id ).then(()=>{
+            document.title = this.$store.state.home.children.title
+        }).catch(()=>{})
+    },
+    mounted() {
     },
     components:{
         layoutChildren
@@ -41,61 +46,5 @@ export default {
 </script>
 
 <style lang="scss">
-    .content-contain{
-        transform: translateY(-4%);
-        .el-row{
-            @include flex-center;
-            .el-col{
-                position: relative;
-                transition: all .6s;
-                min-height: 500px;
-                border-radius: 4px;
-                background: rgba($color: #ffffff, $alpha: .7);
-                box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-                .el-header{
-                    line-height: 60px;
-                    text-align: center;
-                }
-                .basic-info{
-                    text-align: center;
-                    i{
-                        font-size: 13px;
-                    }
-                }
-                .content{
-                    padding: 20px 50px;
-                    word-break: break-all;
-                    font-size: 14px;
-                    p{
-                        text-indent: 2em;
-                    }
-                    .img-content{
-                        text-align: center;
-                        max-width: 100%;
-                        max-height: 400px;
-                        img{ 
-                            max-width: 100%;
-                            object-fit: cover;
-                        }
-                    }
-                }
-                .like{
-                    position: absolute;
-                    top: 50%;
-                    right: 20px;
-                    .el-button{
-                        width: 50px;
-                        height: 50px;
-                        background: rgba($color: #ffffff, $alpha: .7);
-                        font-size: 17px;
-                        &:hover,&:focus{
-                            background: rgba($color: #ffffff, $alpha: .7);
-                            border-color: #E36049;
-                            color: #E36049;
-                        }
-                    }
-                }
-            }
-        }
-    }
+
 </style>

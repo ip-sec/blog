@@ -18,6 +18,9 @@ export default {
         return {
         }
     },
+    destroyed() {
+        this.$store.commit('home/DEL_CHILDREN')
+    },
     components:{
         layoutMain
     }
@@ -48,7 +51,7 @@ export default {
                     }
                 }
                 .content{
-                    padding: 20px 50px;
+                    padding: 20px 0;
                     word-break: break-all;
                     font-size: 14px;
                     p{

@@ -2,7 +2,7 @@
     <el-timeline>
         <transition-group name="list" tag="ul" class="el-timeline">
             <el-timeline-item v-for="item in $store.state.home.diary" :key="item.id" :timestamp="item.datetime" placement="top">
-                <router-link @click.native="getChildren(item.id)" :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
+                <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card>
                         <h4>{{ item.title }}</h4>
                         <p><span>介绍: </span> {{ item.introduction }}</p>
@@ -26,11 +26,6 @@ export default {
     },
     created (){
         this.$store.dispatch('home/diary', '').then(()=>{}).catch(()=>{})
-    },
-    methods:{
-        getChildren(id){
-            this.$store.dispatch('home/diary', id ).then(()=>{}).catch(()=>{})
-        }
     }
 }
 

@@ -37,7 +37,7 @@
 export default {
     data () {
         return {
-            imgData: this.$store.state.imgData,
+            imgData: this.$store.state.common.imgData,
             name: 'left'
         }
     }
@@ -45,5 +45,15 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '@/style/photo.scss';
+    .el-tabs{
+        .list-enter,
+        .list-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .list-enter-active,
+        .list-leave-active{
+            transition: all 2s;
+        }
+    } 
 </style>

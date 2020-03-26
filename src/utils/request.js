@@ -28,11 +28,6 @@ service.interceptors.response.use(
             })
         }else{
             getTime(response.data.data)
-            Message({
-                message: httpStatus(response.status),
-                type: 'success',
-                center: true
-            })
             return response.data
         }
     },

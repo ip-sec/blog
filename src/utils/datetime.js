@@ -4,6 +4,10 @@ const getTime = (data) => {
         date.forEach((item)=>{
             item.datetime = new Date(parseInt(item.datetime)).toLocaleDateString()
         })
+    }else if(Object.prototype.toString.call(date.data) === '[object Array]'){
+        date.data.forEach((item)=>{
+            item.datetime = new Date(parseInt(item.datetime)).toLocaleDateString()
+        })
     }else{
         date.datetime = new Date(parseInt(date.datetime)).toLocaleDateString()
     }

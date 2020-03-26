@@ -28,14 +28,14 @@
 export default {
     data () {
         return {
-            bgImg: this.$store.state.bgImg[this.$route.meta.index-1].imgUrl
+            bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
     created(){
         document.title = this.$route.meta.title
     },
     destroyed () {
-        this.$store.state.drawer = false
+        this.$store.state.common.drawer = false
     }
 }
 </script>

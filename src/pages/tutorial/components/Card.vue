@@ -1,46 +1,42 @@
 <template>
-    <el-col ref="col" :xs="22" :sm="22" :md="22" :lg="22" :offset="1">
-        <el-card :body-style="{ padding: '0px' }"  v-for="item in itemData" :key="item.id"  shadow="hover">
-            <div slot="header">
-                <el-image :src="item.imgUrl" fit="fill">
-                    <div slot="placeholder" class="image-slot">
-                        <img :src="loadingImg" alt="">
-                    </div>
-                </el-image>
-                <span class="span-right">
-                    <i class="el-icon-view">&nbsp;111</i>
-                    <i class="el-icon-thumb">&nbsp;222</i>
-                </span>
-            </div>
-            <router-link @click.native="getChildren(item.id)" :to="'/tutorial/pages/'+item.id" tag="div">
-                <div class="imgInfo">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.upDate }}</p>
-                    <div class="item-font">
-                        <p>{{ item.itemFont }}</p>
-                    </div>
+        <transition-group 
+        name="trans" 
+        tag="div" 
+        class="el-col el-col-24 el-col-offset-1 el-col-xs-22 el-col-sm-22 el-col-md-22 el-col-lg-22"
+        appear
+        mode="out-in">
+            <el-card :body-style="{ padding: '0px' }"  v-for="item in $store.state.home.tutorial.data" :key="item.id"  shadow="hover">
+                <div slot="header">
+                    <el-image :src="item.url" fit="fill">
+                        <div slot="placeholder" class="image-slot">
+                            <img :src="loadingImg" alt="">
+                        </div>
+                    </el-image>
+                    <span class="span-right">
+                        <i class="el-icon-view">&nbsp;{{ item.view_num }}</i>
+                        <i class="el-icon-thumb">&nbsp;{{ item.like_num }}</i>
+                    </span>
                 </div>
-            </router-link>
-        </el-card>
-    </el-col>
+                <router-link :to="'/tutorial/pages/'+item.id" tag="div">
+                    <div class="imgInfo">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.datetime }}</p>
+                        <div class="item-font">
+                            <p>{{ item.introduction }}</p>
+                        </div>
+                    </div>
+                </router-link>
+            </el-card>
+        </transition-group>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            loadingImg: require('@/assets/img/loading.gif'),
-            itemData: this.$store.state.itemData
+            loadingImg: require('@/assets/img/loading.gif')
         }
-    },
-    // created (){
-    //     this.$store.dispatch('home/tutorial', '').then(()=>{}).catch(()=>{})
-    // },
-    // methods:{
-    //     getChildren(id){
-    //         this.$store.dispatch('home/tutorial', id ).then(()=>{}).catch(()=>{})
-    //     }
-    // }
+    }
 }
 </script>
 

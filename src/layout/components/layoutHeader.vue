@@ -34,19 +34,19 @@ export default {
     data() {
         return {
             switchAutio: false,
-            openPage: this.$store.state.openPage,
+            openPage: this.$store.state.common.openPage,
             max: false
         }
     },
     methods:{
         setDialogTableVisible () {
-            this.$store.state.dialogTableVisible = true
+            this.$store.state.common.dialogTableVisible = true
         },
         reverseFun () {
-            this.$store.dispatch('reverseFun')
+            this.$store.dispatch('common/reverseFun')
         },
         switchDrawer () {
-            this.$store.state.drawer = !this.$store.state.drawer
+            this.$store.state.common.drawer = !this.$store.state.common.drawer
         },
         openAutio() {
             this.switchAutio = !this.switchAutio
@@ -61,5 +61,39 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '@/style/layout/header.scss';
+.layout-page{
+    .el-col{
+        height: 60px;
+        &:first-child{
+            .logo{
+                padding-left: 15px;
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                line-height: 60px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+        &:last-child{
+            .hidden-sm-and-down{
+                @include flex-center;
+                height: 100%;
+            }
+        }
+        &:last-child{
+            .hidden-md-and-up{
+                @include flex-box(center,flex-end);
+                height: 100%;
+                .el-button{
+                    border-width: 0px;
+                    span{
+                        i{
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+        }  
+    }
+}
 </style>

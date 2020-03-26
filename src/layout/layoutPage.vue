@@ -53,13 +53,13 @@ export default {
         this.watchMouse()
     },
     watch:{
-        '$store.state.openPage' : function (to, from) {
+        '$store.state.common.openPage' : function (to, from) {
             to ?  this.bgColor = 'rgb(225,238,220)' : this.bgColor = 'white'
         }
     },
     methods:{
         checkBgColor () {
-            this.$store.state.openPage ?  this.bgColor = 'rgb(225,238,220)' : this.bgColor = 'white'
+            this.$store.state.common.openPage ?  this.bgColor = 'rgb(225,238,220)' : this.bgColor = 'white'
         },
         watchMouse () {
             // window.onwheel = (e) => {

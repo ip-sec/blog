@@ -1,5 +1,5 @@
 <template>
-    <ul class="infinite-list" infinite-scroll-delay = "200ms" style="overflow:auto">
+    <ul class="infinite-list" style="overflow:auto">
         <transition-group name="el-zoom-in-top" appear>
             <li v-for="item in $store.state.home.message" :key="item.id" class="infinite-list-item">
                 <el-avatar :src="item.avatar"></el-avatar>
@@ -21,11 +21,7 @@ export default {
         }
     },
     created () {
-        this.$store.dispatch('home/message').then(() => {
-            
-        }).catch(() => {
-
-        })
+        this.$store.dispatch('home/message').then(() => {}).catch(() => {})
     }
 }
 </script>

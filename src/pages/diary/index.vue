@@ -25,15 +25,6 @@ export default {
             loading: false
         }
     },
-    beforeRouteLeave (to, from, next) {
-        if(to.path.indexOf(from.path) > -1){
-            setTimeout(()=>{
-                next()
-            },400)
-        }else{
-            next()
-        }
-    },
     components:{
         CentralSlot,
         layoutMain

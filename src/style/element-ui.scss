@@ -1,0 +1,82 @@
+    //element-ui loading
+    .el-loading-mask{
+        background: $bgNone;
+        .path{
+            stroke: #E36049;
+        }
+    }
+    //element-ui menu
+    .el-menu{
+        background: $bgNone;
+        .el-menu-item{
+            &:hover{
+                background: $bgNone !important;
+            }
+            &:focus{
+                background: $bgNone !important;
+            }
+        }
+    }
+    //element-ui button
+    .el-button{
+        background: $bgNone;
+        &:hover,&:focus{
+            border-color: #E36049;
+            background: $bgNone !important;
+            i{
+                color: #E36049;
+            }
+        }
+    }
+    //element-ui footer
+    .el-footer{
+        height: auto !important;
+    }
+    //element-ui table
+    .el-tabs{
+        .el-tabs__item{
+            &:hover{
+                color: #E36049;
+            }
+        }
+        .is-active{
+            color: rgb(62, 70, 73);
+        }
+        .el-tabs__active-bar{
+            background-color: rgb(62, 70, 73);
+        }
+        .el-tabs__content{
+            .image-preview{
+                float: left;
+                padding: 10px;
+                ~.el-image-viewer__wrapper{
+                    z-index: 3000;
+                }
+            }
+        }
+    }
+    //element-ui backtop
+    .el-backtop{
+        color: black;
+    }
+    ////element-ui drawer
+    .el-drawer{
+        z-index: 3000 !important;
+        background: none;
+        box-shadow: none;
+        height: 100% !important;
+        .el-drawer__header{
+            color: white;
+            >span{
+                &:focus{
+                    outline: none;
+                }
+            }
+            .el-drawer__close-btn{
+                transition: all 0.6s;
+                &:hover{
+                    transform: rotateZ(-180deg);
+                }
+            }
+        }
+    }

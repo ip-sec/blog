@@ -16,7 +16,14 @@ export function message(){
 //请求前台日志数据
 export function diary(params = ''){
     return service({
-        url: '/admin/diarys/' + params,
+        url: '/admin/diarys' + params,
+        type: 'get'
+    })
+}
+//请求前台教程数据
+export function tutorial(params = ''){
+    return service({
+        url: '/admin/tutorials' + params,
         type: 'get'
     })
 }

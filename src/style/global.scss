@@ -2,6 +2,7 @@
     //     @return $px/$designWidth*10 + rem;
     // }
     // $designWidth : 1024;
+    $bgNone: none;
     @function trans-random( $px ){
         @return (random()*100) - (random()*100) + $px;
     }
@@ -17,14 +18,14 @@
         flex-wrap: wrap;
     }
     @mixin vue-trans($trans, $time){
-        .tansY-enter,
-        .tansY-leave-to{
+        .trans-enter,
+        .trans-leave-to{
             opacity: 0;
             transform: $trans;
         }
-        .transY-enter-active,
-        .transY-leave-active{
-            transition: all $time + s;
+        .trans-enter-active,
+        .trans-leave-active{
+            transition: all $time;
         }
     }
     @mixin list-item {

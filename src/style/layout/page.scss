@@ -42,16 +42,8 @@
     }
     .el-main{
         padding: 0px;
-        transition: all 0.6s;
         &::-webkit-scrollbar{
             width: 0px;
         }
-    }
-    .el-footer{
-        height: auto !important;
-        transition: all 0.6s;
-    }
-    .el-backtop{
-        color: black;
     }
 }
