@@ -1,18 +1,18 @@
 <template>
     <layout-children>
         <div style="min-height:500px">
-            <div v-if="$store.state.home.children">
+            <div v-if="$store.state.home_get.children">
                 <el-header>
-                    <h2>{{ $store.state.home.children.title }}</h2>
+                    <h2>{{ $store.state.home_get.children.title }}</h2>
                 </el-header>
                 <div class="basic-info">
-                    <p>发布时间：{{ $store.state.home.children.datetime }}</p>
+                    <p>发布时间：{{ $store.state.home_get.children.datetime }}</p>
                     <p>
-                        <i class="el-icon-view">&nbsp;{{ $store.state.home.children.view_num }}</i>
-                        <i class="el-icon-thumb">&nbsp;{{ $store.state.home.children.like_num }}</i>
+                        <i class="el-icon-view">&nbsp;{{ $store.state.home_get.children.view_num }}</i>
+                        <i class="el-icon-thumb">&nbsp;{{ $store.state.home_get.children.like_num }}</i>
                     </p>
                 </div>
-                <div class="content" v-html="$store.state.home.children.content">
+                <div class="content" v-html="$store.state.home_get.children.content">
                 </div>
                 <div class="like">
                     <el-button icon="el-icon-thumb" circle ></el-button>
@@ -33,8 +33,8 @@ export default {
         }
     },
     created() {
-        this.$store.dispatch('home/diary', '/'+this.$route.params.id ).then(()=>{
-            document.title = this.$store.state.home.children.title
+        this.$store.dispatch('home_get/diary', '/'+this.$route.params.id ).then(()=>{
+            document.title = this.$store.state.home_get.children.title
         }).catch(()=>{})
     },
     components:{

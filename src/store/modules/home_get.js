@@ -1,10 +1,14 @@
 import { head, message, diary, tutorial } from '../../api/home'
+// import * as api from '../../api/home'
 const state = {
     menu: null,//导航条
     message: null,//留言信息
     diary: null,//日志信息
     children: null,//页面子路由信息
     tutorial: null,//教程信息
+    page: 1,//当前分页信息
+    size: 6,//分页显示条数
+    total: 6,//总条数
 }
 
 const mutations = {
@@ -27,8 +31,17 @@ const mutations = {
         state.tutorial = []
     },
     DEL_CHILDREN: (state) => {
-        state.children = []
-    }
+        state.children = null
+    },
+    SET_PAGE: (state,page) => {
+        state.page = page
+    },
+    SET_TOTAL: (state,total) => {
+        state.total = total
+    },
+    SET_SIZE: (state,size) => {
+        state.size = size
+    },
 }
 
 const actions = {
@@ -65,7 +78,14 @@ const actions = {
     tutorial( {commit}, params ){
         return new Promise((resolve,reject)=>{
             tutorial(params).then(response => {
-                params == '' || params.indexOf('?page=') > -1 ? commit('SET_TUTORIAL',response.data) : commit('SET_CHILDREN',response.data)
+                if(params == '' || params.indexOf('?page=') > -1){
+                    commit('SET_TUTORIAL',response.data)
+                    commit('SET_PAGE',Math.ceil(response.data.total/response.data.per_page))
+                    commit('SET_SIZE',response.data.per_page)
+                    commit('SET_TOTAL',response.data.total)
+                }else{
+                    commit('SET_CHILDREN',response.data)
+                }
                 resolve()
             })
         }).catch(error => {

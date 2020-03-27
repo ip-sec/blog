@@ -22,7 +22,10 @@
         background: $bgNone;
         &:hover,&:focus{
             border-color: #E36049;
-            background: $bgNone !important;
+            background: $bgNone;
+            span{
+                color: #E36049;
+            }
             i{
                 color: #E36049;
             }
@@ -59,7 +62,7 @@
     .el-backtop{
         color: black;
     }
-    ////element-ui drawer
+    //element-ui drawer
     .el-drawer{
         z-index: 3000 !important;
         background: none;
@@ -78,5 +81,15 @@
                     transform: rotateZ(-180deg);
                 }
             }
+        }
+    }
+    //element-ui card
+    .el-card{
+        border-radius: 0px !important;
+    }
+    //element-ui form
+    .el-form-item__label{
+        &::before{
+            content: '' !important;
         }
     }

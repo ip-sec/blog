@@ -19,15 +19,33 @@ const state = {
 }
 
 const mutations = {
-    reverse(state){
+    SET_OPENPAGE: ( state ) => {
         state.openPage = !state.openPage
-    }
+    },
+    SET_DRAWER: ( state,drawer ) => {
+        state.drawer = drawer
+    },
+    SET_DIALOG: ( state ) => {
+        state.dialogTableVisible = true
+    },
+    SET_TRANS: ( state,trans ) => {
+        state.trans = trans
+    },
 }
 
 const actions = {
-    reverseFun (context) {
-        context.commit('reverse')
-    }
+    openPage ( {commit} ) {
+        commit('SET_OPENPAGE')
+    },
+    drawer ( {commit},drawer ) {
+        commit('SET_DRAWER',drawer)
+    },
+    dialog ( {commit} ) {
+        commit('SET_DIALOG')
+    },
+    trans ( {commit},trans ) {
+        commit('SET_TRANS',trans)
+    },
 }
 
 export default {

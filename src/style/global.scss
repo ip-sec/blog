@@ -11,20 +11,39 @@
         align-items: center;
         justify-content: center;
     }
-    @mixin flex-box($item, $content){
+    @mixin flex-box($item, $content ,$wrap: wrap){
         display: flex;
         align-items: $item;
         justify-content: $content;
-        flex-wrap: wrap;
+        flex-wrap: $wrap;
     }
-    @mixin vue-trans($trans, $time){
-        .trans-enter,
-        .trans-leave-to{
+    @mixin vue-trans($name,$trans,$time){
+        .#{$name}-enter,
+        .#{$name}-leave-to{
             opacity: 0;
             transform: $trans;
         }
-        .trans-enter-active,
-        .trans-leave-active{
+        .#{$name}-enter-active,
+        .#{$name}-leave-active{
+            transition: all $time;
+        }
+    }
+    @mixin customize-trans($name,$enter,$enter_to,$leave,$time) {
+        .#{$name}-enter{
+            opacity: 0;
+            transform: $enter;
+        }
+        .#{$name}-enter-to,
+        .#{$name}-leave{
+            opacity: 1;
+            transform: $enter_to;
+        }
+        .#{$name}-leave-to{
+            opacity: 0;
+            transform: $leave;
+        }
+        .#{$name}-enter-active,
+        .#{$name}-leave-active{
             transition: all $time;
         }
     }

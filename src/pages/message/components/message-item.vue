@@ -1,7 +1,7 @@
 <template>
     <ul class="infinite-list" style="overflow:auto">
         <transition-group name="el-zoom-in-top" appear>
-            <li v-for="item in $store.state.home.message" :key="item.id" class="infinite-list-item">
+            <li v-for="item in $store.state.home_get.message" :key="item.id" class="infinite-list-item">
                 <el-avatar :src="item.avatar"></el-avatar>
                 <div class="info">
                     {{ item.message }}
@@ -21,7 +21,7 @@ export default {
         }
     },
     created () {
-        this.$store.dispatch('home/message').then(() => {}).catch(() => {})
+        this.$store.dispatch('home_get/message').then(() => {}).catch(() => {})
     }
 }
 </script>
@@ -37,7 +37,6 @@ export default {
             margin-left: 20px;
             padding: 3px 6px;
             max-width: 50%;
-            border-radius: 5px;
             color: white;
             background: #688cec;
             letter-spacing: normal;

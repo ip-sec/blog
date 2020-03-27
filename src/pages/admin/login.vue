@@ -92,7 +92,6 @@ export default {
             .el-form{
                 transition: all .6s;
                 width: 550px;
-                border-radius: 4px;
                 padding: 25px;
                 background: white;
                 .el-form-item:first-child>.el-form-item__content,

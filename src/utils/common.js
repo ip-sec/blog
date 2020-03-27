@@ -20,10 +20,12 @@ function throttle (fn, time) {
 }
 function throttleTwo (fn, time) {
     let last = 0
-    return function (e) {
+    return function () {
+        let that = this
+        let args = arguments
         let first = new Date().getTime()
         if(first - last > time){
-            fn.apply(this,arguments)
+            fn.apply(that,args)
             last = first
         }
     }

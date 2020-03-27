@@ -1,6 +1,6 @@
 <template>
     <layout-main>
-        <div class="trans-top" v-if="$store.state.home.tutorial">
+        <div class="trans-top" v-if="$store.state.home_get.tutorial">
             <el-row  style="min-height:400px">
                 <central-slot></central-slot>
             </el-row>
@@ -30,17 +30,20 @@ export default {
     name: 'tutorial',
     data () {
         return {
-            size: 6,
-            total: 6,
-            page: 1
+            size: this.$store.state.home_get.size,
+            total: this.$store.state.home_get.total,
+            page: this.$store.state.home_get.page
         }
     },
     created (){
-        this.$store.dispatch('home/tutorial', '').then(()=>{
-            this.size = this.$store.state.home.tutorial.per_page
-            this.total = this.$store.state.home.tutorial.total
-            this.count = Math.ceil(this.total/this.size)
-        }).catch(()=>{})
+        this.$store.state.home_get.tutorial == null 
+        ? this.$store.dispatch('home_get/tutorial', '').then(()=>{
+            this.$nextTick(()=>{
+                this.size = this.$store.state.home_get.size,
+                this.total = this.$store.state.home_get.total
+            })
+        }).catch(()=>{}) 
+        : ''
     },
     components: {
         CentralSlot,
@@ -48,8 +51,8 @@ export default {
     },
     methods: {
         getData(num) {
-            this.$store.commit('home/DEL_TUTORIAL')
-            this.$store.dispatch('home/tutorial', '?page='+num).then(()=>{}).catch(()=>{})
+            this.$store.commit('home_get/DEL_TUTORIAL')
+            this.$store.dispatch('home_get/tutorial', '?page='+num).then(()=>{}).catch(()=>{})
         },
     }
 }

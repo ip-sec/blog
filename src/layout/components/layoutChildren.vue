@@ -19,7 +19,7 @@ export default {
         }
     },
     destroyed() {
-        this.$store.commit('home/DEL_CHILDREN')
+        this.$store.commit('home_get/DEL_CHILDREN')
     },
     components:{
         layoutMain
@@ -37,7 +37,6 @@ export default {
                 transition: all .6s;
                 min-height: 500px;
                 padding: 20px;
-                border-radius: 4px;
                 background: rgba($color: #ffffff, $alpha: .7);
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
                 .el-header{

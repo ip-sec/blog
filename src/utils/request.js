@@ -27,7 +27,11 @@ service.interceptors.response.use(
                 center: true
             })
         }else{
-            getTime(response.data.data)
+            response.config.method == 'get' ? getTime(response.data.data) : Message({
+                message: response.data.data,
+                type: 'success',
+                center: true
+            })
             return response.data
         }
     },

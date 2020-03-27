@@ -1,7 +1,7 @@
 <template>
     <el-timeline>
         <transition-group name="list" tag="ul" class="el-timeline">
-            <el-timeline-item v-for="item in $store.state.home.diary" :key="item.id" :timestamp="item.datetime" placement="top">
+            <el-timeline-item v-for="item in $store.state.home_get.diary" :key="item.id" :timestamp="item.datetime" placement="top">
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card>
                         <h4>{{ item.title }}</h4>
@@ -25,7 +25,9 @@ export default {
         }
     },
     created (){
-        this.$store.dispatch('home/diary', '').then(()=>{}).catch(()=>{})
+        this.$store.state.home_get.diary == null 
+        ? this.$store.dispatch('home_get/diary', '').then(()=>{}).catch(()=>{}) 
+        : ''
     }
 }
 

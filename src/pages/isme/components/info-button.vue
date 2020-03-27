@@ -3,7 +3,7 @@
         <el-popover
             placement="left-end"
             title="企鹅"
-            width="50"
+            width="40"
             trigger="click"
             content="1292342889">
             <el-button slot="reference" circle>
@@ -13,7 +13,7 @@
         <el-popover
             placement="top"
             title="微信"
-            width="50"
+            width="40"
             trigger="click"
             content="15083960067">
             <el-button slot="reference" circle>
@@ -23,7 +23,7 @@
         <el-popover
             placement="right-end"
             title="github"
-            width="50"
+            width="40"
             trigger="click"
             content="ip-sec">
             <el-button slot="reference" circle>

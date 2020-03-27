@@ -1,9 +1,9 @@
 const getters = {
-    menu: state => state.home.menu,
-    bgImage: state => state.home.bgImage,
-    message: state => state.home.message,
-    diary: state => state.home.diary,
-    tutorial: state => state.home.tutorial,
+    menu: state => state.home_get.menu,
+    message: state => state.home_get.message,
+    diary: state => state.home_get.diary,
+    tutorial: state => state.home_get.tutorial,
+    children: state => state.home_get.children
 }
 
 export default getters

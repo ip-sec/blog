@@ -27,7 +27,7 @@
                         <h4>You can use the following :</h4>
                         <div class="pad-top">
                             <el-button @click="pageRefresh">Refresh</el-button>
-                            <el-button @click="homeBack">return to home page</el-button>
+                            <el-button @click="home_getBack">return to home_get page</el-button>
                         </div>
                     </div>
                 </el-col>
@@ -45,7 +45,7 @@ export default {
         pageRefresh () {
             window.location.reload();
         },
-        homeBack () {
+        home_getBack () {
             this.$router.push('/')
         }
     }

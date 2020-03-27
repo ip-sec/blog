@@ -35,18 +35,56 @@ export default {
         document.title = this.$route.meta.title
     },
     destroyed () {
-        this.$store.state.common.drawer = false
+        this.$store.dispatch('common/drawer',false)
     }
 }
 </script>
     
 <style  lang="scss" scoped>
-    @import '@/style/layout/img.scss';
-    .null{
-        transition: all .6s;
-        padding-top: 450px;
+.bg-img{
+    @include flex-box(flex-end, center);
+    position: absolute;
+    top: 0;
+    height: 450px;
+    width: 100%;
+    transition: all .6s;
+    .center-font{
+        height: 70%;
+        width: 100%;
+        @include vue-trans(fontLeft,translateY(100px),4s);
+        @include vue-trans(fontRight,translateY(-100px),4s);
+        .el-col{
+            font-family: YouYuan;
+            color: white;
+            &:first-child{
+                height: 25%;
+                text-align: center;
+                @include flex-center;
+                .text-top{
+                    font-size: 33px;
+                }
+            }
+            &:last-child{
+                height: 60%;
+                text-align: right;
+                @include flex-box(flex-end,flex-end);
+                .text-bottom{
+                    padding:0px 50px 30px 0px;
+                    font-size: 16px;
+                }
+            }
+        }
     }
-    @media screen and (max-width: 600px){
+}
+
+.null{
+    transition: all .6s;
+    padding-top: 450px;
+}
+@media screen and (max-width: 600px){
+    .bg-img{
+        height: 300px;
+    }
     .null{
         padding-top: 300px;
     }

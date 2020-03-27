@@ -9,10 +9,13 @@
             <el-row>
                 <el-col :xs="23" :sm="20" :md="14" :lg="14">
                     <div class="push-info">
-                        <el-form label-position="top" @submit.native.prevent="setInfo" label-width="80px" :model="formLabelAlign">
-                            <el-form-item label="发送小星星⭐⭐⭐">
+                        <el-form label-position="top" 
+                        :rules="rules" ref="ruleForm" 
+                        @submit.native.prevent="setInfo" 
+                        label-width="80px" :model="messageInfo">
+                            <el-form-item label="发送小星星⭐⭐⭐" prop="info">
                                 <el-input 
-                                v-model="formLabelAlign.info"
+                                v-model="messageInfo.info"
                                 maxlength="50"
                                 show-word-limit
                                 placeholder="留言（￣︶￣）↗　" 
@@ -38,8 +41,13 @@ export default {
     name: 'message',
     data () {
         return {
-            formLabelAlign: {
+            messageInfo: {
                 info: ''
+            },
+            rules: {
+                info: [
+                    { required: true, message: '输入你想说的( •̀ ω •́ )', trigger: 'blur' }
+                ]
             }
         }
     },
@@ -48,12 +56,24 @@ export default {
         layoutMain
     },
     methods: {
-        loads() {
-            this.data.push({ id: this.data.length, imgUrl: '', context: '我是美食家' })
-        },
-        setInfo:throttleTwo(function(e){
-            console.log(1)
-        },2000)
+        setInfo:throttleTwo(function(){
+            this.$refs.ruleForm.validate((valid) => {
+                if (valid) {
+                    this.$store.dispatch('home_post/saveMessage',this.messageInfo.info).then(() => {
+                        let data = {
+                            id: this.$store.state.home_get.message.length + 1,
+                            message: this.messageInfo.info,
+                            avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+                            datetime: new Date().toLocaleDateString()
+                        }
+                        this.$store.state.home_get.message.push(data)
+                        this.messageInfo.info = ''
+                    }).catch(() => {})
+                } else {
+                    return false;
+                }
+            });
+        },2000),
     }
 }
 </script>
@@ -69,7 +89,6 @@ export default {
                 height: 500px;
                 padding: 20px;
                 overflow-y: scroll;
-                border-radius: 4px;
                 background: rgba($color: #ffffff, $alpha: .7);
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
                 &::-webkit-scrollbar{
@@ -89,7 +108,6 @@ export default {
             &:last-child .el-col{
                 transition: all .6s;
                 margin-top: 20px;
-                border-radius: 4px;
                 background: rgba($color: #ffffff, $alpha: .7);
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
                 .push-info{

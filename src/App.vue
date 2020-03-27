@@ -19,9 +19,8 @@ export default {
     },
     watch:{
         '$route' : function(to, from) {
-            let that = this
-            from.meta.index > to.meta.index ? that.$store.state.trans = 'left' : that.$store.state.trans = 'right'
-            !from.meta.index || !to.meta.index  ? that.$store.state.trans = 'left' : ''
+            from.meta.index > to.meta.index ? this.$store.dispatch('common/trans','left') : this.$store.dispatch('common/trans','right')
+            !from.meta.index || !to.meta.index  ? this.$store.dispatch('common/trans','left') : ''
         }
     }
 }

@@ -6,7 +6,7 @@
             </el-header>
         </transition>
         <el-main :style="{background:bgColor}">
-            <transition :name="$store.state.trans" mode="out-in" appear>
+            <transition :name="$store.state.common.trans" mode="out-in" appear>
                 <router-view></router-view>
             </transition>
         </el-main>
@@ -34,7 +34,7 @@ export default {
         }
     },
     created () {
-        this.$store.dispatch('home/menu').then(()=>{
+        this.$store.dispatch('home_get/menu').then(()=>{
             this.headShow = true
         }).catch(()=>{
             this.$message({
@@ -71,5 +71,28 @@ export default {
 </script>
     
 <style lang="scss" scoped>
-    @import '@/style/layout/page.scss';
+.el-container{
+    transition: all .6s;
+    @include vue-trans(header,translateY(-100%),2s);
+    @include customize-trans(left,translateX(-100%),translateX(0%),translateX(100%),0.6s);
+    @include customize-trans(right,translateX(100%),translateX(0%),translateX(-100%),0.6s);
+    .el-header{
+        position: fixed;
+        top: 0;
+        z-index: 2000;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 2s;
+    }
+    .el-main{
+        transition: all .6s;
+        padding: 0px;
+        &::-webkit-scrollbar{
+            width: 0px;
+        }
+    }
+    .el-footer{
+        transition: all .6s;
+    }
+}
 </style>
