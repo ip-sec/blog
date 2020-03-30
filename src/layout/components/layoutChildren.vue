@@ -19,7 +19,7 @@ export default {
         }
     },
     destroyed() {
-        this.$store.commit('home_get/DEL_CHILDREN')
+        this.$store.dispatch('home_get/delChildren')
     },
     components:{
         layoutMain

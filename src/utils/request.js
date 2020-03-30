@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import httpStatus from './http-status'
-import getTime from './datetime'
+import {getTime} from './datetime'
 
 const service = axios.create({
     baseURL: process.env.BASE_API,
@@ -27,11 +27,12 @@ service.interceptors.response.use(
                 center: true
             })
         }else{
-            response.config.method == 'get' ? getTime(response.data.data) : Message({
+            response.config.method == 'get' ? getTime(response.data.data) : ''
+            response.config.method == 'post' ? Message({
                 message: response.data.data,
                 type: 'success',
                 center: true
-            })
+            }) : ''
             return response.data
         }
     },

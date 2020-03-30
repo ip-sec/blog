@@ -3,7 +3,7 @@ const getters = {
     message: state => state.home_get.message,
     diary: state => state.home_get.diary,
     tutorial: state => state.home_get.tutorial,
-    children: state => state.home_get.children
+    children: state => state.home_get.children,
 }
 
 export default getters

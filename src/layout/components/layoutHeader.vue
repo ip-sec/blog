@@ -13,7 +13,12 @@
                 <div class="hidden-sm-and-down">
                     <el-button icon="el-icon-full-screen" @click="maxPage" circle></el-button>
                     <el-button icon="el-icon-date" @click="setDialogTableVisible" circle></el-button>
-                    <el-button icon="el-icon-headset" @click="openAutio" circle></el-button>
+                    <el-popover
+                        placement="bottom-start"
+                        width="362">
+                        <music :color="black"></music>
+                        <el-button icon="el-icon-headset" slot="reference" circle></el-button>
+                    </el-popover>
                     <el-switch v-model="openPage" active-color="rgb(225,238,220)" :style="{paddingLeft:'15px'}" @change="reverse"></el-switch>
                 </div>
                 <div class="hidden-md-and-up">
@@ -21,22 +26,24 @@
                 </div>
             </el-col>
         </el-row>
-        <audio ref="myAutio">
-            <source src="http://localhost:80/0/4/1.mp3" type="audio/mpeg">
-        </audio>
     </div>
 </template>
 
 <script>
 import {launchFullscreen,exitFullscreen} from '@/utils/common'
+import Music from '@/components/Music/index'
 export default {
     name: 'layoutHeader',
     data() {
         return {
             switchAutio: false,
             openPage: this.$store.state.common.openPage,
-            max: false
+            max: false,
+            black: 'black'
         }
+    },
+    components:{
+        Music
     },
     methods:{
         setDialogTableVisible () {
@@ -47,10 +54,7 @@ export default {
         },
         switchDrawer () {
             this.$store.dispatch('common/drawer',true)
-        },
-        openAutio() {
-            this.switchAutio = !this.switchAutio
-            this.switchAutio ? this.$refs.myAutio.play() : this.$refs.myAutio.pause()
+            this.$store.dispatch('common/music',true)
         },
         maxPage(){
             this.max = !this.max
@@ -78,6 +82,9 @@ export default {
             .hidden-sm-and-down{
                 @include flex-center;
                 height: 100%;
+                >span{
+                    margin-left: 10px;
+                }
             }
         }
         &:last-child{

@@ -1,4 +1,4 @@
-import { head, message, diary, tutorial } from '../../api/home'
+import { head, message, diary, tutorial, photo } from '../../api/home'
 // import * as api from '../../api/home'
 const state = {
     menu: null,//导航条
@@ -6,6 +6,8 @@ const state = {
     diary: null,//日志信息
     children: null,//页面子路由信息
     tutorial: null,//教程信息
+    photo: null,//图片信息
+    photo_class: null,//图片分类信息
     page: 1,//当前分页信息
     size: 6,//分页显示条数
     total: 6,//总条数
@@ -42,9 +44,21 @@ const mutations = {
     SET_SIZE: (state,size) => {
         state.size = size
     },
+    SET_PHOTO: (state,photo) => {
+        state.photo = photo
+    },
+    SET_PHOTO_CLASS: (state,photo_class) => {
+        state.photo_class = photo_class
+    },
 }
 
 const actions = {
+    delTutorial( {commit} ){
+        commit('DEL_TUTORIAL')
+    },
+    delChildren( {commit} ){
+        commit('DEL_CHILDREN')
+    },
     menu( {commit} ){
         return new Promise((resolve,reject)=>{
             head().then(response => {
@@ -80,12 +94,23 @@ const actions = {
             tutorial(params).then(response => {
                 if(params == '' || params.indexOf('?page=') > -1){
                     commit('SET_TUTORIAL',response.data)
-                    commit('SET_PAGE',Math.ceil(response.data.total/response.data.per_page))
                     commit('SET_SIZE',response.data.per_page)
                     commit('SET_TOTAL',response.data.total)
+                    commit('SET_PAGE',response.data.current_page)
                 }else{
                     commit('SET_CHILDREN',response.data)
                 }
+                resolve()
+            })
+        }).catch(error => {
+            reject(error)
+        })
+    },
+    photo( {commit} ){
+        return new Promise((resolve,reject)=>{
+            photo().then(response => {
+                commit('SET_PHOTO', response.data)
+                commit('SET_PHOTO_CLASS',response.class)
                 resolve()
             })
         }).catch(error => {

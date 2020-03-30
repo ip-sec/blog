@@ -29,10 +29,11 @@ export function diary(params = ''){
         method: 'get',
     })
 }
-export function updateDiary(data){
+//更新日志点击数量及点赞数量
+export function updateDiary(params,data){
     return service({
-        url: '/admin/diarys',
-        method: 'post',
+        url: '/admin/diarys' + params,
+        method: 'put',
         data
     })
 }
@@ -43,10 +44,18 @@ export function tutorial(params = ''){
         method: 'get'
     })
 }
-export function updateTutorial(data){
+//更新教程点击数量及点赞数量
+export function updateTutorial(params, data){
     return service({
-        url: '/admin/tutorials',
-        method: 'post',
+        url: '/admin/tutorials' + params,
+        method: 'put',
         data
+    })
+}
+//请求前台图片数据
+export function photo(){
+    return service({
+        url: '/admin/photos',
+        method: 'get'
     })
 }

@@ -2,9 +2,7 @@
     <layout-main>
         <div class="photo-container">
             <el-row class="photo-flex">
-                <el-col :xs="24" :sm="24" :md="15" :lg="15">
-                    <central-slot></central-slot>
-                </el-col>
+                <central-slot></central-slot>
             </el-row>
         </div>
     </layout-main>
@@ -32,7 +30,7 @@ export default {
     .photo-flex{
         display: flex;
         justify-content: center;
-        padding: 40px 10px;
+        padding: 30px 10px;
         .el-col{
             transition: all .6s;
             background: white;

@@ -23,20 +23,26 @@ const actions = {
             reject(error)
         })
     },
-    updateDiary( {commit}, params ){
+    updateDiary( {commit}, info ){
+        const id = info.id
+        const data = {}
+        info.like_num ? data.like_num = info.like_num : ''
+        info.view_num ? data.view_num = info.view_num : ''
         return new Promise((resolve,reject)=>{
-            updateDiary(params).then(response => {
-                params == '' ? commit('SET_DIARY',response.data) : commit('SET_CHILDREN',response.data)
+            updateDiary(id, data).then(response => {
                 resolve()
             })
         }).catch(error => {
             reject(error)
         })
     },
-    updateTutorial( {commit}, params ){
+    updateTutorial( {commit}, info ){
+        const id = info.id
+        const data = {}
+        info.like_num ? data.like_num = info.like_num : ''
+        info.view_num ? data.view_num = info.view_num : ''
         return new Promise((resolve,reject)=>{
-            updateTutorial(params).then(response => {
-                params == '' || params.indexOf('?page=') > -1 ? commit('SET_TUTORIAL',response.data) : commit('SET_CHILDREN',response.data)
+            updateTutorial(id, data).then(response => {
                 resolve()
             })
         }).catch(error => {

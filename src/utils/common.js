@@ -1,19 +1,23 @@
 function debounce (fn, time) {
     let name = null
     return function () {
+        let that = this
+        let args = arguments
         clearTimeout(name)
         name = setTimeout(() => {
-            fn.apply(this,arguments)
+            fn.apply(that,args)
         },time)
     }
 }
 function throttle (fn, time) {
     let run = true
     return function () {
+        let that = this
+        let args = arguments
         if(!run) return
         run = false
         setTimeout(()=>{
-            fn.apply(this,arguments)
+            fn.apply(that,args)
             run = true
         },time)
     }

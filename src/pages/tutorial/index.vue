@@ -8,8 +8,8 @@
                 <el-col :span="24" :style="{textAlign: 'center'}">
                     <el-pagination 
                     @current-change="getData(page)"
-                    @prev-click="getData(page-1)"
-                    @next-click="getData(page+1)"
+                    @prev-click="page-1"
+                    @next-click="page+1"
                     :page-size="size" 
                     :current-page.sync="page"
                     layout="prev, pager, next" 
@@ -51,7 +51,7 @@ export default {
     },
     methods: {
         getData(num) {
-            this.$store.commit('home_get/DEL_TUTORIAL')
+            this.$store.dispatch('home_get/delTutorial')
             this.$store.dispatch('home_get/tutorial', '?page='+num).then(()=>{}).catch(()=>{})
         },
     }
