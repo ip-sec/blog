@@ -3,7 +3,8 @@ export default {
     data () {
         return {
             pageWidth: '',
-            pageHeight: ''
+            pageHeight: '',
+            isCollapse: false,
         }
     },
     mounted () {
@@ -16,6 +17,8 @@ export default {
             let height = window.innerHeight
             this.pageWidth = width + 'px'
             this.pageHeight = height + 'px'
+            parseInt(this.pageWidth)  < 992 ? this.isCollapse = true : this.isCollapse = false
+            parseInt(this.pageWidth)  < 992 ? this.headLogo = 'small-logo' : this.headLogo = 'logo'
         },
         getPageResize () {
             window.onresize = throttle(this.getPageSize,300)

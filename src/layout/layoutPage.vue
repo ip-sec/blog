@@ -2,7 +2,9 @@
     <el-container>
         <transition name="header" appear>
             <el-header v-if="headShow">
-                <layout-header></layout-header>
+                <keep-alive>
+                    <layout-header></layout-header>
+                </keep-alive>
             </el-header>
         </transition>
         <el-main :style="{background:bgColor}">
@@ -10,11 +12,12 @@
                 <router-view></router-view>
             </transition>
         </el-main>
-        <el-footer ref="refFooter" :style="{background:bgColor}">
-            <layout-footer></layout-footer>
-        </el-footer>
-        <layout-nav></layout-nav>
-        <layout-caledar></layout-caledar>
+        <keep-alive>
+            <layout-nav></layout-nav>
+        </keep-alive>
+        <keep-alive>
+            <layout-caledar></layout-caledar>
+        </keep-alive>
         <el-backtop></el-backtop>
     <!-- <canvas ref="refCanvas" :width="pageWidth" :height="pageHeight"></canvas> -->
     </el-container>
@@ -22,7 +25,6 @@
 
 <script>
 import layoutHeader from './components/layoutHeader'
-import layoutFooter from './components/layoutFooter'
 import layoutNav from '../components/Nav/index'
 import layoutCaledar from '../components/Caledar/index'
 export default {
@@ -44,7 +46,6 @@ export default {
     },
     components:{
         layoutHeader,
-        layoutFooter,
         layoutNav,
         layoutCaledar
     },
@@ -74,8 +75,10 @@ export default {
 .el-container{
     transition: all .6s;
     @include vue-trans(header,translateY(-100%),2s);
-    @include customize-trans(left,translateX(-100%),translateX(0%),translateX(100%),0.6s);
-    @include customize-trans(right,translateX(100%),translateX(0%),translateX(-100%),0.6s);
+    @include customize-trans(left,scale(0.5) translateX(-100%),scale(1) translateX(0%),scale(0.5) translateX(100%),0.6s);
+    @include customize-trans(right,scale(0.5) translateX(100%),scale(1) translateX(0%),scale(0.5) translateX(-100%),0.6s);
+    // @include customize-trans(left,rotateZ(-90deg) translateX(-100%),rotateZ(0deg) translateX(0%),rotateZ(90deg) translateX(100%),0.6s);
+    // @include customize-trans(right,rotateZ(90deg) translateX(100%),rotateZ(0deg) translateX(0%),rotateZ(-90deg) translateX(-100%),0.6s);
     .el-header{
         position: fixed;
         top: 0;

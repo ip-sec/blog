@@ -91,19 +91,7 @@ export default {
                 overflow-y: scroll;
                 background: rgba($color: #ffffff, $alpha: .7);
                 box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-                &::-webkit-scrollbar{
-                width: 5px;
-                }
-                &::-webkit-scrollbar-thumb{
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-                    background: rgba(0, 0, 0, 0.2);
-                }
-                &::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-                    border-radius: 0;
-                    background: rgba(145, 145, 145, 0.2);
-                }
+                @include page-scroll;
             }
             &:last-child .el-col{
                 transition: all .6s;

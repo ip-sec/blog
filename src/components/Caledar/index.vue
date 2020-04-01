@@ -16,8 +16,6 @@ export default {
 
 <style lang="scss">
     .el-dialog__wrapper{
-        &::-webkit-scrollbar {
-            width: 0px;
-        }
+        @include page-scroll;
     }
 </style>

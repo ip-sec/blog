@@ -35,15 +35,7 @@ export default {
 
 <style lang="scss">
 .el-timeline{
-    .list-enter,
-    .list-leave-to{
-        opacity: 0;
-        transform: translateX(150px);
-    }
-    .list-enter-active,
-    .list-leave-active{
-        transition: all 2s;
-    }
+    @include vue-trans(list,translateX(150px),2s);
     .el-timeline-item{
         .span-right{
             float: right;

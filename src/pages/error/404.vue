@@ -1,24 +1,14 @@
 <template>
     <div ref="errHeight" class="err-container" :style="{width: pageWidth,height: pageHeight}">
         <el-row>
-            <transition
-            appear
-            appear-class="left-appear-class"
-            appear-to-class="left-appear-to-class"
-            appear-active-class="left-appear-active-class"
-            >
+            <transition name="left" appear>
                 <el-col :xs="20" :sm="10" :md="10" :lg="10" :offset="1" >
                     <div class="errorImg">
                         <img src="@/assets/img/404.png" alt="">
                     </div>
                 </el-col>
             </transition>
-            <transition
-            appear
-            appear-class="right-appear-class"
-            appear-to-class="right-appear-to-class"
-            appear-active-class="right-appear-active-class"
-            >
+            <transition name="right" appear>
                 <el-col :xs="20" :sm="10" :md="10" :lg="10" :offset="1" >
                     <div class="errorFont">
                         <h1>sorry</h1>
@@ -55,28 +45,8 @@ export default {
 <style lang="scss">
     .err-container{
         @include flex-center;
-        .left-appear-class{
-            opacity: 0;
-            transform: translateX(-100px);
-        }
-        .left-appear-active-class{
-            transition: all 2s;
-        }
-        .left-appear-to-class{
-            opacity: 1;
-            transform: translateY(0px);
-        }
-        .right-appear-class{
-            opacity: 0;
-            transform: translateX(100px);
-        }
-        .right-appear-active-class{
-            transition: all 2s;
-        }
-        .right-appear-to-class{
-            opacity: 1;
-            transform: translateY(0px);
-        }
+        @include vue-trans(left,translateX(-100px),2s);
+        @include vue-trans(right,translateX(100px),2s);
         .errorImg{
             img{
                 max-width: 100%;

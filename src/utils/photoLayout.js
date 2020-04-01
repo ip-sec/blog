@@ -1,32 +1,34 @@
-const photoLayout = (arr) => {
-    let pushArr = arr
+const photoLayout = (arr,dom) => {
+    let pushArr = arr.concat()
     let winWidth = window.innerWidth
     let padLeft = 10
     let padTop = 10
-    let imgWidth = Math.ceil(winWidth * 0.8333333)
-    let col = (winWidth >= 1200 && 3) || (winWidth >= 920 && 2) || (winWidth >= 400 && 1)
-    let width = (col == 3 && (imgWidth/col)-(col*padLeft)) || (col == 2 && (imgWidth/col)-(col*padLeft)) || (col == 1 && (imgWidth/col)-(col*padLeft))
+    let imgWidth = Math.ceil(winWidth * 0.8333333) - 38
+    let col = (winWidth >= 920 && 4) || (winWidth > 768 && 3) || (winWidth > 400 && 2) || (winWidth <= 400 && 1)
+    let width = (imgWidth/col)-padLeft
     let divWidth = width
+    let domHeight = []
     for( let i = 0; i < pushArr.length; i++){
-        let image = new Image()
-        image.src = pushArr[i].url
-        image.onload = () => {
-            pushArr[i]['height'] = width/image.width * image.height
-        }
-        pushArr[i]['width'] = divWidth
+        dom.$children[i].$el.style.width = divWidth+'px'
+        pushArr[i]['height'] = dom.$children[i].$el.offsetHeight
         if((i + 1) <= col){
-            pushArr[i]['top'] = 0
-            pushArr[i]['left'] = (i * divWidth) + (i * padLeft)
+            pushArr[i]['top'] = padTop
+            pushArr[i]['left'] = (i * divWidth) + (padLeft * (i + 1))
+            domHeight[i] = pushArr[i]['height'] + pushArr[i]['top']
         }else{
-            pushArr[i]['top'] = pushArr[i - col]['height'] + pushArr[i - col]['top'] + (Math.ceil((i + 1) / col) * padTop)
-            pushArr[i]['left'] = pushArr[i - col]['left']
+            pushArr[i]['top'] = Math.min.apply(null,domHeight) + padTop
+            domHeight[domHeight.indexOf(Math.min.apply(null,domHeight))] += (pushArr[i]['height'] +  + padTop)
+            for(let j = 0; j <= i; j++){
+                if((pushArr[j]['height'] + pushArr[j]['top']) == (pushArr[i]['top'] - padTop)){
+                    pushArr[i]['left'] = pushArr[j]['left']
+                }
+            }
         }
-        console.log(pushArr[i]['height'])
     }
+    dom.$el.style.height = Math.max.apply(null,domHeight) + 'px'
     return pushArr
 }
 
 export {
-    photoWidth,
     photoLayout
 } 

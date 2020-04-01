@@ -21,10 +21,16 @@
         <div class="null">
             <slot></slot>
         </div>
+        <el-footer>
+            <keep-alive>
+                <layout-footer></layout-footer>
+            </keep-alive>
+        </el-footer>
     </div>
 </template>
 
 <script>
+import layoutFooter from './layoutFooter'
 export default {
     data () {
         return {
@@ -36,6 +42,9 @@ export default {
     },
     destroyed () {
         this.$store.dispatch('common/drawer',false)
+    },
+    components:{
+        layoutFooter,
     }
 }
 </script>

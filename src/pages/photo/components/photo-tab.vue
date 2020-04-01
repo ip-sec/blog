@@ -1,20 +1,21 @@
 <template>
     <el-col :xs="20" :sm="20" :md="20" :lg="20">
-        <el-tabs v-if="data" tab-position="top">
+        <el-tabs v-show="data" tab-position="top" @tab-click="watchPage">
             <el-tab-pane ref="setHeight" v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
                 <transition-group ref="getHeight" class="getDom" tag="div" name="photoList" mode="out-in" appear>
                     <div class="image-preview" 
                     v-for="value in $store.state.home_get.photo[index]" 
                     :key="value.id"
-                    :style="{height: value.height+'px',width: value.width+'px',top: value.top+'px',left: value.left+'px'}">
+                    :style="{height: value.height+'px',left: value.left+'px',top: value.top+'px',}">
                         <el-image
                         :src="value.url"
+                        :preview-src-list="[value.url]"
                         ></el-image>
                     </div>
                 </transition-group>
             </el-tab-pane>
         </el-tabs>
-        <div v-else v-loading="true"></div>
+        <div v-if="!data" v-loading="true"></div>
     </el-col>
 </template>
 
@@ -24,29 +25,37 @@ import {debounce} from '../../../utils/common'
 export default {
     data () {
         return {
-            data: null,
-            name: 'left'
+            data: false,
+            clickTab: false,
+            dialogVisible: false,
+            showImage: ''
         }
     },
     created() {
         this.$store.state.home_get.photo == null 
         ? this.$store.dispatch('home_get/photo').then(()=>{
-            console.log(this.$store.state.home_get.photo)
+            this.watchPage()
+            this.$nextTick(()=>{
+                this.data = true
+            })
         }).catch(()=>{})
         : ''
     },
-    mounted(){
+    mounted() {
+        this.data = true
+        this.$store.state.home_get.photo != null ? this.watchPage() : ''
         window.onresize = () => {
-            this.site()
+            this.watchPage()
         }
     },
-    methods:{
-        watchPage:debounce(function(){
+    methods: {
+        watchPage: debounce(function(){
+            this.data = true
             this.site()
-        },300),
-        site(){
+        },400),
+        site () {
             this.$store.state.home_get.photo.forEach((item,index)=>{
-                photoLayout(item)
+                photoLayout(item,this.$refs.getHeight[index])
             })
         }
     }
@@ -60,7 +69,7 @@ export default {
             .getDom{
                 position: relative;
                 width: 100%;
-                min-height: 2000px;
+                min-height: 400px;
                 overflow: hidden;
                 .image-preview{
                     position: absolute;

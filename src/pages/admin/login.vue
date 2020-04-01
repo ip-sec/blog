@@ -1,21 +1,19 @@
 <template>
     <el-container class="login-container" :style="{width: pageWidth,height: pageHeight}">
-        <transition
-        name="login-trans"
-        appear
-        appear-class="login-appear-class"
-        appear-to-class="login-appear-to-class"
-        appear-active-class="login-appear-active-class"
-        >
+        <transition name="login" appear>
             <el-main v-show="showLogin">
-                <el-form :label-position="labelPosition" label-width="55px">
+                <el-form 
+                :label-position="labelPosition" 
+                :rules="rules" ref="ruleLogin" 
+                @submit.native.prevent="setInfo"
+                label-width="60px">
                     <el-form-item>
                         <el-divider><h3>后台控制登入</h3></el-divider>
                     </el-form-item>
-                    <el-form-item label="账号：">
-                        <el-input v-model="formLabelAlign.name" prefix-icon="el-icon-user" placeholder="请输入账号" autocomplete="off" clearable></el-input>
+                    <el-form-item label="账号：" prop="username">
+                        <el-input v-model="formLabelAlign.username" prefix-icon="el-icon-user" placeholder="请输入账号" autocomplete="off" clearable></el-input>
                     </el-form-item>
-                    <el-form-item label="密码：">
+                    <el-form-item label="密码：" prop="password">
                         <el-input v-model="formLabelAlign.password" prefix-icon="el-icon-key" placeholder="请输入密码" show-password></el-input>
                     </el-form-item>
                     <el-form-item>
@@ -42,22 +40,36 @@ export default {
             showLogin: true,
             labelPosition: 'left',
             formLabelAlign: {
-                name: '',
+                username: '',
                 password: '',
-                type: '',
                 checked: false
+            },
+            rules: {
+                username: [
+                    { required: true, message: '输入账号喔( •̀ ω •́ )', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '输入密码喔( •̀ ω •́ )', trigger: 'blur' }
+                ]
             }
         }
     },
+    
     created() {
         document.title = this.$route.meta.title
     },
     mixins: [getPageSize],
     methods: {
         commit () {
-            this.loading = true
-            this.showLogin = !this.showLogin
-            // this.$router.push('/systemTina')
+            this.$refs.ruleLogin.validate((valid) => {
+                if (valid) {
+                    this.loading = true
+                    this.showLogin = !this.showLogin
+                    // this.$router.push('/systemTina')
+                }else{
+                    return false
+                }
+            })
         }
     }
 }
@@ -66,27 +78,8 @@ export default {
 <style lang="scss">
     .login-container{
         @include flex-center;
+        @include customize-trans(login,translateY(-100px),translateY(0px),translateY(100px),2s);
         background: linear-gradient(to right bottom,lightskyblue,lightpink);
-        .login-appear-class{
-            opacity: 0;
-            transform: translateY(-100px);
-        }
-        .login-appear-active-class{
-            transition: all 4s;
-        }
-        .login-appear-to-class{
-            opacity: 1;
-            transform: translateY(0px);
-        }
-        .login-trans-enter,
-        .login-trans-leave-to{
-            opacity: 0;
-            transform: translateY(100px);
-        }
-        .login-trans-enter-active,
-        .login-trans-leave-active{
-            transition: all 2s;
-        }
         .el-main{
             @include flex-center;
             .el-form{
@@ -101,6 +94,11 @@ export default {
                 }
                 .el-form-item:last-child{
                     text-align: center;
+                    .el-button{
+                        &:hover,&:focus{
+                            border-color: #E36049;
+                        }
+                    }
                 }
             }
         }
