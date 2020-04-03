@@ -31,7 +31,7 @@
 
 <script>
 import getPageSize from '@/utils/mixins/getPageSize'
-import data from '../../utils/request'
+import data from '../utils/request'
 export default {
     name: 'login',
     data () {

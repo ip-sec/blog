@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Admin from './modules/admin'
 
 const layout = () => import('../layout/layoutPage')
 
@@ -69,15 +70,9 @@ export default new Router({
             meta:{
                 title: '登基'
             },
-            component: () => import('@/pages/admin/login')
-        }, 
-        {
-            path: '/systemTina',
-            meta:{
-                title: '朕的后宫'
-            },
-            component: () => import('@/pages/admin/admin')
+            component: () => import('@/admin/login')
         },
+        Admin,
         {
             path: '/error/404',
             meta:{

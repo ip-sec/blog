@@ -7,3 +7,17 @@ export function login(data) {
         data
     })
 }
+
+export function menu(){
+    return service({
+        url: '/admin/menus',
+        method: 'get'
+    })
+}
+
+export function photo(){
+    return service({
+        url: '/admin/photos',
+        method: 'get'
+    })
+}

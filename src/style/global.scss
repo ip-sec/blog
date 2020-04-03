@@ -97,9 +97,9 @@
         }
         
     }
-    @mixin page-scroll{
+    @mixin page-scroll($scrollWidth: 0px){
         &::-webkit-scrollbar{
-            width: 0px;
+            width: $scrollWidth;
         }
         &::-webkit-scrollbar-thumb{
             border-radius: 10px;
@@ -107,8 +107,19 @@
             background: rgba(0, 0, 0, 0.2);
         }
         &::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0);
             border-radius: 0;
-            background: rgba(145, 145, 145, 0.2);
+            background: rgba(145, 145, 145, 0);
+        }
+    }
+    @mixin logo ($line : 65px,$size: 20px,$font: "Trebuchet MS",$weight: none){
+        transition: all .6s;
+        font-family: $font;
+        line-height: $line;
+        font-weight: $weight;
+        font-size: $size;
+        cursor: pointer;
+        &:hover{
+            color: #E36049;
         }
     }

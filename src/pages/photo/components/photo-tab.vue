@@ -1,7 +1,7 @@
 <template>
     <el-col :xs="20" :sm="20" :md="20" :lg="20">
-        <el-tabs v-show="data" tab-position="top" @tab-click="watchPage">
-            <el-tab-pane ref="setHeight" v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
+        <el-tabs v-if="this.$store.state.home_get.photo" tab-position="top" @tab-click="watchPage">
+            <el-tab-pane v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
                 <transition-group ref="getHeight" class="getDom" tag="div" name="photoList" mode="out-in" appear>
                     <div class="image-preview" 
                     v-for="value in $store.state.home_get.photo[index]" 
@@ -15,7 +15,7 @@
                 </transition-group>
             </el-tab-pane>
         </el-tabs>
-        <div v-if="!data" v-loading="true"></div>
+        <div v-else v-loading="true"></div>
     </el-col>
 </template>
 
@@ -25,7 +25,6 @@ import {debounce} from '../../../utils/common'
 export default {
     data () {
         return {
-            data: false,
             clickTab: false,
             dialogVisible: false,
             showImage: ''
@@ -35,29 +34,19 @@ export default {
         this.$store.state.home_get.photo == null 
         ? this.$store.dispatch('home_get/photo').then(()=>{
             this.watchPage()
-            this.$nextTick(()=>{
-                this.data = true
-            })
         }).catch(()=>{})
         : ''
     },
     mounted() {
-        this.data = true
         this.$store.state.home_get.photo != null ? this.watchPage() : ''
-        window.onresize = () => {
-            this.watchPage()
-        }
+        window.addEventListener('resize',() => this.watchPage(), false)
     },
     methods: {
         watchPage: debounce(function(){
-            this.data = true
-            this.site()
-        },400),
-        site () {
             this.$store.state.home_get.photo.forEach((item,index)=>{
-                photoLayout(item,this.$refs.getHeight[index])
+                photoLayout(item,this.$refs.getHeight[index].$children,this.$refs.getHeight[index],0.8333333)
             })
-        }
+        },400)
     }
 }
 </script>
@@ -71,6 +60,7 @@ export default {
                 width: 100%;
                 min-height: 400px;
                 overflow: hidden;
+                transition: all 1s;
                 .image-preview{
                     position: absolute;
                     transition: all 0.6s;

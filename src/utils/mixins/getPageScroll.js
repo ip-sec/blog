@@ -1,7 +1,10 @@
-import {throttle} from '@/utils/common.js'
+import {debounce} from '@/utils/common.js'
 export default {
     mounted() {
         this.loadPhoto()
+    },
+    beforeDestroy () {
+        window.onresize = null
     },
     methods: {
         getDomScroll () {
@@ -11,7 +14,7 @@ export default {
             Math.ceil(scrollTop + windowHeight + 1) >= scrollHeight ? this.morePhoto() : ''
         },
         loadPhoto () {
-            window.onscroll = throttle(this.getDomScroll,300)
+            window.onscroll = debounce(this.getDomScroll,300)
         }
-    },
+    }
 }

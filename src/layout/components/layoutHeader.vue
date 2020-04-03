@@ -71,11 +71,7 @@ export default {
         &:first-child{
             .logo{
                 padding-left: 15px;
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                line-height: 60px;
-                font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
+                @include logo($weight:bold,$line:60px)
             }
         }
         &:last-child{
