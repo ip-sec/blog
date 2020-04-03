@@ -8,7 +8,7 @@
                 :key="item.id"
                 :label="item.name"
                 :value="item.id">
-                </template>
+                </el-option>
             </el-select>
             <el-button>上传至相册</el-button>
         </el-col>
