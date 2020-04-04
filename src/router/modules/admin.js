@@ -9,14 +9,14 @@ const admin = {
             meta:{
                 title: '首页'
             },
-            component: () => import('@/admin/components/Home/index'),
+            component: () => import('@/admin/pages/Home/index'),
         },
         {   path: 'tutorialAlbum', 
-            component: () => import('@/admin/components/Layout/index'),
+            component: () => import('@/admin/pages/Layout/index'),
             children:[
                 {
                     path: '',
-                    component: () => import('@/admin/components/Tutorial/index'),
+                    component: () => import('@/admin/pages/Tutorial/index'),
                     meta:{
                         title: '教程管理',
                         breadcrumb: ['教程管理']
@@ -25,11 +25,11 @@ const admin = {
             ]
         },
         {   path: 'diaryAlbum', 
-            component: () => import('@/admin/components/Layout/index'),
+            component: () => import('@/admin/pages/Layout/index'),
             children:[
                 {
                     path: '',
-                    component: () => import('@/admin/components/Diary/index'),
+                    component: () => import('@/admin/pages/Diary/index'),
                     meta:{
                         title: '日志管理',
                         breadcrumb: ['日志管理']
@@ -41,11 +41,11 @@ const admin = {
             meta:{
                 title: '相册管理'
             },
-            component: () => import('@/admin/components/Layout/index'),
+            component: () => import('@/admin/pages/Layout/index'),
             children:[
                 {
                     path: '',
-                    component: () => import('@/admin/components/Photo/index'),
+                    component: () => import('@/admin/pages/Photo/index'),
                     meta:{
                         title: '相册管理',
                         breadcrumb: ['相册管理']
@@ -53,7 +53,7 @@ const admin = {
                 },
                 {
                     path: 'upload',
-                    component: () => import('@/admin/components/Photo/upload'),
+                    component: () => import('@/admin/pages/Photo/upload'),
                     meta:{
                         title: '上传照片',
                         breadcrumb: ['相册管理','上传照片']
@@ -62,11 +62,11 @@ const admin = {
             ]
         },
         {   path: 'messageAlbum', 
-            component: () => import('@/admin/components/Layout/index'),
+            component: () => import('@/admin/pages/Layout/index'),
             children:[
                 {
                     path: '',
-                    component: () => import('@/admin/components/Message/index'),
+                    component: () => import('@/admin/pages/Message/index'),
                     meta:{
                         title: '留言管理',
                         breadcrumb: ['留言管理']
@@ -75,11 +75,11 @@ const admin = {
             ]
         },
         {   path: 'sortAlbum', 
-            component: () => import('@/admin/components/Layout/index'),
+            component: () => import('@/admin/pages/Layout/index'),
             children:[
                 {
                     path: '',
-                    component: () => import('@/admin/components/Sort/index'),
+                    component: () => import('@/admin/pages/Sort/index'),
                     meta:{
                         title: '标签管理',
                         breadcrumb: ['标签管理']
@@ -87,7 +87,7 @@ const admin = {
                 },
                 {
                     path: 'category',
-                    component: () => import('@/admin/components/Sort/category'),
+                    component: () => import('@/admin/pages/Sort/category'),
                     meta:{
                         title: '分类管理',
                         breadcrumb: ['标签管理','分类管理']

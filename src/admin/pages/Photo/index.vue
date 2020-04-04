@@ -50,21 +50,18 @@ export default {
             })
         },400),
         updateImg(id,data,index){
-            this.$confirm('把它丢入回收站', '😱', {
+            let _this = this
+            _this.$confirm('把它丢入回收站', '😱', {
                 confirmButtonText: '丢他~',
                 cancelButtonText: '留下',
                 center: true
             }).then(()=>{
-                this.$store.dispatch('admin_get/delPhoto','/'+id).then(()=>{
-                    this.$message({
-                        type: 'success',
-                        message: '已飞入回收站'
-                    });
+                _this.$store.dispatch('admin_get/delPhoto','/'+id).then(()=>{
                     data.splice(index,1)
-                    this.changePage()
+                    _this.changePage()
                 }).catch(()=>{})
             }).catch(()=>{
-                this.$message({
+                _this.$message({
                     type: 'success',
                     message: '成功救下~'
                 });

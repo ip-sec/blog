@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import leftMenu from './components/Menu/index'
+import leftMenu from './pages/Menu/index'
 import getPageSize from '@/utils/mixins/getPageSize'
 export default {
     name: 'admin',

@@ -1,0 +1,104 @@
+<template>
+    <div class="sort-page">
+        <div class="tab-sort" v-if="$store.state.admin_get.sort" >
+            <transition name="sortPage" mode="out-in" appear>
+                <el-table :data="$store.state.admin_get.sort" style="width: 100%">
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form label-position="left">
+                                <el-form-item label="ID：">
+                                    <el-input v-model="props.row.id" disabled></el-input>
+                                </el-form-item>
+                                <el-form-item label="名称：">
+                                    <el-input v-model="props.row.name" :disabled="isDisabled" clearable></el-input>
+                                </el-form-item>
+                                <el-form-item label="背景颜色：">
+                                    <el-color-picker v-model="props.row.bg" show-alpha :disabled="isDisabled"></el-color-picker>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button :icon="editIcon" @click="handleRowData(editIcon,props)">修改</el-button>
+                                    <el-button icon="el-icon-delete" @click="delRow(props)">删除</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="ID" prop="id"></el-table-column>
+                    <el-table-column label="名称" prop="name"></el-table-column>
+                    <el-table-column label="背景颜色" prop="bg"></el-table-column>
+                </el-table>
+            </transition>
+            <add-sort></add-sort>
+        </div>
+        <div v-else v-loading="true" style="paddingTop:30px"></div>
+    </div>
+</template>
+
+<script>
+import addSort from '../components/addSort'
+export default {
+    name: 'sortAlbum',
+    data() {
+        return {
+            editIcon: 'el-icon-edit',
+            isDisabled: true,
+            rowData: null
+        }
+    },
+    created() {
+        this.$store.state.admin_get.sort == null 
+        ? this.$store.dispatch('admin_get/sort').then(()=>{
+        }).catch(()=>{})
+        : ''
+    },
+    components:{
+        addSort
+    },
+    methods:{
+        handleRowData(icon,data){
+            let _this = this
+            if(icon ==  'el-icon-edit'){
+                _this.editIcon = 'el-icon-check'
+                _this.isDisabled = false
+            }else{
+                if(data.row.name == '' || data.row.bg == ''){
+                    this.$message({
+                        type: 'error',
+                        message: '确认好修改的信息喔',
+                        center: true
+                    })
+                }else{
+                    _this.rowData = {
+                        id: '/'+ data.row.id,
+                        name: data.row.name,
+                        bg: data.row.bg
+                    }
+                    _this.$store.dispatch('admin_post/updateSort',_this.rowData).then(()=>{
+                        this.$message({
+                            type: 'success',
+                            message: '操作成功啦~'
+                        })
+                    }).catch(()=>{})
+                    _this.editIcon = 'el-icon-edit'
+                    _this.isDisabled = true
+                }
+            }
+        },
+        delRow(data){
+            this.$store.dispatch('admin_get/delSort','/'+data.row.id).then(()=>{
+                this.$store.state.admin_get.sort.splice(data.$index,1)
+            }).catch(()=>{})
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+    .sort-page{
+        .tab-sort{
+            @include vue-trans(sortPage,translateY(50px),0.6s);
+            .el-button+.el-button{
+                margin-left: 0 !important;
+            }
+        }
+    }
+</style>

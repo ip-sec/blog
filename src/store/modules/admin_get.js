@@ -6,6 +6,7 @@ const state = {
     photo: null,//图片信息
     message: null,//留言信息
     photo_class: null,//图片分类信息
+    sort: null,//分类信息
 }
 
 const mutations = {
@@ -20,6 +21,9 @@ const mutations = {
     },
     SET_MESSAGE: (state,message) => {
         state.message = message
+    },
+    SET_SORT: (state,sort) => {
+        state.sort = sort
     },
 }
 
@@ -56,6 +60,16 @@ const actions = {
             })
         })
     },
+    sort( {commit} ){
+        return new Promise((resolve,reject)=>{
+            admin.sort().then(response => {
+                commit('SET_SORT',response.data)
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     delPhoto( {commit},id ){
         return new Promise((resolve,reject)=>{
             handle.delPhoto(id).then(response => {
@@ -78,6 +92,15 @@ const actions = {
     delMessage( {commit},id ){
         return new Promise((resolve,reject)=>{
             handle.delMessage(id).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    delSort( {commit},id ){
+        return new Promise((resolve,reject)=>{
+            handle.delSort(id).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)

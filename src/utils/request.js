@@ -26,9 +26,18 @@ service.interceptors.response.use(
                 type: 'error',
                 center: true
             })
+            return Promise.reject(new Error(httpStatus(response.status) || 'Error'))
+        }else if(response.data.code != 200){
+            Message({
+                message: response.data.error,
+                type: 'error',
+                center: true
+            })
+            return Promise.reject(new Error(response.data.error || 'Error'))
         }else{
             response.config.method == 'get' ? getTime(response.data.data) : ''
-            response.config.method == 'post' ? Message({
+            response.config.method == 'post'
+            || response.config.method == 'delete' ? Message({
                 message: response.data.data,
                 type: 'success',
                 center: true

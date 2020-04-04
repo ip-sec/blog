@@ -14,15 +14,11 @@
                 <el-button @click="uploadPhoto">上传至相册</el-button>
             </el-col>
             <el-col :sm="24" :xs="24" :md="24" :lg="24">
-                <el-upload
-                    action="http://localhost:80/admin/upload"
-                    ref="refUpload"
-                    list-type="picture-card"
+                <el-upload action="http://localhost:80/admin/upload" ref="refUpload" list-type="picture-card"
                     :on-preview="handlePictureCardPreview"
                     :before-upload="handleJudge"
                     :on-remove="handleRemove"
-                    :on-success="handleSuccess"
-                    multiple>
+                    :on-success="handleSuccess">
                     <i class="el-icon-upload"></i>
                     <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>

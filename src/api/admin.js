@@ -21,10 +21,16 @@ export function photoCategory(){
     })
 }
 
-
 export function message(){
     return service({
         url: '/admin/messages',
+        method: 'get'
+    })
+}
+
+export function sort(){
+    return service({
+        url: '/admin/sorts',
         method: 'get'
     })
 }

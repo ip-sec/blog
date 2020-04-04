@@ -18,10 +18,32 @@ const actions = {
             })
         })
     },
-
+    saveSort ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.saveSort(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     delPhotoFile ( {commit},data ){
         return new Promise((resolve,reject)=>{
             submit.delPhotoFile(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    updateSort ( {commit},info ){
+        let id = info.id
+        let data = {
+            name: info.name,
+            bg: info.bg
+        }
+        return new Promise((resolve,reject)=>{
+            submit.updateSort(id,data).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)

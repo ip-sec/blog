@@ -20,3 +20,10 @@ export function delMessage(params){
         method: 'delete'
     })
 }
+
+export function delSort(params) {
+    return service({
+        url: '/admin/sorts' + params,
+        method: 'delete',
+    })
+}
