@@ -1,4 +1,4 @@
-import { saveMessage, updateDiary, updateTutorial } from '../../api/home'
+import * as handle from '../../api/home_handle'
 
 const state = {
 
@@ -12,15 +12,15 @@ const actions = {
     saveMessage( {commit},info ){
         return new Promise((resolve,reject)=>{
             const data = {
-                message: info,
-                avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+                message: info.info,
+                avatar: info.avatar,
                 datetime: new Date().getTime()
             }
-            saveMessage(data).then(response => {
+            handle.saveMessage(data).then(response => {
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     updateDiary( {commit}, info ){
@@ -29,11 +29,11 @@ const actions = {
         info.like_num ? data.like_num = info.like_num : ''
         info.view_num ? data.view_num = info.view_num : ''
         return new Promise((resolve,reject)=>{
-            updateDiary(id, data).then(response => {
+            handle.updateDiary(id, data).then(response => {
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     updateTutorial( {commit}, info ){
@@ -42,11 +42,11 @@ const actions = {
         info.like_num ? data.like_num = info.like_num : ''
         info.view_num ? data.view_num = info.view_num : ''
         return new Promise((resolve,reject)=>{
-            updateTutorial(id, data).then(response => {
+            handle.updateTutorial(id, data).then(response => {
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
 }

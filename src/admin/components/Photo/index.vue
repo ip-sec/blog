@@ -1,11 +1,12 @@
 <template>
-    <el-row class="tab-contain">
+    <el-row class="photo-contain">
         <el-col :sm="24" :xs="24" :md="24" :lg="24">
             <el-tabs v-if="$store.state.admin_get.photo_class" :tab-position="$store.state.common.isTop" @tab-click="changePage">
                 <el-tab-pane v-for="(item, index) in $store.state.admin_get.photo_class" :key="item.id" :label="item.name">
                     <transition-group ref="setHeight" class="setDom" tag="div" name="photoItem" mode="out-in" appear>
                         <div class="image-preview" 
-                        v-for="value in $store.state.admin_get.photo[index]" 
+                        v-for="(value,i) in $store.state.admin_get.photo[index]" 
+                        @contextmenu.prevent="updateImg(value.id,$store.state.admin_get.photo[index],i)"
                         :key="value.id"
                         :style="{height: value.height+'px',left: value.left+'px',top: value.top+'px',}">
                             <el-image
@@ -47,13 +48,34 @@ export default {
             this.$store.state.admin_get.photo.forEach((item,index)=>{
                 photoLayout(item,this.$refs.setHeight[index].$children,this.$refs.setHeight[index],0.5)
             })
-        },400)
+        },400),
+        updateImg(id,data,index){
+            this.$confirm('把它丢入回收站', '😱', {
+                confirmButtonText: '丢他~',
+                cancelButtonText: '留下',
+                center: true
+            }).then(()=>{
+                this.$store.dispatch('admin_get/delPhoto','/'+id).then(()=>{
+                    this.$message({
+                        type: 'success',
+                        message: '已飞入回收站'
+                    });
+                    data.splice(index,1)
+                    this.changePage()
+                }).catch(()=>{})
+            }).catch(()=>{
+                this.$message({
+                    type: 'success',
+                    message: '成功救下~'
+                });
+            })
+        }
     }
 }
 </script>
 
 <style lang="scss">
-    .tab-contain{
+    .photo-contain{
         padding-top: 30px;
         .el-tab-pane{
             @include vue-trans(photoItem,scale(0),0.6s);

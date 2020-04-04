@@ -36,13 +36,14 @@
 <script>
 import layoutMain from '@/layout/components/layoutMain'
 import CentralSlot from './components/message-item'
-import {throttleTwo} from '@/utils/common'
+import {throttleTwo,myRandom} from '@/utils/common'
 export default {
     name: 'message',
     data () {
         return {
             messageInfo: {
-                info: ''
+                info: '',
+                avatar: ''
             },
             rules: {
                 info: [
@@ -55,15 +56,21 @@ export default {
         CentralSlot,
         layoutMain
     },
+    mounted(){  
+        console.log(this.$store.state.home_get.photo)
+    },
     methods: {
         setInfo:throttleTwo(function(){
             this.$refs.ruleForm.validate((valid) => {
                 if (valid) {
-                    this.$store.dispatch('home_post/saveMessage',this.messageInfo.info).then(() => {
+                    this.$store.state.home_get.photo == null 
+                    ? this.messageInfo.avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+                    : this.messageInfo.avatar = this.$store.state.home_get.photo[0][myRandom(0,this.$store.state.home_get.photo[0].length)].url
+                    this.$store.dispatch('home_post/saveMessage',this.messageInfo).then(() => {
                         let data = {
                             id: this.$store.state.home_get.message.length + 1,
                             message: this.messageInfo.info,
-                            avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+                            avatar: this.messageInfo.avatar,
                             datetime: new Date().toLocaleDateString()
                         }
                         this.$store.state.home_get.message.push(data)

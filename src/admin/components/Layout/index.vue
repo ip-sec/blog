@@ -8,7 +8,9 @@
                 </el-breadcrumb>
             </el-col>
         </el-row>
-        <router-view></router-view>
+        <transition name="childrenPage" appear mode="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
@@ -19,9 +21,18 @@ export default {
         return {
             
         }
+    },
+    created(){
+        document.title = this.$route.meta.title
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    .admin-home{
+        @include vue-trans(childrenPage,translateY(50px),.6s);
+        .el-col{
+            padding-bottom: 20px;
+        }
+    }
 </style>

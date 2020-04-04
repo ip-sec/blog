@@ -1,4 +1,4 @@
-import { head, message, diary, tutorial, photo } from '../../api/home'
+import * as home from '../../api/home'
 // import * as api from '../../api/home'
 const state = {
     menu: null,//导航条
@@ -61,37 +61,37 @@ const actions = {
     },
     menu( {commit} ){
         return new Promise((resolve,reject)=>{
-            head().then(response => {
+            home.head().then(response => {
                 commit('SET_MENU',response.data)
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     message( {commit} ){
         return new Promise((resolve,reject)=>{
-            message().then(response => {
+            home.message().then(response => {
                 commit('SET_MESSAGE',response.data)
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     diary( {commit}, params ){
         return new Promise((resolve,reject)=>{
-            diary(params).then(response => {
+            home.diary(params).then(response => {
                 params == '' ? commit('SET_DIARY',response.data) : commit('SET_CHILDREN',response.data)
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     tutorial( {commit}, params ){
         return new Promise((resolve,reject)=>{
-            tutorial(params).then(response => {
+            home.tutorial(params).then(response => {
                 if(params == '' || params.indexOf('?page=') > -1){
                     commit('SET_TUTORIAL',response.data)
                     commit('SET_SIZE',response.data.per_page)
@@ -101,20 +101,20 @@ const actions = {
                     commit('SET_CHILDREN',response.data)
                 }
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
     photo( {commit} ){
         return new Promise((resolve,reject)=>{
-            photo().then(response => {
+            home.photo().then(response => {
                 commit('SET_PHOTO', response.data)
                 commit('SET_PHOTO_CLASS',response.class)
                 resolve()
+            }).catch(error => {
+                reject(error)
             })
-        }).catch(error => {
-            reject(error)
         })
     },
 }

@@ -2,7 +2,11 @@
     <el-menu default-active="1" class="el-menu-vertical-demo" active-text-color="#E36049" :collapse="isCollapse">
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <span slot="title">首页</span>
+            <router-link to="/systemTina">
+            </router-link>
+            <span slot="title">
+                首页
+            </span>
         </el-menu-item>
         <el-submenu v-for="(item,index) in $store.state.admin_get.menu" :key="item.id" :index="index + 2 + ''">
             <template slot="title">

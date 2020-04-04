@@ -3,7 +3,7 @@
         <el-container class="admin-container"  v-if="$store.state.admin_get.menu">
             <el-aside width="auto" >
                 <el-header height="65px">
-                    <span :class="headLogo">Tina blog</span>
+                    <router-link to="/systemTina" tag="span" :class="headLogo">Tina blog</router-link>
                 </el-header>
                 <transition name='menuList' mode="out-in" appear>
                     <left-menu :isCollapse="isCollapse"></left-menu>
@@ -11,11 +11,18 @@
             </el-aside>
             <el-container>
                 <el-header height="65px">
-                    <span class="switch-aside hidden-sm-and-down" :class="spanClass" @click="switchAside"></span>
-                    <span class="el-icon-switch-button colse-page" @click="delToken"></span>
+                    <div class="flex-left">
+                        <span class="switch-aside hidden-sm-and-down" :class="spanClass" @click="switchAside"></span>
+                    </div>
+                    <div class="flex-right">
+                        <span class="el-icon-refresh reset-cache" @click="resetCache"></span>
+                        <span class="el-icon-switch-button colse-page" @click="delToken"></span>
+                    </div>
                 </el-header>
                 <el-main height="100%">
-                    <router-view></router-view>
+                    <transition name="mainPage" appear mode="out-in">
+                        <router-view></router-view>
+                    </transition>
                 </el-main>
             </el-container>
         </el-container>
@@ -55,6 +62,15 @@ export default {
         },
         delToken () {
             console.log(1)
+        },
+        resetCache () {
+            this.$store.dispatch('admin_get/resetCache').then(()=>{
+                this.$message({
+                    message: '后台打扫成功~',
+                    type: 'success'
+                });
+                window.location.reload()
+            }).catch(()=>{})
         }
     }
 }
@@ -87,24 +103,38 @@ export default {
             .el-container{
                 .el-header{
                     border-bottom: 1px solid #e6e6e6;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     .switch-aside{
-                        @include logo($size:22px);
+                        justify-content: flex-start;
+                        @include logo($size:22px,$line: none);
                     }
                     .colse-page{
-                        float: right;
                         padding: 0 15px;
-                        @include logo($size:20px);
+                        @include logo($size:20px,$line: none);
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                    .reset-cache{
+                        @include logo($size:20px,$line: none);
+                        &:hover{
+                            transform: rotateZ(360deg);
+                        }
                     }
                 }
                 .el-main{
+                    position: relative;
                     @include page-scroll(5px);
+                    @include vue-trans(mainPage,translateY(50px),.6s);
                 }
             }
         }
     }
     @media screen and (max-width: 768px){
-    .system-contain{
-        width: 100%;
+        .system-contain{
+            width: 100%;
+        }
     }
-}
 </style>

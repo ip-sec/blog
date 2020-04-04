@@ -1,13 +1,5 @@
 import service from '../utils/request'
 
-export function login(data) {
-    return service({
-        url: '/admin/base/login',
-        method: 'post',
-        data
-    })
-}
-
 export function menu(){
     return service({
         url: '/admin/menus',
@@ -18,6 +10,21 @@ export function menu(){
 export function photo(){
     return service({
         url: '/admin/photos',
+        method: 'get'
+    })
+}
+
+export function photoCategory(){
+    return service({
+        url: '/admin/categorys',
+        method: 'get'
+    })
+}
+
+
+export function message(){
+    return service({
+        url: '/admin/messages',
         method: 'get'
     })
 }
