@@ -1,8 +1,11 @@
 <template>
     <el-row class="sort-page">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的标题"></el-input>
+        </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" class="tab-sort" v-if="$store.state.admin_get.sort" >
             <transition name="bottomY" mode="out-in" appear>
-                <el-table :data="$store.state.admin_get.sort" style="width: 100%" max-height="500">
+                <el-table :data="handleDate" style="width: 100%" max-height="500">
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form label-position="left">
@@ -29,7 +32,7 @@
             </transition>
             <add-sort></add-sort>
         </el-col>
-        <div v-else v-loading="true" style="paddingTop:30px"></div>
+        <div v-else v-loading="true" style="paddingTop:200px"></div>
     </el-row>
 </template>
 
@@ -41,7 +44,8 @@ export default {
         return {
             editIcon: 'el-icon-edit',
             isDisabled: true,
-            rowData: null
+            rowData: null,
+            filterDate: ''
         }
     },
     created() {
@@ -49,6 +53,13 @@ export default {
         ? this.$store.dispatch('admin_get/sort').then(()=>{
         }).catch(()=>{})
         : ''
+    },
+    computed:{
+        handleDate:function(){
+            return this.$store.state.admin_get.sort.filter((item)=>{
+                return item.name.indexOf(this.filterDate) !== -1
+            })
+        }
     },
     components:{
         addSort

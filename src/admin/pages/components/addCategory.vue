@@ -2,9 +2,9 @@
     <div class="push-page">
         <el-button icon="el-icon-plus" @click="addCategory">添加</el-button>
         <el-dialog title="新增类别" :visible.sync="categoryDialog" width="60%">
-            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addDate" @submit.native.prevent="commitCategory">
+            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addData" @submit.native.prevent="commitCategory">
                 <el-form-item label="名称："  prop="name">
-                    <el-input v-model="addDate.name" clearable ></el-input>
+                    <el-input v-model="addData.name" clearable ></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button :icon="pushIcon" @click="commitCategory">添加</el-button>
@@ -19,7 +19,7 @@ export default {
     data(){
         return {
             categoryDialog: false,
-            addDate:{
+            addData:{
                 name: '',
             },
             rules: {
@@ -39,12 +39,12 @@ export default {
             _this.$refs.ruleAddForm.validate((valid) => {
                 if (valid) {
                     _this.pushIcon = 'el-icon-loading'
-                    _this.$store.dispatch('admin_post/saveCategory',_this.addDate).then(()=>{
+                    _this.$store.dispatch('admin_post/saveCategory',_this.addData).then(()=>{
                         _this.$store.state.admin_get.photo_class.push({
                             id:   _this.$store.state.admin_get.photo_class[_this.$store.state.admin_get.photo_class.length-1].id+1,
-                            name: _this.addDate.name,
+                            name: _this.addData.name,
                         })
-                        _this.addDate.name = ''
+                        _this.addData.name = ''
                         _this.pushIcon = 'el-icon-plus'
                         _this.categoryDialog = false
                     }).catch(()=>{})

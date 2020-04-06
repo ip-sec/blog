@@ -1,8 +1,11 @@
 <template>
     <el-row class="message-contain">
-        <transition name="bottomY">
-            <el-col :sm="24" :xs="24" :md="24" :lg="24" v-if="$store.state.admin_get.message">
-                <el-table :data="$store.state.admin_get.message" style="width: 100%" max-height="500">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的标题"></el-input>
+        </el-col>
+        <el-col :sm="24" :xs="24" :md="24" :lg="24" v-if="$store.state.admin_get.message">
+            <transition name="bottomY" mode="out-in" appear>
+                <el-table :data="handleDate" style="width: 100%" max-height="500">
                     <el-table-column prop="id" label="ID" width="120"></el-table-column>
                     <el-table-column prop="datetime" label="日期" width="150"></el-table-column>
                     <el-table-column prop="avatar" label="头像URL" width="300"></el-table-column>
@@ -18,9 +21,9 @@
                         </template>
                     </el-table-column>
                 </el-table>
-            </el-col>
-            <div v-else v-loading="true"></div>
-        </transition>
+            </transition>
+        </el-col>
+        <div v-else v-loading="true"></div>
     </el-row>
     
 </template>
@@ -30,11 +33,18 @@ export default {
     name: 'messageAlbum',
     data() {
         return {
-            
+            filterDate: ''
         }
     },
     created () {
         this.$store.dispatch('admin_get/message').then(() => {}).catch(() => {})
+    },
+    computed:{
+        handleDate:function(){
+            return this.$store.state.admin_get.message.filter((item)=>{
+                return item.message.indexOf(this.filterDate) !== -1
+            })
+        }
     },
     methods:{
         deleteRow(index,id, rows) {

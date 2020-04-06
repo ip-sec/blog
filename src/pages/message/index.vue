@@ -56,9 +56,6 @@ export default {
         CentralSlot,
         layoutMain
     },
-    mounted(){  
-        console.log(this.$store.state.home_get.photo)
-    },
     methods: {
         setInfo:throttleTwo(function(){
             this.$refs.ruleForm.validate((valid) => {

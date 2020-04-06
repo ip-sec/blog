@@ -1,8 +1,8 @@
 <template>
     <el-row class="tutorial-page">
-        <el-col :xs="24" :sm="24" :md="24" :lg="24" v-if="$store.state.admin_get.tutorial">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24">
             <transition name="bottomY" mode="out-in" appear>
-                <el-tabs :tab-position="$store.state.common.isTop" :value="index">
+                <el-tabs :tab-position="$store.state.common.isTop" v-model="index" @tab-click="handleIndex">
                     <el-tab-pane label="列表查看">
                         <list-tutorial @listIndex="listIndex"></list-tutorial>
                     </el-tab-pane>
@@ -13,7 +13,6 @@
                 </el-tabs>
             </transition>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="24" :lg="24" v-else v-loading="true"></el-col>
     </el-row>
 </template>
 
@@ -27,12 +26,6 @@ export default {
             index: '0'
         }
     },
-    created() {
-        this.$store.state.admin_get.tutorial == null 
-        ? this.$store.dispatch('admin_get/tutorial','').then(()=>{
-        }).catch(()=>{})
-        : ''
-    },
     components:{
         listTutorial,
         editTutorial
@@ -40,6 +33,9 @@ export default {
     methods:{
         listIndex(data){
             this.index = data
+        },
+        handleIndex(tab){
+            this.index = tab.index
         }
     }
 }

@@ -1,8 +1,11 @@
 <template>
     <el-row class="category-page">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的标题"></el-input>
+        </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" v-if="$store.state.admin_get.photo_class">
             <transition name="bottomY" tag="div" mode="out-in" appear>
-                <el-table :data="$store.state.admin_get.photo_class" style="width: 100%" max-height="500">
+                <el-table :data="handleDate" style="width: 100%" max-height="500">
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form label-position="left">
@@ -25,7 +28,7 @@
             </transition>
             <add-category></add-category>
         </el-col>
-        <div v-else v-loading="true" style="paddingTop: 30px"></div>
+        <div v-else v-loading="true" style="paddingTop: 200px"></div>
     </el-row>
 </template>
 
@@ -37,6 +40,7 @@ export default {
         return {
             icon: 'el-icon-edit',
             ifDisabled: true,
+            filterDate: ''
         }
     },
     created(){
@@ -46,6 +50,13 @@ export default {
     },
     components:{
         addCategory
+    },
+    computed:{
+        handleDate:function(){
+            return this.$store.state.admin_get.photo_class.filter((item)=>{
+                return item.name.indexOf(this.filterDate) !== -1
+            })
+        }
     },
     methods:{
         handleData(icon,data){

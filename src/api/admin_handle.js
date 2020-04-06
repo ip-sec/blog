@@ -34,3 +34,17 @@ export function delCategory(params) {
         method: 'delete',
     })
 }
+
+export function delTutorial(params) {
+    return service({
+        url: '/admin/tutorials' + params,
+        method: 'delete',
+    })
+}
+
+export function delDiary(params) {
+    return service({
+        url: '/admin/diarys' + params,
+        method: 'delete',
+    })
+}

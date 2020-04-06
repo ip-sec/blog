@@ -1,0 +1,58 @@
+.system-contain{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    transition: all .6s;
+    width: 75%;
+    .admin-container {
+        .el-aside{
+            transition: all .6s;
+            border-right: 1px solid #e6e6e6;
+            @include page-scroll(5px);
+            >.el-header{
+                padding: 0 10px;
+                text-align: center;
+                border-bottom: 1px solid #e6e6e6;
+                .logo{
+                    @include logo($weight: bold);
+                }
+                .small-logo{
+                    @include logo($weight: bold,$size: 10px);
+                }
+            }
+        }
+        .el-container{
+            .el-header{
+                border-bottom: 1px solid #e6e6e6;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .switch-aside{
+                    justify-content: flex-start;
+                    @include logo($size:22px,$line: none);
+                }
+                .colse-page{
+                    padding: 0 15px;
+                    @include logo($size:20px,$line: none);
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+                .reset-cache{
+                    @include logo($size:20px,$line: none);
+                    &:hover{
+                        transform: rotateZ(360deg);
+                    }
+                }
+            }
+            .el-main{
+                @include page-scroll(5px);
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .system-contain{
+        width: 100%;
+    }
+}
