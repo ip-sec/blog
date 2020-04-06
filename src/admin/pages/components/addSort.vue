@@ -2,7 +2,7 @@
     <div class="push-page">
         <el-button icon="el-icon-plus" @click="addSort">添加</el-button>
         <el-dialog title="新增标签" :visible.sync="sortDialog" width="60%">
-            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addDate">
+            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addDate" @submit.native.prevent="commitSort">
                 <el-form-item label="名称："  prop="name">
                     <el-input v-model="addDate.name" clearable ></el-input>
                 </el-form-item>
@@ -32,7 +32,7 @@ export default {
                     { required: true, message: '输入名称信息( •̀ ω •́ )', trigger: 'blur' }
                 ]
             },
-            pushIcon: 'el-icon-refresh-right'
+            pushIcon: 'el-icon-plus'
         }
     },
     methods: {
@@ -40,18 +40,25 @@ export default {
             this.sortDialog = true
         },
         commitSort(){
-            if(this.addDate.bg != ''){
-                this.$refs.ruleAddForm.validate((valid) => {
+            let _this = this
+            if(_this.addDate.bg != ''){
+                _this.$refs.ruleAddForm.validate((valid) => {
                     if (valid) {
-                        this.pushIcon = 'el-icon-loading'
-                        this.$store.dispatch('admin_post/saveSort',this.addDate).then(()=>{
-                            this.addDate.name = this.addDate.bg = ''
-                            this.pushIcon = 'el-icon-refresh-right'
+                        _this.pushIcon = 'el-icon-loading'
+                        _this.$store.dispatch('admin_post/saveSort',_this.addDate).then(()=>{
+                            _this.$store.state.admin_get.sort.push({
+                                id:  _this.$store.state.admin_get.sort[_this.$store.state.admin_get.sort.length-1].id+1,
+                                name: _this.addDate.name,
+                                bg: _this.addDate.bg,
+                                })
+                            _this.addDate.name = _this.addDate.bg = ''
+                            _this.pushIcon = 'el-icon-plus'
+                            _this.sortDialog = false
                         }).catch(()=>{})
                     }
                 })
             }else{
-                this.$message({
+                _this.$message({
                     type: 'error',
                     message: '请选择颜色信息( •̀ ω •́ )',
                     center: true
@@ -68,5 +75,8 @@ export default {
 <style lang="scss" scoped>
     .push-page{
         padding-top: 30px;
+        .el-button+.el-button{
+            margin-left: 0 !important;
+        }
     }
 </style>

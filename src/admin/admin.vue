@@ -5,7 +5,7 @@
                 <el-header height="65px">
                     <router-link to="/systemTina" tag="span" :class="headLogo">Tina blog</router-link>
                 </el-header>
-                <transition name='menuList' mode="out-in" appear>
+                <transition name='bottomY' mode="out-in" appear>
                     <left-menu :isCollapse="isCollapse"></left-menu>
                 </transition>
             </el-aside>
@@ -20,7 +20,7 @@
                     </div>
                 </el-header>
                 <el-main height="100%">
-                    <transition name="mainPage" appear mode="out-in">
+                    <transition name="bottomY" appear mode="out-in">
                         <router-view></router-view>
                     </transition>
                 </el-main>
@@ -28,7 +28,6 @@
         </el-container>
         <div v-else v-loading="true"></div>
     </div>
-    
 </template>
 
 <script>
@@ -91,6 +90,7 @@ export default {
                 >.el-header{
                     padding: 0 10px;
                     text-align: center;
+                    border-bottom: 1px solid #e6e6e6;
                     .logo{
                         @include logo($weight: bold);
                     }
@@ -98,7 +98,6 @@ export default {
                         @include logo($weight: bold,$size: 10px);
                     }
                 }
-                @include vue-trans(menuList,translateY(50px),2s);
             }
             .el-container{
                 .el-header{
@@ -125,9 +124,7 @@ export default {
                     }
                 }
                 .el-main{
-                    position: relative;
                     @include page-scroll(5px);
-                    @include vue-trans(mainPage,translateY(50px),.6s);
                 }
             }
         }

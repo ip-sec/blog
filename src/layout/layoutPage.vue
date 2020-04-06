@@ -1,6 +1,6 @@
 <template>
-    <el-container>
-        <transition name="header" appear>
+    <el-container class="layout-page">
+        <transition name="topY" appear>
             <el-header v-if="headShow">
                 <keep-alive>
                     <layout-header></layout-header>
@@ -72,19 +72,15 @@ export default {
 </script>
     
 <style lang="scss" scoped>
-.el-container{
+.layout-page{
     transition: all .6s;
-    @include vue-trans(header,translateY(-100%),2s);
-    @include customize-trans(left,scale(0.5) translateX(-100%),scale(1) translateX(0%),scale(0.5) translateX(100%),0.6s);
-    @include customize-trans(right,scale(0.5) translateX(100%),scale(1) translateX(0%),scale(0.5) translateX(-100%),0.6s);
-    // @include customize-trans(left,rotateZ(-90deg) translateX(-100%),rotateZ(0deg) translateX(0%),rotateZ(90deg) translateX(100%),0.6s);
-    // @include customize-trans(right,rotateZ(90deg) translateX(100%),rotateZ(0deg) translateX(0%),rotateZ(-90deg) translateX(-100%),0.6s);
     .el-header{
         position: fixed;
         top: 0;
         z-index: 2000;
+        height: 65px !important;
         width: 100%;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 1);
         transition: all 2s;
     }
     .el-main{

@@ -1,11 +1,11 @@
 <template>
     <el-row class="message-contain">
-        <transition name="messagePage">
+        <transition name="bottomY">
             <el-col :sm="24" :xs="24" :md="24" :lg="24" v-if="$store.state.admin_get.message">
                 <el-table :data="$store.state.admin_get.message" style="width: 100%" max-height="500">
                     <el-table-column prop="id" label="ID" width="120"></el-table-column>
                     <el-table-column prop="datetime" label="日期" width="150"></el-table-column>
-                    <el-table-column prop="avatar" label="头像url" width="300"></el-table-column>
+                    <el-table-column prop="avatar" label="头像URL" width="300"></el-table-column>
                     <el-table-column prop="message" label="信息" width="300"></el-table-column>
                     <el-table-column fixed="right" label="操作" width="100">
                         <template slot-scope="scope">
@@ -54,6 +54,5 @@ export default {
 <style lang="scss" scoped>
     .message-contain{
         padding-top: 30px;
-        @include vue-trans(messagePage,translateY(50px),0.6s);
     }
 </style>

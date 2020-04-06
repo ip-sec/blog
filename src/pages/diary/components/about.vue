@@ -1,6 +1,6 @@
 <template>
     <el-timeline>
-        <transition-group name="list" tag="ul" class="el-timeline">
+        <transition-group name="rightX" tag="ul" class="el-timeline">
             <el-timeline-item v-for="item in $store.state.home_get.diary" :key="item.id" :timestamp="item.datetime" placement="top">
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card>
@@ -35,7 +35,6 @@ export default {
 
 <style lang="scss">
 .el-timeline{
-    @include vue-trans(list,translateX(150px),2s);
     .el-timeline-item{
         .span-right{
             float: right;

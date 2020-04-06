@@ -27,3 +27,10 @@ export function delSort(params) {
         method: 'delete',
     })
 }
+
+export function delCategory(params) {
+    return service({
+        url: '/admin/categorys' + params,
+        method: 'delete',
+    })
+}

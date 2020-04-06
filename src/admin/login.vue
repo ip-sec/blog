@@ -1,6 +1,6 @@
 <template>
     <el-container class="login-container" :style="{width: pageWidth,height: pageHeight}">
-        <transition name="login" appear>
+        <transition name="topBottom" appear>
             <el-main v-show="showLogin">
                 <el-form 
                 :label-position="labelPosition" 
@@ -78,7 +78,6 @@ export default {
 <style lang="scss">
     .login-container{
         @include flex-center;
-        @include customize-trans(login,translateY(-100px),translateY(0px),translateY(100px),2s);
         background: linear-gradient(to right bottom,lightskyblue,lightpink);
         .el-main{
             @include flex-center;

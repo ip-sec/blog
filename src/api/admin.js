@@ -34,3 +34,19 @@ export function sort(){
         method: 'get'
     })
 }
+
+//请求前台日志数据
+export function diary(params = ''){
+    return service({
+        url: '/admin/diarys' + params,
+        method: 'get',
+    })
+}
+
+//请求前台教程数据
+export function tutorial(params = ''){
+    return service({
+        url: '/admin/tutorials' + params,
+        method: 'get'
+    })
+}

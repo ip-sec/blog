@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-page">
+    <div class="layout-head">
         <el-row>
             <el-col :xs="14" :sm="12" :md="5" :lg="5">
                 <router-link to="/tutorial" tag="div"><span class="logo">Tina Blog</span></router-link>
@@ -65,13 +65,16 @@ export default {
 </script>
 
 <style lang="scss">
-.layout-page{
+.layout-head{
     .el-col{
-        height: 60px;
+        height: 65px;
+        .el-menu-item{
+            height: 64px !important;
+        }
         &:first-child{
             .logo{
                 padding-left: 15px;
-                @include logo($weight:bold,$line:60px)
+                @include logo($weight:bold,$line:65px)
             }
         }
         &:last-child{

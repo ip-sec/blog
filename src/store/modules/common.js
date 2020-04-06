@@ -5,6 +5,7 @@ const state = {
     trans: 'left',//路由切换过渡动画
     showMusic: false,//小屏幕下的音乐播放
     isTop: 'right',//tab切换
+    listInfo: null,//编辑信息
     bgImg: [
         { id: 1, imgUrl: require('@/assets/img/layout-img-1.jpg')},
         { id: 2, imgUrl: require('@/assets/img/layout-img-2.jpg')},
@@ -32,6 +33,9 @@ const mutations = {
     },
     SET_TOP: ( state,isTop ) => {
         state.isTop = isTop
+    },
+    SET_INFO: ( state,listInfo ) => {
+        state.listInfo = listInfo
     }
 }
 
@@ -53,6 +57,9 @@ const actions = {
     },
     isTop ( {commit},isTop ) {
         commit('SET_TOP',isTop)
+    },
+    listInfo ( {commit},info ){
+        commit('SET_INFO',info)
     }
 }
 

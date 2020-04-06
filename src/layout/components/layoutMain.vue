@@ -2,14 +2,14 @@
     <div>
         <div class="bg-img" :style="{background: 'url('+bgImg+')'+'no-repeat center center',backgroundSize: 'cover'}">
             <el-row :gutter="20" class="center-font">
-                <transition name="fontLeft" appear>
+                <transition name="fontLeft" mode="out-in" appear>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <div class="text-top">
                             <p>探索之路&nbsp;&nbsp;何其漫长</p>
                         </div>
                     </el-col>
                 </transition>
-                <transition name="fontRight" appear>
+                <transition name="fontRight" mode="out-in" appear>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <div class="text-bottom">
                             <p>唯有&nbsp;&nbsp;满腔热血</p>

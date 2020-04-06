@@ -1,6 +1,6 @@
 <template>
         <transition-group 
-        name="cardItem" 
+        name="scaleC" 
         tag="div" 
         class="el-col el-col-24 el-col-offset-1 el-col-xs-22 el-col-sm-22 el-col-md-22 el-col-lg-22"
         appear

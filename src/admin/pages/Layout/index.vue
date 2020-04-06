@@ -8,7 +8,7 @@
                 </el-breadcrumb>
             </el-col>
         </el-row>
-        <transition name="childrenPage" appear mode="out-in">
+        <transition name="bottomY" appear mode="out-in">
             <router-view></router-view>
         </transition>
     </div>
@@ -30,7 +30,6 @@ export default {
 
 <style lang="scss" scoped>
     .admin-home{
-        @include vue-trans(childrenPage,translateY(50px),.6s);
         .el-col{
             padding-bottom: 20px;
         }

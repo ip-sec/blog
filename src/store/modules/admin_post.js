@@ -27,6 +27,15 @@ const actions = {
             })
         })
     },
+    saveCategory ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.saveCategory(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     delPhotoFile ( {commit},data ){
         return new Promise((resolve,reject)=>{
             submit.delPhotoFile(data).then(response => {
@@ -44,6 +53,19 @@ const actions = {
         }
         return new Promise((resolve,reject)=>{
             submit.updateSort(id,data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    updateCategory ( {commit},info ){
+        let id = info.id
+        let data = {
+            name: info.name
+        }
+        return new Promise((resolve,reject)=>{
+            submit.updateCategory(id,data).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)

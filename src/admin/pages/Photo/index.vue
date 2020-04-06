@@ -3,7 +3,7 @@
         <el-col :sm="24" :xs="24" :md="24" :lg="24">
             <el-tabs v-if="$store.state.admin_get.photo_class" :tab-position="$store.state.common.isTop" @tab-click="changePage">
                 <el-tab-pane v-for="(item, index) in $store.state.admin_get.photo_class" :key="item.id" :label="item.name">
-                    <transition-group ref="setHeight" class="setDom" tag="div" name="photoItem" mode="out-in" appear>
+                    <transition-group ref="setHeight" class="setDom" tag="div" name="scaleC" mode="out-in" appear>
                         <div class="image-preview" 
                         v-for="(value,i) in $store.state.admin_get.photo[index]" 
                         @contextmenu.prevent="updateImg(value.id,$store.state.admin_get.photo[index],i)"
@@ -75,7 +75,6 @@ export default {
     .photo-contain{
         padding-top: 30px;
         .el-tab-pane{
-            @include vue-trans(photoItem,scale(0),0.6s);
             .setDom{
                 position: relative;
                 width: 100%;

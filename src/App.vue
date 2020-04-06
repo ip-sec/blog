@@ -28,5 +28,6 @@ export default {
 
 <style lang="scss">
     @import './style/body.scss';
+    @import './style/vue-transition.scss';
     @import './style/element-ui.scss';
 </style>

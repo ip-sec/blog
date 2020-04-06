@@ -2,7 +2,7 @@
     <el-col :xs="20" :sm="20" :md="20" :lg="20">
         <el-tabs v-if="this.$store.state.home_get.photo" tab-position="top" @tab-click="watchPage">
             <el-tab-pane v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
-                <transition-group ref="getHeight" class="getDom" tag="div" name="photoList" mode="out-in" appear>
+                <transition-group ref="getHeight" class="getDom" tag="div" name="scaleC" mode="out-in" appear>
                     <div class="image-preview" 
                     v-for="value in $store.state.home_get.photo[index]" 
                     :key="value.id"
@@ -53,7 +53,6 @@ export default {
 
 <style lang="scss">
     .el-tabs{
-        @include vue-trans(photoList,scale(0),0.6s);
         .el-tab-pane{
             .getDom{
                 position: relative;

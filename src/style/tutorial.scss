@@ -2,7 +2,6 @@
     .el-col{
         height: auto;
         @include flex-box(center,center);
-        @include vue-trans(cardItem,scale(0),0.6s);
         .el-card{
             position: relative;
             width: 400px;

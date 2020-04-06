@@ -1,8 +1,8 @@
 <template>
-    <div class="sort-page">
-        <div class="tab-sort" v-if="$store.state.admin_get.sort" >
-            <transition name="sortPage" mode="out-in" appear>
-                <el-table :data="$store.state.admin_get.sort" style="width: 100%">
+    <el-row class="sort-page">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24" class="tab-sort" v-if="$store.state.admin_get.sort" >
+            <transition name="bottomY" mode="out-in" appear>
+                <el-table :data="$store.state.admin_get.sort" style="width: 100%" max-height="500">
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form label-position="left">
@@ -28,9 +28,9 @@
                 </el-table>
             </transition>
             <add-sort></add-sort>
-        </div>
+        </el-col>
         <div v-else v-loading="true" style="paddingTop:30px"></div>
-    </div>
+    </el-row>
 </template>
 
 <script>
@@ -95,7 +95,6 @@ export default {
 <style lang="scss" scoped>
     .sort-page{
         .tab-sort{
-            @include vue-trans(sortPage,translateY(50px),0.6s);
             .el-button+.el-button{
                 margin-left: 0 !important;
             }

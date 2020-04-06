@@ -2,9 +2,8 @@
     <el-menu default-active="1" class="el-menu-vertical-demo" active-text-color="#E36049" :collapse="isCollapse">
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <router-link to="/systemTina">
-            </router-link>
-            <span slot="title">
+            <router-link to="/systemTina" tag="span">首页</router-link>
+            <span  slot="title" :style="{display: isDisplay}">
                 首页
             </span>
         </el-menu-item>
@@ -26,12 +25,17 @@
 export default {
     data(){
         return{
-
+            isDisplay: 'none'
         }
     },
     props:{
         isCollapse:{
             type: Boolean
+        }
+    },
+    watch:{
+        'isCollapse':function(to,from){
+            from ? this.isDisplay = 'none' : this.isDisplay = 'initial'
         }
     }
 }

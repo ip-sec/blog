@@ -24,10 +24,26 @@ export function saveSort(data) {
     })
 }
 
+export function saveCategory(data) {
+    return service({
+        url: '/admin/categorys',
+        method: 'post',
+        data
+    })
+}
+
 export function delPhotoFile(data) {
     return service({
         url: '/admin/base/delPhotoFile',
         method: 'post',
+        data
+    })
+}
+
+export function updateCategory(params, data) {
+    return service({
+        url: '/admin/categorys' + params,
+        method: 'put',
         data
     })
 }
