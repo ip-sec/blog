@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import listTutorial from '../components/listTutorial'
-import editTutorial from '../components/editTutorial'
+import listTutorial from './listTutorial'
+import editTutorial from './editTutorial'
 export default {
     name: 'tutorialAlbum',
     data() {

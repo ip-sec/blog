@@ -6,7 +6,6 @@
             <p>故事易写 岁月难唱 | 最是此刻 不悔往</p>
         </el-col>
     </el-row>
-    
 </template>
 
 <script>

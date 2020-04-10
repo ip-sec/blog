@@ -1,7 +1,7 @@
 <template>
     <el-row class="sort-page">
         <el-col :xs="24" :sm="24" :md="24" :lg="24">
-            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的标题"></el-input>
+            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的名称"></el-input>
         </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" class="tab-sort" v-if="$store.state.admin_get.sort" >
             <transition name="bottomY" mode="out-in" appear>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import addSort from '../components/addSort'
+import addSort from './addSort'
 export default {
     name: 'sortAlbum',
     data() {

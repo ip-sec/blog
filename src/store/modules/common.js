@@ -6,13 +6,14 @@ const state = {
     showMusic: false,//小屏幕下的音乐播放
     isTop: 'right',//tab切换
     listInfo: null,//编辑信息
-    bgImg: [
-        { id: 1, imgUrl: require('@/assets/img/layout-img-1.jpg')},
-        { id: 2, imgUrl: require('@/assets/img/layout-img-2.jpg')},
-        { id: 3, imgUrl: require('@/assets/img/layout-img-3.jpg')},
-        { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
-        { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
-    ],//页面背景图
+    listData: null,//编辑信息
+    // bgImg: [
+    //     { id: 1, imgUrl: require('@/assets/img/layout-img-1.jpg')},
+    //     { id: 2, imgUrl: require('@/assets/img/layout-img-2.jpg')},
+    //     { id: 3, imgUrl: require('@/assets/img/layout-img-3.jpg')},
+    //     { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
+    //     { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
+    // ],//页面背景图
 }
 
 const mutations = {
@@ -36,6 +37,9 @@ const mutations = {
     },
     SET_INFO: ( state,listInfo ) => {
         state.listInfo = listInfo
+    },
+    SET_DATA: ( state,listData ) => {
+        state.listData = listData
     }
 }
 
@@ -60,6 +64,9 @@ const actions = {
     },
     listInfo ( {commit},info ){
         commit('SET_INFO',info)
+    },
+    listData ( {commit},data ){
+        commit('SET_DATA',data)
     }
 }
 

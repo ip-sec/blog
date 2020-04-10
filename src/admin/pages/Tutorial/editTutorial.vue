@@ -1,9 +1,9 @@
 <template>
     <div class="edit-tutorial">
         <transition name="bottomY" mode="out-in" appear v-if="editData">
-            <el-form label-position="left" ref="ruleEditForm" :rules="rules" :model="editData" @submit.native.prevent="commitSort">
+            <el-form label-position="left" ref="ruleEditTutorial" :rules="rules" :model="editData" @submit.native.prevent="updateData">
                 <el-form-item label="ID：">
-                    <el-select v-model="id" placeholder="请选择" @change="siteData()">
+                    <el-select v-model="select_id" placeholder="请选择" @change="siteData()">
                         <el-option v-for="item in $store.state.admin_get.tutorial"
                         :key="item.id" :label="item.id" :value="item.id">
                         </el-option>
@@ -49,8 +49,8 @@
                     <el-input v-model="editData.content" type="textarea" autosize ></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button icon="el-icon-refresh-right" @click="resetData(editData)">重置</el-button>
-                    <el-button :icon="pushIcon" @click="updateData">修改</el-button>
+                    <el-button icon="el-icon-edit" @click="updateData">修改</el-button>
+                    <el-button icon="el-icon-document-checked" @click="saveData">保存</el-button>
                 </el-form-item>
             </el-form>
         </transition>
@@ -62,16 +62,17 @@
 export default {
     data(){
         return{
-            id: '',
+            select_id: '',
             uploadImg: '',
             bgImg: true,
             dialogVisible: false,
             dialogImageUrl: '',
-            pushIcon: 'el-icon-edit',
             editData: {
+                id: '',
                 title: '',
                 introduction: '',
                 url:'',
+                content_id: '',
                 sort_id: '',
                 datetime: new Date().getTime(),
                 content: '',
@@ -101,21 +102,19 @@ export default {
     watch:{
         '$store.state.common.listInfo':function(to,from){
             this.editData = to
-            this.id = to.id
+            this.select_id = to.id
             this.bgImg = true
         }
     },
     methods:{
         siteData(){
-            this.$store.dispatch('common/listInfo',this.$store.state.admin_get.tutorial[this.id-1]).then(()=>{
+            this.$store.dispatch('common/listInfo',this.$store.state.admin_get.tutorial[this.select_id-1]).then(()=>{
             }).catch(()=>{})
         },
-        resetData(data){
-            for(let value in data){
-                data[value] = ''
-            }
-        },
         updateData(){
+
+        },
+        saveData(){
 
         },
         handleSuccess(file) {

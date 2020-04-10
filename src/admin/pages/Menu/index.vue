@@ -3,7 +3,7 @@
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
             <router-link to="/systemTina" tag="span">首页</router-link>
-            <span  slot="title" :style="{display: isDisplay}">
+            <span slot="title" :style="{display: isDisplay}">
                 首页
             </span>
         </el-menu-item>
@@ -28,6 +28,9 @@ export default {
             isDisplay: 'none'
         }
     },
+    created(){
+        this.isCollapse ? this.isDisplay = 'initial' : this.isDisplay = 'none'
+    },
     props:{
         isCollapse:{
             type: Boolean
@@ -35,7 +38,7 @@ export default {
     },
     watch:{
         'isCollapse':function(to,from){
-            from ? this.isDisplay = 'none' : this.isDisplay = 'initial'
+            to ? this.isDisplay = 'initial' : this.isDisplay = 'none'
         }
     }
 }

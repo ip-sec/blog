@@ -9,6 +9,42 @@ const mutations = {
 }
 
 const actions = {
+    saveTutorial ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.saveTutorial(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    saveDiary ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.saveDiary(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    updateTutorial ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.updateTutorial(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    updateDiary ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.updateDiary(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     savePhoto ( {commit},data ){
         return new Promise((resolve,reject)=>{
             submit.savePhoto(data).then(response => {

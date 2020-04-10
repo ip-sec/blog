@@ -2,7 +2,7 @@
     <layout-main>
         <div class="time-item">
             <el-row :gutter="10">
-                <el-col :xs="24" :sm="24" :md="14" :lg="14">
+                <el-col :xs="24" :sm="24" :md="20" :lg="20">
                     <central-slot></central-slot>
                 </el-col>
             </el-row>

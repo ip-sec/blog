@@ -2,7 +2,7 @@
     <div class="push-page">
         <el-button icon="el-icon-plus" @click="addSort">添加</el-button>
         <el-dialog title="新增标签" :visible.sync="sortDialog" width="60%">
-            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addData" @submit.native.prevent="commitSort">
+            <el-form label-position="left" :rules="rules" ref="ruleAddSort" :model="addData" @submit.native.prevent="commitSort">
                 <el-form-item label="名称："  prop="name">
                     <el-input v-model="addData.name" clearable ></el-input>
                 </el-form-item>
@@ -42,7 +42,7 @@ export default {
         commitSort(){
             let _this = this
             if(_this.addData.bg != ''){
-                _this.$refs.ruleAddForm.validate((valid) => {
+                _this.$refs.ruleAddSort.validate((valid) => {
                     if (valid) {
                         _this.pushIcon = 'el-icon-loading'
                         _this.$store.dispatch('admin_post/saveSort',_this.addData).then(()=>{

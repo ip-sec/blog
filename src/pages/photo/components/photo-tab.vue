@@ -1,5 +1,5 @@
 <template>
-    <el-col :xs="20" :sm="20" :md="20" :lg="20">
+    <el-col ref="getHeightCol" :xs="24" :sm="24" :md="24" :lg="24">
         <el-tabs v-if="this.$store.state.home_get.photo" tab-position="top" @tab-click="watchPage">
             <el-tab-pane v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
                 <transition-group ref="getHeight" class="getDom" tag="div" name="scaleC" mode="out-in" appear>
@@ -44,7 +44,11 @@ export default {
     methods: {
         watchPage: debounce(function(){
             this.$store.state.home_get.photo.forEach((item,index)=>{
-                photoLayout(item,this.$refs.getHeight[index].$children,this.$refs.getHeight[index],0.8333333)
+                photoLayout(
+                    item,this.$refs.getHeight[index].$children,
+                    this.$refs.getHeight[index],
+                    this.$refs.getHeightCol.$el.offsetWidth-30
+                )
             })
         },400)
     }

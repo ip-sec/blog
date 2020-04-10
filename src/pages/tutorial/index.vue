@@ -1,7 +1,7 @@
 <template>
     <layout-main>
         <div class="trans-top" v-if="$store.state.home_get.tutorial">
-            <el-row  style="min-height:400px">
+            <el-row style="min-height:400px">
                 <central-slot></central-slot>
             </el-row>
             <el-row>

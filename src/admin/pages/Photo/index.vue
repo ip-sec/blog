@@ -1,6 +1,6 @@
 <template>
     <el-row class="photo-contain">
-        <el-col :sm="24" :xs="24" :md="24" :lg="24">
+        <el-col  ref="setHeightCol"  :sm="24" :xs="24" :md="24" :lg="24">
             <el-tabs v-if="$store.state.admin_get.photo_class" :tab-position="$store.state.common.isTop" @tab-click="changePage">
                 <el-tab-pane v-for="(item, index) in $store.state.admin_get.photo_class" :key="item.id" :label="item.name">
                     <transition-group ref="setHeight" class="setDom" tag="div" name="scaleC" mode="out-in" appear>
@@ -46,7 +46,12 @@ export default {
     methods: {
         changePage: debounce(function(){
             this.$store.state.admin_get.photo.forEach((item,index)=>{
-                photoLayout(item,this.$refs.setHeight[index].$children,this.$refs.setHeight[index],0.5)
+                photoLayout(
+                    item,
+                    this.$refs.setHeight[index].$children,
+                    this.$refs.setHeight[index],
+                    this.$refs.setHeight[index].$el.offsetWidth
+                    )
             })
         },400),
         updateImg(id,data,index){

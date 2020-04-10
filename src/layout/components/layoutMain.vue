@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg-img" :style="{background: 'url('+bgImg+')'+'no-repeat center center',backgroundSize: 'cover'}">
+        <!-- <div class="bg-img" :style="{background: 'url('+bgImg+')'+'no-repeat center center',backgroundSize: 'cover'}">
             <el-row :gutter="20" class="center-font">
                 <transition name="fontLeft" mode="out-in" appear>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12">
@@ -17,11 +17,11 @@
                     </el-col>
                 </transition>
             </el-row>
-        </div>
+        </div> -->
         <div class="null">
             <slot></slot>
         </div>
-        <el-footer>
+        <el-footer height="auto">
             <keep-alive>
                 <layout-footer></layout-footer>
             </keep-alive>
@@ -34,7 +34,7 @@ import layoutFooter from './layoutFooter'
 export default {
     data () {
         return {
-            bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
+            // bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
     created(){
@@ -88,7 +88,7 @@ export default {
 
 .null{
     transition: all .6s;
-    padding-top: 450px;
+    padding-top: 150px;
 }
 @media screen and (max-width: 600px){
     .bg-img{

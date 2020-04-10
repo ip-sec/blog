@@ -1,12 +1,12 @@
 <template>
-    <el-container class="layout-page">
-        <transition name="topY" appear>
-            <el-header v-if="headShow">
+    <el-container direction="vertical" class="layout-page">
+        <el-header v-if="headShow" height="80px">
+            <transition name="topY" appear>
                 <keep-alive>
                     <layout-header></layout-header>
                 </keep-alive>
-            </el-header>
-        </transition>
+            </transition>
+        </el-header>
         <el-main :style="{background:bgColor}">
             <transition :name="$store.state.common.trans" mode="out-in" appear>
                 <router-view></router-view>
@@ -73,25 +73,24 @@ export default {
     
 <style lang="scss" scoped>
 .layout-page{
-    transition: all .6s;
+    transition: all 0.6s;
+    width: 80%;
+    margin: 0 auto;
     .el-header{
-        position: fixed;
-        top: 0;
-        z-index: 2000;
-        height: 65px !important;
         width: 100%;
-        background: rgba(255, 255, 255, 1);
-        transition: all 2s;
+        transition: all 0.6s;
     }
     .el-main{
-        transition: all .6s;
-        padding: 0px;
+        width: 100%;
+        transition: all 0.6s;
         &::-webkit-scrollbar{
             width: 0px;
         }
     }
-    .el-footer{
-        transition: all .6s;
+}
+@media screen and (max-width: 768px){
+    .layout-page{
+        width: 100%;
     }
 }
 </style>

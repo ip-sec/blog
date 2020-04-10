@@ -2,12 +2,12 @@
     <layout-main>
         <div class="mess-contain">
             <el-row>
-                <el-col :xs="23" :sm="20" :md="14" :lg="14">
+                <el-col :xs="24" :sm="20" :md="20" :lg="20">
                     <central-slot></central-slot>
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :xs="23" :sm="20" :md="14" :lg="14">
+                <el-col :xs="24" :sm="20" :md="20" :lg="20">
                     <div class="push-info">
                         <el-form label-position="top" 
                         :rules="rules" ref="ruleForm" 

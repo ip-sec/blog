@@ -8,6 +8,37 @@ export function login(data) {
     })
 }
 
+export function saveTutorial(data) {
+    return service({
+        url: '/admin/tutorials',
+        method: 'post',
+        data
+    })
+}
+
+export function saveDiary(data) {
+    return service({
+        url: '/admin/diarys',
+        method: 'post',
+        data
+    })
+}
+
+export function updateTutorial(params,data) {
+    return service({
+        url: '/admin/tutorials' + params,
+        method: 'put',
+        data
+    })
+}
+
+export function updateDiary(params,data) {
+    return service({
+        url: '/admin/diarys' + params,
+        method: 'put',
+        data
+    })
+}
 export function savePhoto(data) {
     return service({
         url: '/admin/photos',

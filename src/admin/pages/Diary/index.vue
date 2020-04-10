@@ -9,7 +9,9 @@
                     <el-tab-pane label="编辑日志">
                         <edit-diary></edit-diary>
                     </el-tab-pane>
-                    <el-tab-pane label="添加日志">添加日志</el-tab-pane>
+                    <el-tab-pane label="添加日志">
+                        <add-diary></add-diary>
+                    </el-tab-pane>
                 </el-tabs>
             </transition>
         </el-col>
@@ -17,8 +19,9 @@
 </template>
 
 <script>
-import listDiary from '../components/listDiary'
-import editDiary from '../components/editDiary'
+import listDiary from './listDiary'
+import editDiary from './editDiary'
+import addDiary from './addDiary'
 export default {
     name: 'diaryAlbum',
     data() {
@@ -28,7 +31,8 @@ export default {
     },
     components:{
         listDiary,
-        editDiary
+        editDiary,
+        addDiary
     },
     methods:{
         listIndex(data){

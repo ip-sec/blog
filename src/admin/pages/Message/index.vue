@@ -1,7 +1,7 @@
 <template>
     <el-row class="message-contain">
         <el-col :xs="24" :sm="24" :md="24" :lg="24">
-            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的标题"></el-input>
+            <el-input v-model="filterDate" clearable style="width: 70%" placeholder="输入你想要搜索的信息"></el-input>
         </el-col>
         <el-col :sm="24" :xs="24" :md="24" :lg="24" v-if="$store.state.admin_get.message">
             <transition name="bottomY" mode="out-in" appear>
@@ -23,7 +23,7 @@
                 </el-table>
             </transition>
         </el-col>
-        <div v-else v-loading="true"></div>
+        <div v-else v-loading="true" style="paddingTop:200px"></div>
     </el-row>
     
 </template>

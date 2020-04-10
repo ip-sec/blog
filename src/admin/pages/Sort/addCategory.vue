@@ -2,7 +2,7 @@
     <div class="push-page">
         <el-button icon="el-icon-plus" @click="addCategory">添加</el-button>
         <el-dialog title="新增类别" :visible.sync="categoryDialog" width="60%">
-            <el-form label-position="left" :rules="rules" ref="ruleAddForm" :model="addData" @submit.native.prevent="commitCategory">
+            <el-form label-position="left" :rules="rules" ref="ruleAddCate" :model="addData" @submit.native.prevent="commitCategory">
                 <el-form-item label="名称："  prop="name">
                     <el-input v-model="addData.name" clearable ></el-input>
                 </el-form-item>
@@ -36,7 +36,7 @@ export default {
         },
         commitCategory(){
             let _this = this
-            _this.$refs.ruleAddForm.validate((valid) => {
+            _this.$refs.ruleAddCate.validate((valid) => {
                 if (valid) {
                     _this.pushIcon = 'el-icon-loading'
                     _this.$store.dispatch('admin_post/saveCategory',_this.addData).then(()=>{

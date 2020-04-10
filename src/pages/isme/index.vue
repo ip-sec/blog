@@ -2,7 +2,7 @@
     <layout-main>
         <div class="selfint">
             <el-row class="selfint-center">
-                <el-col :sm="23" :xs="20" :md="14" :lg="14">
+                <el-col :xs="24" :sm="20" :md="20" :lg="20">
                     <h1>介绍</h1>
                     <el-divider>关于我</el-divider>
                     <p>一个大学刚毕业的前端实习生</p>

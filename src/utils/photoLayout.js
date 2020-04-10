@@ -3,7 +3,7 @@ const photoLayout = (arr,dom,parent,size) => {
     let winWidth = window.innerWidth
     let padLeft = 10
     let padTop = 10
-    let imgWidth = Math.ceil(winWidth * size) - 38
+    let imgWidth = size
     let col = (winWidth >= 920 && 4) || (winWidth > 768 && 3) || (winWidth > 400 && 2) || (winWidth <= 400 && 1)
     let width = (imgWidth/col)-padLeft
     let divWidth = width

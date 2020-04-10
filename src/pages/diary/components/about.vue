@@ -5,7 +5,7 @@
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card>
                         <h4>{{ item.title }}</h4>
-                        <p><span>介绍: </span> {{ item.introduction }}</p>
+                        <p style="paddingTop:5px"><span>介绍: </span> {{ item.introduction }}</p>
                         <span class="span-right">
                             <i class="el-icon-view">&nbsp;{{ item.view_num }}</i>
                             <i class="el-icon-thumb">&nbsp;{{ item.like_num }}</i>
