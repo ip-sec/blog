@@ -2,10 +2,13 @@
     <layout-main>
         <div class="trans-top" v-if="$store.state.home_get.tutorial">
             <el-row style="min-height:400px">
-                <central-slot></central-slot>
-            </el-row>
-            <el-row>
-                <el-col :span="24" :style="{textAlign: 'center'}">
+                <el-col :xs="24" :sm="24" :md="17" :lg="17">
+                    <central-slot></central-slot>
+                </el-col>
+                <el-col :xs="24" :sm="24" :md="6" :lg="6" class="hidden-sm-and-down">
+
+                </el-col>
+                <el-col :xs="24" :sm="24" :md="18" :lg="18" :style="{textAlign: 'center'}">
                     <el-pagination 
                     @current-change="getData(page)"
                     @prev-click="page-1"
@@ -60,19 +63,6 @@ export default {
     
 <style lang="scss">
     .trans-top{
-        transform: translateY(-4%);
         transition: all .6s;
-        &:last-child{
-            .el-pagination{
-                .btn-prev,.btn-next,li.number{
-                    &:hover{
-                        color: #E36049;
-                    }
-                }
-                .active{
-                    color: #E36049;
-                }
-            }
-        }
     }
 </style>

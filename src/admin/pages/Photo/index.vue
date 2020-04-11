@@ -43,15 +43,20 @@ export default {
         this.$store.state.admin_get.photo != null ? this.changePage() : ''
         window.addEventListener('resize',() => this.changePage(),false)
     },
+    beforeDestroy() {
+        window.removeEventListener('resize',() => this.changePage(),false)
+    },
     methods: {
         changePage: debounce(function(){
             this.$store.state.admin_get.photo.forEach((item,index)=>{
-                photoLayout(
-                    item,
-                    this.$refs.setHeight[index].$children,
-                    this.$refs.setHeight[index],
-                    this.$refs.setHeight[index].$el.offsetWidth
-                    )
+                if(this.$refs.setHeight[index] != undefined){
+                    photoLayout(
+                        item,
+                        this.$refs.setHeight[index].$children,
+                        this.$refs.setHeight[index],
+                        this.$refs.setHeight[index].$el.offsetWidth
+                        )
+                }
             })
         },400),
         updateImg(id,data,index){

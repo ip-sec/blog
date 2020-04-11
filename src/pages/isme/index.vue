@@ -39,7 +39,7 @@ export default {
     
 <style lang="scss" scoped>
     .selfint{
-        transform: translateY(-4%);
+        padding-top: 20px;
         .selfint-center{
             @include flex-center;
             .el-col{

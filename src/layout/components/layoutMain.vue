@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!-- <div class="bg-img" :style="{background: 'url('+bgImg+')'+'no-repeat center center',backgroundSize: 'cover'}">
-            <el-row :gutter="20" class="center-font">
+        <div class="bg-img" :style="{background: 'url('+bgImg+')'+'no-repeat center center',backgroundSize: 'cover'}">
+            <!-- <el-row class="center-font">
                 <transition name="fontLeft" mode="out-in" appear>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12">
                         <div class="text-top">
@@ -16,11 +16,9 @@
                         </div>
                     </el-col>
                 </transition>
-            </el-row>
-        </div> -->
-        <div class="null">
-            <slot></slot>
+            </el-row> -->
         </div>
+        <slot></slot>
         <el-footer height="auto">
             <keep-alive>
                 <layout-footer></layout-footer>
@@ -34,7 +32,7 @@ import layoutFooter from './layoutFooter'
 export default {
     data () {
         return {
-            // bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
+            bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
     created(){
@@ -52,16 +50,17 @@ export default {
 <style  lang="scss" scoped>
 .bg-img{
     @include flex-box(flex-end, center);
-    position: absolute;
-    top: 0;
-    height: 450px;
+    height: 200px;
     width: 100%;
+    margin-left: -20px;
+    margin-top: -15px;
+    padding-right: 40px;
     transition: all .6s;
     .center-font{
         height: 70%;
         width: 100%;
-        @include vue-trans(fontLeft,translateY(100px),4s);
-        @include vue-trans(fontRight,translateY(-100px),4s);
+        @include vue-trans(fontLeft,translateY(100px),2s);
+        @include vue-trans(fontRight,translateY(-100px),2s);
         .el-col{
             font-family: YouYuan;
             color: white;
@@ -70,7 +69,7 @@ export default {
                 text-align: center;
                 @include flex-center;
                 .text-top{
-                    font-size: 33px;
+                    font-size: 30px;
                 }
             }
             &:last-child{
@@ -85,17 +84,7 @@ export default {
         }
     }
 }
-
-.null{
-    transition: all .6s;
-    padding-top: 150px;
-}
-@media screen and (max-width: 600px){
-    .bg-img{
-        height: 300px;
-    }
-    .null{
-        padding-top: 300px;
-    }
+.el-footer{
+    padding-top: 20px;
 }
 </style>

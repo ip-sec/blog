@@ -1,9 +1,9 @@
 <template>
     <el-timeline>
-        <transition-group name="rightX" tag="ul" class="el-timeline">
+        <transition-group name="bottomY" tag="ul" class="el-timeline">
             <el-timeline-item v-for="item in $store.state.home_get.diary" :key="item.id" :timestamp="item.datetime" placement="top">
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
-                    <el-card>
+                    <el-card shadow="hover">
                         <h4>{{ item.title }}</h4>
                         <p style="paddingTop:5px"><span>介绍: </span> {{ item.introduction }}</p>
                         <span class="span-right">
@@ -38,6 +38,7 @@ export default {
     .el-timeline-item{
         .span-right{
             float: right;
+            text-align: right;
             i{
                 font-size: 13px;
                 color: #444444;

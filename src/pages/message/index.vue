@@ -2,12 +2,12 @@
     <layout-main>
         <div class="mess-contain">
             <el-row>
-                <el-col :xs="24" :sm="20" :md="20" :lg="20">
+                <el-col :xs="24" :sm="22" :md="22" :lg="22">
                     <central-slot></central-slot>
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :xs="24" :sm="20" :md="20" :lg="20">
+                <el-col :xs="24" :sm="22" :md="22" :lg="22">
                     <div class="push-info">
                         <el-form label-position="top" 
                         :rules="rules" ref="ruleForm" 
@@ -84,7 +84,7 @@ export default {
     
 <style lang="scss">
     .mess-contain{
-        transform: translateY(-4%);
+        padding-top: 20px;
         .el-row{
             @include flex-center;
             &:first-child .el-col{

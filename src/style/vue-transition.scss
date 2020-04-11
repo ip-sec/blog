@@ -1,6 +1,6 @@
 //主切换
-@include customize-trans(left,scale(0.5) translateX(-100%),scale(1) translateX(0%),scale(0.5) translateX(100%),0.6s);
-@include customize-trans(right,scale(0.5) translateX(100%),scale(1) translateX(0%),scale(0.5) translateX(-100%),0.6s);
+@include customize-trans(left,translateX(-100%),translateX(0%),translateX(100%),0.6s);
+@include customize-trans(right,translateX(100%),translateX(0%),translateX(-100%),0.6s);
 //上显上隐
 @include vue-trans(topY,translateY(-100%),0.6s);
 //下显下隐

@@ -30,7 +30,7 @@ export default {
     .photo-flex{
         display: flex;
         justify-content: center;
-        padding: 30px 10px;
+        padding: 20px 10px;
         .el-col{
             transition: all .6s;
             background: white;

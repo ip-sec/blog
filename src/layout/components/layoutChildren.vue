@@ -2,7 +2,7 @@
     <layout-main>
         <div class="content-contain">
             <el-row>
-                <el-col :xs="22" :sm="22" :md="16" :lg="16">
+                <el-col :xs="24" :sm="24" :md="22" :lg="22">
                     <slot></slot>
                 </el-col>
             </el-row>
@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss">
     .content-contain{
-        transform: translateY(-4%);
+        padding-top: 20px;
         .el-row{
             @include flex-center;
             .el-col{

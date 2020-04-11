@@ -44,11 +44,14 @@ export default {
     methods: {
         watchPage: debounce(function(){
             this.$store.state.home_get.photo.forEach((item,index)=>{
-                photoLayout(
-                    item,this.$refs.getHeight[index].$children,
-                    this.$refs.getHeight[index],
-                    this.$refs.getHeightCol.$el.offsetWidth-30
-                )
+                if(this.$refs.getHeight[index] != undefined){
+                    photoLayout(
+                        item,
+                        this.$refs.getHeight[index].$children,
+                        this.$refs.getHeight[index],
+                        this.$refs.getHeightCol.$el.offsetWidth-30
+                    )
+                }
             })
         },400)
     }

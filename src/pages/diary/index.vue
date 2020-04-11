@@ -1,12 +1,16 @@
 <template>
     <layout-main>
         <div class="time-item">
-            <el-row :gutter="10">
-                <el-col :xs="24" :sm="24" :md="20" :lg="20">
+            <el-row>
+                <el-col :xs="24" :sm="24" :md="17" :lg="17">
                     <central-slot></central-slot>
                 </el-col>
+                <el-col :xs="24" :sm="24" :md="6" :lg="6" class="hidden-sm-and-down" 
+                style="marginLeft:20px;border: 1px solid #e6e6e6">
+                    
+                </el-col>
             </el-row>
-            <el-row :gutter="10">
+            <el-row>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" v-loading="loading">
                 </el-col>
             </el-row>
@@ -45,13 +49,11 @@ export default {
     
 <style lang="scss">
     .time-item{
-    padding: 20px;
+        padding-top: 10px;
     .el-row{
-        height: auto;
-        display: flex;
-        justify-content: center;
         &:first-child{
             .el-col{
+                padding: 20px;
                 height: auto; 
                 transition: all .6s;
             }

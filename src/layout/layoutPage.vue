@@ -1,6 +1,6 @@
 <template>
-    <el-container direction="vertical" class="layout-page">
-        <el-header v-if="headShow" height="80px">
+    <el-container direction="vertical" class="layout-page" v-loading="headShow">
+        <el-header height="70px">
             <transition name="topY" appear>
                 <keep-alive>
                     <layout-header></layout-header>
@@ -32,12 +32,12 @@ export default {
     data () {
         return {
             bgColor: 'white',
-            headShow: false,
+            headShow: true,
         }
     },
     created () {
         this.$store.dispatch('home_get/menu').then(()=>{
-            this.headShow = true
+            this.headShow = false
         }).catch(()=>{
             this.$message({
                 message: 'error,加载失败'
@@ -79,6 +79,7 @@ export default {
     .el-header{
         width: 100%;
         transition: all 0.6s;
+        border-bottom: 1px solid #e6e6e6;
     }
     .el-main{
         width: 100%;

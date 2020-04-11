@@ -1,10 +1,10 @@
 <template>
     <div class="layout-head">
-        <el-row class="layout-head——row">
-            <el-col :xs="14" :sm="12" :md="3" :lg="3">
+        <el-row class="layout-head__row">
+            <el-col :xs="14" :sm="12" :md="4" :lg="4">
                 <router-link to="/tutorial" tag="div"><span class="logo">Tina Blog</span></router-link>
             </el-col>
-            <el-col :xs="1" :sm="1" :md="17" :lg="17" class="hidden-sm-and-down">
+            <el-col :xs="1" :sm="1" :md="14" :lg="14" class="hidden-sm-and-down">
                 <el-menu :default-active="$route.meta.index+''" active-text-color="rgba(13,13,13)" mode="horizontal">
                     <el-menu-item v-for="(value, index) in $store.state.home_get.menu" :key="index" :index="value.id+''">
                         <router-link :to="value.url" tag="span" :style="{display:'block'}">
@@ -13,7 +13,7 @@
                     </el-menu-item>
                 </el-menu>
             </el-col>
-            <el-col :xs="10" :sm="12" :md="4" :lg="4">
+            <el-col :xs="10" :sm="12" :md="6" :lg="6">
                 <div class="hidden-sm-and-down">
                     <el-button icon="el-icon-full-screen" @click="maxPage" circle></el-button>
                     <el-button icon="el-icon-date" @click="setDialogTableVisible" circle></el-button>
@@ -70,28 +70,34 @@ export default {
 
 <style lang="scss">
 .layout-head{
-    &——row{
-        height: 80px;
+    &__row{
+        height: 70px;
         @include flex-box(center,space-between);
         .el-col{
             &:first-child{
                 .logo{
-                    @include logo($weight:bold,$line:65px)
+                    @include logo($weight:bold,$line:70px)
+                }
+            }
+            .el-menu.el-menu--horizontal{
+                border-bottom: none !important;
+                .el-menu-item{
+                    padding: 0 15px;
+                    height: 70px;
+                    line-height: 70px;
                 }
             }
             &:last-child{
                 .hidden-sm-and-down{
                     @include flex-center;
-                    height: 100%;
+                    height: 70px;
                     >span{
                         margin-left: 10px;
                     }
                 }
-            }
-            &:last-child{
                 .hidden-md-and-up{
                     @include flex-box(center,flex-end);
-                    height: 100%;
+                    height: 70px;
                     .el-button{
                         border-width: 0px;
                         transition: all 0.6s;
@@ -105,7 +111,7 @@ export default {
                         }
                     }
                 }
-            }  
+            }
         }
     }
 }
