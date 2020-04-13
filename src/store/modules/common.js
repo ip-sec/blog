@@ -4,9 +4,6 @@ const state = {
     drawer: false,//遮罩层
     trans: 'left',//路由切换过渡动画
     showMusic: false,//小屏幕下的音乐播放
-    isTop: 'right',//tab切换
-    listInfo: null,//编辑信息
-    listData: null,//编辑信息
     bgImg: [
         { id: 1, imgUrl: require('@/assets/img/layout-img-1.jpg')},
         { id: 2, imgUrl: require('@/assets/img/layout-img-2.jpg')},
@@ -31,15 +28,6 @@ const mutations = {
     },
     SET_MUSIC: ( state,showMusic ) => {
         state.showMusic = showMusic
-    },
-    SET_TOP: ( state,isTop ) => {
-        state.isTop = isTop
-    },
-    SET_INFO: ( state,listInfo ) => {
-        state.listInfo = listInfo
-    },
-    SET_DATA: ( state,listData ) => {
-        state.listData = listData
     }
 }
 
@@ -58,15 +46,6 @@ const actions = {
     },
     music ( {commit},music ) {
         commit('SET_MUSIC',music)
-    },
-    isTop ( {commit},isTop ) {
-        commit('SET_TOP',isTop)
-    },
-    listInfo ( {commit},info ){
-        commit('SET_INFO',info)
-    },
-    listData ( {commit},data ){
-        commit('SET_DATA',data)
     }
 }
 
