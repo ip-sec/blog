@@ -1,12 +1,12 @@
 <template>
     <layout-main>
         <div class="trans-top" v-if="$store.state.home_get.tutorial">
-            <el-row style="min-height:400px">
+            <el-row style="min-height:400px;">
                 <el-col :xs="24" :sm="24" :md="17" :lg="17">
                     <central-slot></central-slot>
                 </el-col>
-                <el-col :xs="24" :sm="24" :md="6" :lg="6" class="hidden-sm-and-down">
-
+                <el-col :xs="24" :sm="24" :md="7" :lg="7" class="hidden-sm-and-down" style="paddingLeft:30px;float:right">
+                    <central-sort></central-sort>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="18" :lg="18" :style="{textAlign: 'center'}">
                     <el-pagination 
@@ -29,6 +29,7 @@
 <script>
 import layoutMain from '@/layout/components/layoutMain'
 import CentralSlot from './components/Card'
+import CentralSort from './components/Sort'
 export default {
     name: 'tutorial',
     data () {
@@ -50,7 +51,8 @@ export default {
     },
     components: {
         CentralSlot,
-        layoutMain
+        layoutMain,
+        CentralSort
     },
     methods: {
         getData(num) {

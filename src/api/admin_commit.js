@@ -26,7 +26,7 @@ export function saveDiary(data) {
 
 export function updateTutorial(params,data) {
     return service({
-        url: '/admin/tutorials' + params,
+        url: '/admin/tutorials/' + params,
         method: 'put',
         data
     })
@@ -34,7 +34,7 @@ export function updateTutorial(params,data) {
 
 export function updateDiary(params,data) {
     return service({
-        url: '/admin/diarys' + params,
+        url: '/admin/diarys/' + params,
         method: 'put',
         data
     })
@@ -73,7 +73,7 @@ export function delPhotoFile(data) {
 
 export function updateCategory(params, data) {
     return service({
-        url: '/admin/categorys' + params,
+        url: '/admin/categorys/' + params,
         method: 'put',
         data
     })
@@ -81,7 +81,7 @@ export function updateCategory(params, data) {
 
 export function updateSort(params, data) {
     return service({
-        url: '/admin/sorts' + params,
+        url: '/admin/sorts/' + params,
         method: 'put',
         data
     })

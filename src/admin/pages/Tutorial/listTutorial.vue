@@ -28,7 +28,6 @@
                 <el-table-column label="状态" width="100" prop="state"></el-table-column>
                 <el-table-column label="查看数量" width="100" prop="view_num"></el-table-column>
                 <el-table-column label="点赞数量" width="100" prop="like_num"></el-table-column>
-                <el-table-column label="内容ID" width="100" prop="content_id"></el-table-column>
                 <el-table-column label="操作"  width="150">
                     <template slot-scope="scope">
                         <el-button size="mini" @click="handleList(scope)">查看</el-button>

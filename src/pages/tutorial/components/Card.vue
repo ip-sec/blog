@@ -22,7 +22,7 @@
                 <div class="tag_span" :style="{background: item.bg}"></div>
                 <div class="info_li">
                     <h3>{{ item.title }}</h3>
-                    <span>{{ item.datetime }}</span>
+                    <span><i class="el-icon-time"></i> {{ item.datetime }}</span>
                     <p>简介：{{ item.introduction }}</p>
                     <router-link :to="'/tutorial/pages/'+item.id" tag="div">
                         <el-button class="info_button">

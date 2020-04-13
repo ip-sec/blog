@@ -21,6 +21,7 @@ export default {
         '$route' : function(to, from) {
             from.meta.index > to.meta.index ? this.$store.dispatch('common/trans','left') : this.$store.dispatch('common/trans','right')
             !from.meta.index || !to.meta.index  ? this.$store.dispatch('common/trans','left') : ''
+            document.title = to.meta.title
         }
     }
 }

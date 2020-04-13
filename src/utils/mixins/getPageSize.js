@@ -11,7 +11,7 @@ export default {
         this.getPageResize()
     },
     beforeDestroy () {
-        window.onresize = null
+        window.removeEventListener('resize',debounce(this.getPageSize,300),false)
     },
     methods:{
         getPageSize () {
@@ -24,7 +24,7 @@ export default {
             this.isCollapse ? this.$store.dispatch('common/isTop','top') : this.$store.dispatch('common/isTop','right')
         },
         getPageResize () {
-            window.onresize = debounce(this.getPageSize,300)
+            window.addEventListener('resize',debounce(this.getPageSize,300),false)
         }
     }
 }

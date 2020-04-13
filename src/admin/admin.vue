@@ -47,7 +47,6 @@ export default {
         ? this.$store.dispatch('admin_get/menu').then(()=>{
         }).catch(()=>{})
         : ''
-        document.title = this.$route.meta.title
     },
     mixins: [getPageSize],
     components:{

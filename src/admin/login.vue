@@ -54,18 +54,16 @@ export default {
             }
         }
     },
-    
-    created() {
-        document.title = this.$route.meta.title
-    },
     mixins: [getPageSize],
     methods: {
         commit () {
             this.$refs.ruleLogin.validate((valid) => {
                 if (valid) {
                     this.loading = true
-                    this.showLogin = !this.showLogin
-                    // this.$router.push('/systemTina')
+                    this.$store.dispatch('admin_post/login',this.formLabelAlign).then(()=>{
+                        this.showLogin = !this.showLogin
+                        this.$router.push('/systemTina')
+                    }).catch(()=>{})
                 }else{
                     return false
                 }

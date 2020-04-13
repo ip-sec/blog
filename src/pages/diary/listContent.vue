@@ -12,8 +12,7 @@
                         <i class="el-icon-thumb">&nbsp;{{ like_num }}</i>
                     </p>
                 </div>
-                <div class="content" v-html="$store.state.home_get.children.content">
-                </div>
+                <article v-html="$store.state.home_get.children.html" class="markdown-body" ></article>
                 <div class="like">
                     <el-button @click="saveLike" icon="el-icon-thumb" circle ></el-button>
                 </div>
@@ -55,5 +54,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
+    @import 'github-markdown-css/github-markdown.css';
 </style>

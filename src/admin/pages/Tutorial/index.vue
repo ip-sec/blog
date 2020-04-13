@@ -9,7 +9,9 @@
                     <el-tab-pane label="编辑教程">
                         <edit-tutorial></edit-tutorial>
                     </el-tab-pane>
-                    <el-tab-pane label="添加教程">添加教程</el-tab-pane>
+                    <el-tab-pane label="添加教程">
+                        <add-tutorial></add-tutorial>
+                    </el-tab-pane>
                 </el-tabs>
             </transition>
         </el-col>
@@ -19,6 +21,7 @@
 <script>
 import listTutorial from './listTutorial'
 import editTutorial from './editTutorial'
+import addTutorial from './addTutorial'
 export default {
     name: 'tutorialAlbum',
     data() {
@@ -28,7 +31,8 @@ export default {
     },
     components:{
         listTutorial,
-        editTutorial
+        editTutorial,
+        addTutorial
     },
     methods:{
         listIndex(data){

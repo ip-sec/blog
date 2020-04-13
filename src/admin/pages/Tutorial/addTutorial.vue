@@ -1,29 +1,22 @@
 <template>
-    <div class="edit-tutorial">
-        <transition name="bottomY" mode="out-in" appear v-if="editData">
-            <el-form label-position="left" ref="ruleEditTutorial" :rules="rules" :model="editData" @submit.native.prevent="updateData(0,'已发布')">
-                <el-form-item label="ID：">
-                    <el-select v-model="select_id" placeholder="请选择" @change="siteData()">
-                        <el-option v-for="item in $store.state.admin_get.tutorial"
-                        :key="item.id" :label="item.id" :value="item.id">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
+    <div class="add-tutorial">
+        <transition name="bottomY" mode="out-in" appear v-if="addData">
+            <el-form label-position="left" ref="ruleAddTutorial" :rules="rules" :model="addData" @submit.native.prevent="saveData(0,'已发布')">
                 <el-form-item label="标题：" prop="title">
-                    <el-input v-model="editData.title"  maxlength="20" show-word-limit clearable></el-input>
+                    <el-input v-model="addData.title"  maxlength="20" show-word-limit clearable></el-input>
                 </el-form-item>
                 <el-form-item label="简介：" prop="introduction">
-                    <el-input v-model="editData.introduction" type="textarea" maxlength="50" show-word-limit></el-input>
+                    <el-input v-model="addData.introduction" type="textarea" maxlength="50" show-word-limit></el-input>
                 </el-form-item>
                 <el-form-item label="教程标签：" prop="sort_id">
-                    <el-select v-model="editData.sort_id" placeholder="请选择">
+                    <el-select v-model="addData.sort_id" placeholder="请选择">
                         <el-option v-for="item in $store.state.admin_get.sort"
                         :key="item.id" :label="item.name" :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="背景图：">
-                    <el-image :src="editData.url" fit="cover">
+                    <el-image :src="addData.url" fit="cover">
                         <div slot="error" class="image-slot">
                             <img src="../../../assets/img/loading.gif" style="width:300px">
                         </div>
@@ -46,11 +39,11 @@
                     </el-dialog>
                 </el-form-item>
                 <el-form-item label="内容：" class="markdown_style" prop="markdown">
-                    <mavon-editor v-model="editData.markdown" @change="change"/>
+                    <mavon-editor v-model="addData.markdown" @change="change"/>
                 </el-form-item>
                 <el-form-item>
-                    <el-button icon="el-icon-edit" @click="updateData(0,'已发布')">修改</el-button>
-                    <el-button icon="el-icon-document-checked" @click="updateData(1,'待编辑')">保存</el-button>
+                    <el-button icon="el-icon-edit" @click="saveData(0,'已发布')">添加</el-button>
+                    <el-button icon="el-icon-document-checked" @click="saveData(1,'待编辑')">保存</el-button>
                 </el-form-item>
             </el-form>
         </transition>
@@ -67,14 +60,12 @@ export default {
             bgImg: true,
             dialogVisible: false,
             dialogImageUrl: '',
-            editData: {
-                id: '',
+            addData: {
                 title: '',
                 introduction: '',
                 url:'',
-                content_id: '',
                 sort_id: '',
-                datetime: '',
+                datetime: new Date().getTime(),
                 markdown: '',
                 html: ''
             },
@@ -100,35 +91,30 @@ export default {
         }).catch(()=>{})
         : ''
     },
-    watch:{
-        '$store.state.common.listInfo':function(to,from){
-            this.editData = to
-            this.select_id = to.id
-            this.bgImg = true
-        }
-    },
     methods:{
         change(value, render){
-            this.editData.html = render;
+            this.addData.html = render;
         },
-        siteData(){
-            this.$store.dispatch('common/listInfo',this.$store.state.admin_get.tutorial[this.select_id-1]).then(()=>{
-            }).catch(()=>{})
-        },
-        updateData(state,stateName){
+        saveData(state,stateName){
             let _this = this
-            _this.$refs.ruleEditTutorial.validate((valid) => {
+            _this.$refs.ruleAddTutorial.validate((valid) => {
                 if (valid) {
-                    _this.editData['state'] = state
-                    _this.editData['datetime'] = new Date().getTime()
-                    _this.$store.dispatch('admin_post/updateTutorial',_this.editData).then(()=>{
-                        _this.editData['state'] = stateName
-                        _this.editData['datetime'] = new Date(_this.editData['datetime']).toLocaleDateString()
-                        _this.$message({
-                            type: 'success',
-                            message: '操作成功啦~',
-                            center: true
+                    _this.addData['state'] = state
+                    _this.$store.dispatch('admin_post/saveTutorial',_this.addData).then(()=>{
+                        let data = _this.$store.state.admin_get.tutorial
+                        data.push({
+                            id: data[data.length-1] ? data[data.length-1].id+1 : 1,
+                            title: _this.addData.title,
+                            introduction: _this.addData.introduction,
+                            url: _this.addData.url,
+                            sort_id:  _this.addData.sort_id,
+                            datetime: new Date(_this.addData.datetime).toLocaleDateString(),
+                            state: stateName,
+                            view_num: 0,
+                            like_num: 0,
+                            markdown: _this.addData.markdown,
                         })
+                        _this.$refs.ruleAddTutorial.resetFields()
                     }).catch(()=>{
                         
                     })
@@ -141,7 +127,7 @@ export default {
             let _this = this
             _this.uploadImg = location.protocol + "//" + location.hostname+":80/"+file.data.replace(/\\/g,"/")
             if(_this.bgImg){
-                _this.editData.url = _this.uploadImg
+                _this.addData.url = _this.uploadImg
                 _this.bgImg = false
             }
         },
@@ -166,7 +152,7 @@ export default {
 </script>
 
 <style lang="scss"> 
-    .edit-tutorial{
+    .add-tutorial{
         .el-form{
             .markdown_style{
                 .el-form-item__label{

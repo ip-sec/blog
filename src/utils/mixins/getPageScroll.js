@@ -4,7 +4,7 @@ export default {
         this.loadPhoto()
     },
     beforeDestroy () {
-        window.onresize = null
+        window.removeEventListener('scroll',debounce(this.getDomScroll,300),false)
     },
     methods: {
         getDomScroll () {
@@ -14,7 +14,7 @@ export default {
             Math.ceil(scrollTop + windowHeight + 1) >= scrollHeight ? this.morePhoto() : ''
         },
         loadPhoto () {
-            window.onscroll = debounce(this.getDomScroll,300)
+            window.addEventListener('scroll',debounce(this.getDomScroll,300),false)
         }
     }
 }

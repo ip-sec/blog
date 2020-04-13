@@ -11,12 +11,7 @@ const mutations = {
 const actions = {
     saveMessage( {commit},info ){
         return new Promise((resolve,reject)=>{
-            const data = {
-                message: info.info,
-                avatar: info.avatar,
-                datetime: new Date().getTime()
-            }
-            handle.saveMessage(data).then(response => {
+            handle.saveMessage(info).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)

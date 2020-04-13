@@ -1,7 +1,7 @@
 <template>
     <div class="edit-diary">
         <transition name="bottomY" mode="out-in" appear>
-            <el-form label-position="left" ref="ruleEditDiary" :rules="rules" :model="editData" @submit.native.prevent="updateData">
+            <el-form label-position="left" ref="ruleEditDiary" :rules="rules" :model="editData" @submit.native.prevent="updateData(0,'已发布')">
                 <el-form-item label="ID：">
                     <el-select v-model="select_id" placeholder="请选择" @change="siteData()">
                         <el-option v-for="item in $store.state.admin_get.diary"
@@ -15,12 +15,12 @@
                 <el-form-item label="简介：" prop="introduction">
                     <el-input v-model="editData.introduction" type="textarea" maxlength="50" show-word-limit></el-input>
                 </el-form-item>
-                <el-form-item label="内容：" prop="content">
-                    <el-input v-model="editData.content" type="textarea" autosize ></el-input>
+                <el-form-item label="内容：" class="markdown_style" prop="markdown">
+                    <mavon-editor v-model="editData.markdown" @change="change"/>
                 </el-form-item>
                 <el-form-item>
-                    <el-button icon="el-icon-edit" @click="updateData">修改</el-button>
-                    <el-button icon="el-icon-document-checked" @click="saveData">保存</el-button>
+                    <el-button icon="el-icon-edit" @click="updateData(0,'已发布')">修改</el-button>
+                    <el-button icon="el-icon-document-checked" @click="updateData(1,'待编辑')">保存</el-button>
                 </el-form-item>
             </el-form>
         </transition>
@@ -36,9 +36,10 @@ export default {
                 id: '',
                 title: '',
                 introduction: '',
-                datetime: new Date().getTime(),
+                datetime: '',
                 content_id: '',
-                content: '',
+                markdown: '',
+                html: ''
             },
             rules:{
                 title:[
@@ -47,10 +48,17 @@ export default {
                 introduction:[
                     { required: true, message: '输入简介信息( •̀ ω •́ )', trigger: 'blur' }
                 ],
-                content:[
+                markdown:[
                     { required: true, message: '输入内容信息( •̀ ω •́ )', trigger: 'blur' }
                 ]
-            }
+            },
+        }
+    },
+    created(){
+        let _this = this
+        if(_this.$store.state.common.listData !== null){
+            _this.editData = _this.$store.state.common.listData
+            _this.select_id = _this.$store.state.common.listData.id
         }
     },
     watch:{
@@ -60,35 +68,22 @@ export default {
         }
     },
     methods:{
+        change(value, render){
+            this.editData.html = render;
+        },
         siteData(){
             this.$store.dispatch('common/listData',this.$store.state.admin_get.diary[this.select_id-1]).then(()=>{
             }).catch(()=>{})
         },
-        updateData(){
+        updateData(state,stateName){
             let _this = this
             _this.$refs.ruleEditDiary.validate((valid) => {
                 if (valid) {
-                    _this.addData['state'] = 0
-                    _this.$store.dispatch('admin_post/updateDiary',_this.addData).then(()=>{
-                        _this.$message({
-                            type: 'success',
-                            message: '操作成功啦~',
-                            center: true
-                        })
-                    }).catch(()=>{
-                        
-                    })
-                }else{
-                    return
-                }
-            })
-        },
-        saveData(){
-            let _this = this
-            _this.$refs.ruleEditDiary.validate((valid) => {
-                if (valid) {
-                    _this.addData['state'] = 1
-                    _this.$store.dispatch('admin_post/updateDiary',_this.addData).then(()=>{
+                    _this.editData['state'] = state
+                    _this.editData['datetime'] = new Date().getTime()
+                    _this.$store.dispatch('admin_post/updateDiary',_this.editData).then(()=>{
+                        _this.editData['state'] = stateName
+                        _this.editData['datetime'] = new Date(_this.editData['datetime']).toLocaleDateString()
                         _this.$message({
                             type: 'success',
                             message: '操作成功啦~',
@@ -106,6 +101,17 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss"> 
+    .edit-diary{
+        .el-form{
+            .markdown_style{
+                .el-form-item__label{
+                    float: none;
+                }
+                .el-form-item__content{
+                    padding: 5px;
+                }
+            }
+        }
+    }
 </style>

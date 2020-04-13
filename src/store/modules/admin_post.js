@@ -9,6 +9,15 @@ const mutations = {
 }
 
 const actions = {
+    login ( {commit},data ){
+        return new Promise((resolve,reject)=>{
+            submit.login(data).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     saveTutorial ( {commit},data ){
         return new Promise((resolve,reject)=>{
             submit.saveTutorial(data).then(response => {
@@ -28,8 +37,9 @@ const actions = {
         })
     },
     updateTutorial ( {commit},data ){
+        let params = data.id
         return new Promise((resolve,reject)=>{
-            submit.updateTutorial(data).then(response => {
+            submit.updateTutorial(params,data).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)
@@ -37,8 +47,9 @@ const actions = {
         })
     },
     updateDiary ( {commit},data ){
+        let params = data.id
         return new Promise((resolve,reject)=>{
-            submit.updateDiary(data).then(response => {
+            submit.updateDiary(params,data).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)
@@ -83,12 +94,8 @@ const actions = {
     },
     updateSort ( {commit},info ){
         let id = info.id
-        let data = {
-            name: info.name,
-            bg: info.bg
-        }
         return new Promise((resolve,reject)=>{
-            submit.updateSort(id,data).then(response => {
+            submit.updateSort(id,info).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)
@@ -97,11 +104,8 @@ const actions = {
     },
     updateCategory ( {commit},info ){
         let id = info.id
-        let data = {
-            name: info.name
-        }
         return new Promise((resolve,reject)=>{
-            submit.updateCategory(id,data).then(response => {
+            submit.updateCategory(id,info).then(response => {
                 resolve()
             }).catch(error => {
                 reject(error)

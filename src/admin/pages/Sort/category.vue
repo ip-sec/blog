@@ -73,7 +73,7 @@ export default {
                     })
                 }else{
                     _this.rowData = {
-                        id: '/'+ data.row.id,
+                        id: data.row.id,
                         name: data.row.name
                     }
                     _this.$store.dispatch('admin_post/updateSort',_this.rowData).then(()=>{

@@ -79,7 +79,7 @@ export default {
                     })
                 }else{
                     _this.rowData = {
-                        id: '/'+ data.row.id,
+                        id: data.row.id,
                         name: data.row.name,
                         bg: data.row.bg
                     }

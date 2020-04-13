@@ -6,6 +6,7 @@ const state = {
     diary: null,//日志信息
     children: null,//页面子路由信息
     tutorial: null,//教程信息
+    tutorialAbout: null,//教程信息
     photo: null,//图片信息
     photo_class: null,//图片分类信息
     page: 1,//当前分页信息
@@ -50,6 +51,9 @@ const mutations = {
     SET_PHOTO_CLASS: (state,photo_class) => {
         state.photo_class = photo_class
     },
+    SET_TUTORIALABOUT: (state,tutorialAbout) => {
+        state.tutorialAbout = tutorialAbout
+    },
 }
 
 const actions = {
@@ -93,7 +97,11 @@ const actions = {
         return new Promise((resolve,reject)=>{
             home.tutorial(params).then(response => {
                 if(params == '' || params.indexOf('?page=') > -1){
+                    response.class.forEach((item)=>{
+                        item.datetime = new Date(parseInt(item.datetime)).toLocaleDateString()
+                    })
                     commit('SET_TUTORIAL',response.data)
+                    commit('SET_TUTORIALABOUT',response.class)
                     commit('SET_SIZE',response.data.per_page)
                     commit('SET_TOTAL',response.data.total)
                     commit('SET_PAGE',response.data.current_page)

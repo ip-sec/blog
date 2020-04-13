@@ -35,9 +35,6 @@ export default {
             bgImg: this.$store.state.common.bgImg[this.$route.meta.index-1].imgUrl
         }
     },
-    created(){
-        document.title = this.$route.meta.title
-    },
     destroyed () {
         this.$store.dispatch('common/drawer',false)
     },
