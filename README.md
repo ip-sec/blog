@@ -1,7 +1,7 @@
 # blog
 
 > A Vue.js project
-
+> vue + vuex + vue-router + axios + element-ui + sass
 ## Build Setup
 
 ``` bash
