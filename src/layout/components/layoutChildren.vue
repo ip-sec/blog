@@ -1,12 +1,14 @@
 <template>
     <layout-main>
-        <div class="content-contain">
-            <el-row>
-                <el-col :xs="24" :sm="24" :md="22" :lg="22">
-                    <slot></slot>
-                </el-col>
-            </el-row>
-        </div>
+        <transition name="bottomY" mode="out-in" appear>
+            <div class="content-contain">
+                <el-row>
+                    <el-col :xs="24" :sm="24" :md="22" :lg="22">
+                        <slot></slot>
+                    </el-col>
+                </el-row>
+            </div>
+        </transition>
     </layout-main>
 </template>
 

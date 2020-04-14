@@ -2,7 +2,9 @@
     <layout-main>
         <div class="photo-container">
             <el-row class="photo-flex">
-                <central-slot></central-slot>
+                <transition name="bottomY" mode="out-in" appear>
+                    <central-slot></central-slot>
+                </transition>
             </el-row>
         </div>
     </layout-main>
@@ -32,8 +34,8 @@ export default {
         justify-content: center;
         padding: 20px 10px;
         .el-col{
+            background: rgba($color: #ffffff, $alpha: .7);
             transition: all .6s;
-            background: white;
             padding: 10px;
         }
         

@@ -1,35 +1,37 @@
 <template>
     <layout-main>
-        <div class="mess-contain">
-            <el-row>
-                <el-col :xs="24" :sm="22" :md="22" :lg="22">
-                    <central-slot></central-slot>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :xs="24" :sm="22" :md="22" :lg="22">
-                    <div class="push-info">
-                        <el-form label-position="top" 
-                        :rules="rules" ref="ruleForm" 
-                        @submit.native.prevent="setInfo" 
-                        label-width="80px" :model="messageInfo">
-                            <el-form-item label="发送小星星⭐⭐⭐" prop="info">
-                                <el-input 
-                                v-model="messageInfo.info"
-                                maxlength="50"
-                                show-word-limit
-                                placeholder="留言（￣︶￣）↗　" 
-                                clearable >
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item>
-                                <el-button class="push-right" @click="setInfo">哔呦~</el-button>
-                            </el-form-item>
-                        </el-form>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
+        <transition name="bottomY" mode="out-in" appear>
+            <div class="mess-contain">
+                <el-row>
+                    <el-col :xs="24" :sm="22" :md="22" :lg="22">
+                        <central-slot></central-slot>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :xs="24" :sm="22" :md="22" :lg="22">
+                        <div class="push-info">
+                            <el-form label-position="top" 
+                            :rules="rules" ref="ruleForm" 
+                            @submit.native.prevent="setInfo" 
+                            label-width="80px" :model="messageInfo">
+                                <el-form-item label="发送小星星⭐⭐⭐" prop="info">
+                                    <el-input 
+                                    v-model="messageInfo.info"
+                                    maxlength="50"
+                                    show-word-limit
+                                    placeholder="留言（￣︶￣）↗　" 
+                                    clearable >
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button class="push-right" @click="setInfo">哔呦~</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+        </transition>
     </layout-main>
 </template>
 

@@ -1,20 +1,29 @@
 <template>
     <layout-main>
-        <div class="time-item" v-if="$store.state.home_get.diary">
-            <el-row>
-                <el-col :xs="24" :sm="24" :md="17" :lg="17">
-                    <central-slot></central-slot>
-                </el-col>
-                <el-col :xs="24" :sm="24" :md="7" :lg="7" class="hidden-sm-and-down" 
-                style="paddingLeft:30px;float:right">
-                    <central-sort></central-sort>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :xs="24" :sm="24" :md="17" :lg="17" v-loading="loading">
-                </el-col>
-            </el-row>
-        </div>
+        <transition name="bottomY" tag="div" mode="out-in" appear>
+            <div class="time-item" v-if="$store.state.home_get.diary">
+                <div class="diary-left">
+                    <el-row>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                            <central-slot></central-slot>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" v-loading="loading">
+                        </el-col>
+                    </el-row>
+                </div>
+                <div ref="refScroll" class="diary-right hidden-sm-and-down">
+                    <el-row>
+                        <el-col ref="refScrollCol" :xs="24" :sm="24" :md="24" :lg="24">
+                            <transition name="bottomDelY" mode="out-in" appear>
+                                <central-sort></central-sort>
+                            </transition>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
+        </transition>
     </layout-main>
 </template>
 
@@ -22,7 +31,8 @@
 import layoutMain from '@/layout/components/layoutMain'
 import CentralSlot from './components/about'
 import CentralSort from './components/sort'
-import getPageScroll from '@/utils/mixins/getPageScroll.js'
+import getPageScroll from '@/utils/mixins/getPageScroll'
+import getDomScroll from '@/utils/mixins/getDomScroll'
 export default {
     name: 'diary',
     data () {
@@ -40,8 +50,17 @@ export default {
         layoutMain,
         CentralSort
     },
-    mixins:[getPageScroll],
+    mixins:[getPageScroll,getDomScroll],
     methods:{
+        getDomScroll () {
+            let _this = this
+            if(_this.$refs.refScroll !== undefined){
+                let domTop = _this.$refs.refScroll.getBoundingClientRect().top
+                domTop < 0 ? _this.isFixed = true : _this.isFixed = false
+            }else{
+                return false
+            }
+        },
         morePhoto () {
             this.loading = true
             setTimeout(() => {
@@ -55,24 +74,39 @@ export default {
 <style lang="scss">
     .time-item{
         padding-top: 20px;
-    .el-row{
-        &:first-child{
-            .el-col{
-                height: auto; 
-                transition: all .6s;
-            }
-        }
-        &:last-child{
-            .el-col{
-                height: 60px;
-                .el-loading-mask{
-                    background: none;
-                    .path{
-                        stroke: #E36049;
+        display: flex;
+        justify-content: space-between;
+        .diary-left{
+            width: 100%;
+            .el-row{
+                &:first-child{
+                    .el-col{
+                        height: auto; 
+                        transition: all .6s;
+                    }
+                }
+                &:last-child{
+                    .el-col{
+                        height: 60px;
+                        .el-loading-mask{
+                            background: none;
+                            .path{
+                                stroke: #E36049;
+                            }
+                        }
                     }
                 }
             }
         }
+        .diary-right{
+            min-width: 300px;
+            margin-left: 30px;
+            .el-row{
+                .el-col{
+                    transition: all 0.6s;
+                    width: 300px;
+                }
+            }
+        }
     }
-}
 </style>

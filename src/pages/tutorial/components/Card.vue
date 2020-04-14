@@ -16,9 +16,6 @@
                 </span>
             </div>
             <div class="el-card__right">
-                <div class="tag_li" :style="{background: item.bg}">
-                    <span>{{ item.name }}</span>
-                </div>
                 <div class="tag_span" :style="{background: item.bg}"></div>
                 <div class="info_li">
                     <h3>{{ item.title }}</h3>
@@ -30,6 +27,9 @@
                             <i class="el-icon-right"></i>
                         </el-button>
                     </router-link>
+                </div>
+                <div class="tag_li" :style="{background: item.bg}">
+                    <span>{{ item.name }}</span>
                 </div>
             </div>
         </el-card>

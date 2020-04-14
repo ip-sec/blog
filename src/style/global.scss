@@ -17,7 +17,7 @@
         justify-content: $content;
         flex-wrap: $wrap;
     }
-    @mixin vue-trans($name,$trans,$time){
+    @mixin vue-trans($name,$trans,$time,$delay: 0s){
         .#{$name}-enter,
         .#{$name}-leave-to{
             opacity: 0;
@@ -26,6 +26,7 @@
         .#{$name}-enter-active,
         .#{$name}-leave-active{
             transition: all $time;
+            transition-delay: $delay;
         }
     }
     @mixin customize-trans($name,$enter,$enter_to,$leave,$time) {

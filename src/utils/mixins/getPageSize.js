@@ -1,4 +1,4 @@
-import {debounce} from '../common.js'
+import {throttleTwo} from '../common.js'
 export default {
     data () {
         return {
@@ -11,7 +11,7 @@ export default {
         this.getPageResize()
     },
     beforeDestroy () {
-        window.removeEventListener('resize',debounce(this.getPageSize,300),false)
+        window.removeEventListener('resize',throttleTwo(this.getPageSize,300),false)
     },
     methods:{
         getPageSize () {
@@ -24,7 +24,7 @@ export default {
             this.isCollapse ? this.$store.dispatch('common/isTop','top') : this.$store.dispatch('common/isTop','right')
         },
         getPageResize () {
-            window.addEventListener('resize',debounce(this.getPageSize,300),false)
+            window.addEventListener('resize',throttleTwo(this.getPageSize,300),false)
         }
     }
 }

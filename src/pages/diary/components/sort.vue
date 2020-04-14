@@ -2,7 +2,7 @@
     <div class="item_sort">
         <el-card shadow="hover">
             <div slot="header" class="clearfix">
-                <span>日期：</span>
+                <span>日期</span>
             </div>
             <div class="sort_li">
                 <ul class="item">
@@ -44,19 +44,33 @@ export default {
 <style lang="scss" scoped>
     .item_sort{
         .el-card{
+            background: rgba($color: #ffffff, $alpha: .7);
             margin-bottom: 10px;
             .sort_li{
                 width: 100%;
                 .item{
                     list-style: none;
                     li{
+                        position: relative;
                         padding: 10px 0;
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         cursor: pointer;
                         &:hover{
-                            background: #e6e6e6;
+                            &::after{
+                                width: 100%;
+                            }
+                        }
+                        &::after{
+                            content: '';
+                            transition: all 0.6s;
+                            position: absolute;
+                            bottom: 0px;
+                            left: 0;
+                            height: 2px;
+                            width: 0%;
+                            background-color: #E36049;
                         }
                     }
                 }

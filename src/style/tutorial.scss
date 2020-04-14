@@ -4,6 +4,7 @@
     .el-col{
         height: auto;
         .el-card{
+            background: rgba($color: #ffffff, $alpha: .7);
             margin-bottom: 10px;
             width: 100%;
             &:hover .el-image{
@@ -81,7 +82,8 @@
                         margin-left: 10px;
                         height: 80%;
                         width: 80%;
-                        >h3,>span{
+                        >h3,
+                        >span{
                             display: block;
                             margin-bottom: 15px;
                         }
@@ -101,6 +103,25 @@
                             border-radius: 0 !important;
                             float: right;
                             margin: 10px;
+                            transition: all 0.6s;
+                            transform-origin: center;
+                            transform-style: preserve-3d;
+                            &:hover{
+                                transform: rotateX(-90deg);
+                            }
+                            &::after{
+                                content: 'come on';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                display: block;
+                                height: 100%;
+                                color: #E36049;
+                                line-height: 38px;
+                                border: 1px solid #E36049;
+                                transform: rotateX(90deg);
+                            }
                         }
                     }
                 }
@@ -108,7 +129,9 @@
         }
         &:last-child{
             .el-pagination{
-                .btn-prev,.btn-next,li.number{
+                .btn-prev,
+                .btn-next,
+                li.number{
                     &:hover{
                         color: #E36049;
                     }

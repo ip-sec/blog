@@ -1,28 +1,38 @@
 <template>
     <layout-main>
-        <div class="trans-top" v-if="$store.state.home_get.tutorial">
-            <el-row style="min-height:400px;">
-                <el-col :xs="24" :sm="24" :md="17" :lg="17">
-                    <central-slot></central-slot>
-                </el-col>
-                <el-col :xs="24" :sm="24" :md="7" :lg="7" class="hidden-sm-and-down" style="paddingLeft:30px;float:right">
-                    <central-sort></central-sort>
-                </el-col>
-                <el-col :xs="24" :sm="24" :md="18" :lg="18" :style="{textAlign: 'center'}">
-                    <el-pagination 
-                    @current-change="getData(page)"
-                    @prev-click="page-1"
-                    @next-click="page+1"
-                    :page-size="size" 
-                    :current-page.sync="page"
-                    layout="prev, pager, next" 
-                    :total="total"></el-pagination>
-                </el-col>
-            </el-row>
-        </div>
-        <div style="min-height:400px" v-else v-loading="true">
+        <transition name="bottomY" mode="out-in" appear>
+            <div class="trans-top" v-if="$store.state.home_get.tutorial">
+                <div class="tutorial-left">
+                    <el-row style="min-height:400px;">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                            <central-slot></central-slot>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :style="{textAlign: 'center'}">
+                            <el-pagination 
+                            @current-change="getData(page)"
+                            @prev-click="page-1"
+                            @next-click="page+1"
+                            :page-size="size" 
+                            :current-page.sync="page"
+                            layout="prev, pager, next" 
+                            :total="total"></el-pagination>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="tutorial-right hidden-sm-and-down">
+                    <el-row>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                            <transition name="bottomDelY" mode="out-in" appear>
+                                <central-sort></central-sort>
+                            </transition>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
+        </transition>
+            <!-- <div style="min-height:400px" v-else v-loading="true">
 
-        </div>
+            </div> -->
     </layout-main>
 </template>
 
@@ -66,5 +76,20 @@ export default {
 <style lang="scss">
     .trans-top{
         transition: all .6s;
+        display: flex;
+        justify-content: space-between;
+        .tutorial-left{
+            width: 100%;
+        }
+        .tutorial-right{
+            transition: all 0.6s;
+            min-width: 270px;
+            margin-left: 30px;
+        }
+    }
+    @media screen and (max-width: 1100px){
+        .tutorial-right{
+            min-width: 200px !important;
+        }
     }
 </style>

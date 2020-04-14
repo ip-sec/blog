@@ -12,7 +12,7 @@
             -khtml-user-select: none; /*早期浏览器*/ 
             user-select: none;
             padding-right: 0px !important;
-            @include page-scroll;
+            @include page-scroll();
             // #loading{
             //     z-index: 99990;
             //     position: absolute;

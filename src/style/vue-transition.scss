@@ -2,9 +2,11 @@
 @include customize-trans(left,translateX(-100%),translateX(0%),translateX(100%),0.6s);
 @include customize-trans(right,translateX(100%),translateX(0%),translateX(-100%),0.6s);
 //上显上隐
-@include vue-trans(topY,translateY(-100%),0.6s);
+@include vue-trans(topY,translateY(-100%),0.6s,$delay: 0.6s);
 //下显下隐
-@include vue-trans(bottomY,translateY(50px),0.6s);
+@include vue-trans(bottomY,translateY(50px),0.6s,$delay: 0.3s);
+//下显下隐 延迟版
+@include vue-trans(bottomDelY,translateY(50px),0.6s,$delay: 0.4s);
 //上显下隐
 @include customize-trans(topBottom,translateY(-100px),translateY(0px),translateY(100px),2s);
 //右显右隐

@@ -4,12 +4,15 @@
             <el-timeline-item v-for="item in $store.state.home_get.diary" :key="item.id" :timestamp="item.datetime" placement="top">
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card shadow="hover">
-                        <h4>{{ item.title }}</h4>
-                        <p style="paddingTop:5px"><span>介绍: </span> {{ item.introduction }}</p>
-                        <span class="span-right">
-                            <i class="el-icon-view">&nbsp;{{ item.view_num }}</i>
-                            <i class="el-icon-thumb">&nbsp;{{ item.like_num }}</i>
-                        </span>
+                        <div class="tag_sapn"></div>
+                        <div class="info">
+                            <h4 style="paddingTop:5px">{{ item.title }}</h4>
+                            <p><span>介绍: </span> {{ item.introduction }}</p>
+                            <span class="span-right">
+                                <i class="el-icon-view">&nbsp;{{ item.view_num }}</i>
+                                <i class="el-icon-thumb">&nbsp;{{ item.like_num }}</i>
+                            </span>
+                        </div>
                     </el-card>
                 </router-link>
             </el-timeline-item>
@@ -31,12 +34,39 @@ export default {
 <style lang="scss">
 .el-timeline{
     .el-timeline-item{
-        .span-right{
-            float: right;
-            text-align: right;
-            i{
-                font-size: 13px;
-                color: #444444;
+        .el-card{
+            background: rgba($color: #ffffff, $alpha: .7);
+            &:hover{
+                .el-card__body .tag_sapn{
+                    height: 55px !important;
+                }
+            }
+            .el-card__body{
+                display: flex;
+                .tag_sapn{
+                    width: 4px;
+                    height: 0px;
+                    background-color: #E36049;
+                    margin-right: 10px;
+                    transition: all 0.6s;
+                }
+                .info{
+                    width: 97%;
+                    p{
+                        padding-top: 5px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .span-right{
+                        float: right;
+                        text-align: right;
+                        i{
+                            font-size: 13px;
+                            color: #444444;
+                        }
+                    }
+                }
             }
         }
         .el-timeline-item__tail{

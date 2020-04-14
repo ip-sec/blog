@@ -1,5 +1,5 @@
 <template>
-    <div class="sort-about" v-if="$store.state.home_get.tutorialAbout">
+    <div ref="refScroll" class="sort-about" v-if="$store.state.home_get.tutorialAbout">
         <el-card shadow="hover">
             <div slot="header" class="clearfix">
                 <span @click="siteData('view_num')" style="cursor: pointer;">查看榜</span>
@@ -16,7 +16,7 @@
                 </ul>
             </div>
         </el-card>
-        <el-card shadow="hover">
+        <el-card ref="refScrollCol" class="fixed-card" shadow="hover">
             <div slot="header" class="clearfix">
                 <span>最近更新：</span>
             </div>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import getDomScroll from '@/utils/mixins/getDomScroll'
 export default {
     data(){
         return {
@@ -42,6 +43,7 @@ export default {
             ifSort: 'view_num'
         }
     },
+    mixins:[getDomScroll],
     computed:{
         sortTimeData:function(){
             return this.timeData.sort((a,b)=>{
@@ -55,6 +57,15 @@ export default {
         },
     },
     methods:{
+        getDomScroll () {
+            let _this = this
+            if(_this.$refs.refScroll !== undefined){
+                let domTop = _this.$refs.refScroll.getBoundingClientRect().top + _this.$refs['refScrollCol'].$el.offsetHeight
+                domTop < 0 ? _this.isFixed = true : _this.isFixed = false
+            }else{
+                return false
+            }
+        },
         siteData(data){
             this.ifSort = data
         }
@@ -64,7 +75,11 @@ export default {
 
 <style lang="scss" scoped>
     .sort-about{
+        .fixed-card{
+            width: 270px;
+        }
         .el-card{
+            background: rgba($color: #ffffff, $alpha: .7);
             .clearfix{
                 span{
                     &:hover{
@@ -77,17 +92,35 @@ export default {
                 .item{
                     list-style: none;
                     li{
+                        position: relative;
                         padding: 10px 0;
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         cursor: pointer;
                         &:hover{
-                            background: #e6e6e6;
+                            &::after{
+                                width: 100%;
+                            }
+                        }
+                        &::after{
+                            content: '';
+                            transition: all 0.6s;
+                            position: absolute;
+                            bottom: 0px;
+                            left: 0;
+                            height: 2px;
+                            width: 0%;
+                            background-color: #E36049;
                         }
                     }
                 }
             }
+        }
+    }
+    @media screen and (max-width: 1100px){
+        .fixed-card{
+            width: 200px !important;
         }
     }
 </style>
