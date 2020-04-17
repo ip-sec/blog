@@ -1,19 +1,32 @@
 <template>
     <layout-main>
-        <transition name="bottomY" mode="out-in" appear>
-            <div class="content-contain">
-                <el-row>
-                    <el-col :xs="24" :sm="24" :md="22" :lg="22">
-                        <slot></slot>
-                    </el-col>
-                </el-row>
+        <div class="content-page">
+            <div class="content-left">
+                <transition name="bottomY" mode="out-in" appear>
+                    <el-row>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                            <slot name="content"></slot>
+                        </el-col>
+                    </el-row>
+                </transition>
             </div>
-        </transition>
+            <div ref="refScroll" class="content-right hidden-sm-and-down">
+                    <el-row>
+                        <el-col ref="refScrollCol" :xs="24" :sm="24" :md="22" :lg="22">
+                            
+                <transition name="bottomDelY" mode="out-in" appear>
+                            <slot name="card"></slot>
+                </transition>
+                        </el-col>
+                    </el-row>
+            </div>
+        </div>
     </layout-main>
 </template>
 
 <script>
 import layoutMain from './layoutMain'
+import getDomScroll from '@/utils/mixins/getDomScroll'
 export default {
     name: 'layoutChildren',
     data() {
@@ -25,66 +38,23 @@ export default {
     },
     components:{
         layoutMain
+    },
+    mixins:[getDomScroll],
+    methods:{
+        getDomScroll () {
+            let _this = this
+            if(_this.$refs.refScroll !== undefined){
+                let domTop = _this.$refs.refScroll.getBoundingClientRect().top
+                domTop < 0 ? _this.isFixed = true : _this.isFixed = false
+            }else{
+                return false
+            }
+        },
     }
 }
 </script>
 
 <style lang="scss">
-    .content-contain{
-        padding-top: 20px;
-        .el-row{
-            @include flex-center;
-            .el-col{
-                position: relative;
-                transition: all .6s;
-                min-height: 500px;
-                padding: 20px;
-                background: rgba($color: #ffffff, $alpha: .7);
-                box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-                .el-header{
-                    line-height: 60px;
-                    text-align: center;
-                }
-                .basic-info{
-                    text-align: center;
-                    i{
-                        font-size: 13px;
-                    }
-                }
-                .content{
-                    padding: 20px 0;
-                    word-break: break-all;
-                    font-size: 14px;
-                    p{
-                        text-indent: 2em;
-                    }
-                    .img-content{
-                        text-align: center;
-                        max-width: 100%;
-                        max-height: 400px;
-                        img{ 
-                            max-width: 100%;
-                            object-fit: cover;
-                        }
-                    }
-                }
-                .like{
-                    position: absolute;
-                    top: 50%;
-                    right: 20px;
-                    .el-button{
-                        width: 50px;
-                        height: 50px;
-                        background: rgba($color: #ffffff, $alpha: .7);
-                        font-size: 17px;
-                        &:hover,&:focus{
-                            background: rgba($color: #ffffff, $alpha: .7);
-                            border-color: #E36049;
-                            color: #E36049;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    @import 'github-markdown-css/github-markdown.css';
+    @import '../../style/children.scss';
 </style>

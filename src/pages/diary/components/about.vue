@@ -1,7 +1,7 @@
 <template>
     <el-timeline>
-        <transition-group name="bottomY" tag="ul" class="el-timeline">
-            <el-timeline-item v-for="item in $store.state.home_get.diary" :key="item.id" :timestamp="item.datetime" placement="top">
+        <transition-group name="bottomY" mode="out-in" tag="ul" class="el-timeline">
+            <el-timeline-item v-for="item in sortDate" :key="item.id" :timestamp="item.datetime" placement="top">
                 <router-link :to="'/diary/pages/'+item.id" tag="div" :style="{cursor: 'pointer'}">
                     <el-card shadow="hover">
                         <div class="tag_sapn"></div>
@@ -24,7 +24,19 @@
 export default {
     data () {
         return {
-
+            handleData: this.$store.state.home_get.diary.concat()
+        }
+    },
+    props:{
+        'num':{
+            type: Number
+        }
+    },
+    computed:{
+        sortDate:function(){
+            return this.handleData.filter((item)=>{
+                return item['datetime'].indexOf(this.$store.state.common.siteDiary) !== -1
+            }).slice(0,this.num)
         }
     },
 }

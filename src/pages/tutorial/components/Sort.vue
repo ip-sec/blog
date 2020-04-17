@@ -18,7 +18,7 @@
         </el-card>
         <el-card ref="refScrollCol" class="fixed-card" shadow="hover">
             <div slot="header" class="clearfix">
-                <span>最近更新：</span>
+                <span>最近更新</span>
             </div>
             <div class="sort_li">
                 <ul class="text item">

@@ -6,7 +6,7 @@
             </div>
             <div class="sort_li">
                 <ul class="item">
-                    <li v-for="item in sortDate" :key="item" @click="siteDate()" >
+                    <li v-for="item in sortDate" :key="item" @click="siteDate(item)" >
                         &nbsp;<i class="el-icon-time"></i>&nbsp;{{ item }}
                     </li>
                 </ul>
@@ -25,6 +25,7 @@ export default {
     computed:{
         sortDate:function(){
             let arr = []
+            arr.push('查看所有日志')
             this.sortData.forEach((item)=>{
                 if(!arr.includes(item.datetime.slice(0,6))){
                     arr.push(item.datetime.slice(0,6))
@@ -34,8 +35,10 @@ export default {
         }
     },
     methods:{
-        siteDate(){
-
+        siteDate(data){
+            data == '查看所有日志' ? data = '' : ''
+            this.$store.dispatch('common/siteDiary',data).then(()=>{
+            }).catch(()=>{})
         }
     }
 }

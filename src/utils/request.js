@@ -36,8 +36,7 @@ service.interceptors.response.use(
             return Promise.reject(new Error(response.data.error || 'Error'))
         }else{
             response.config.method == 'get' ? getTime(response.data.data) : ''
-            response.config.method == 'post'
-            || response.config.method == 'delete' ? Message({
+	    response.config.method == 'post' ?  Message({
                 message: response.data.data,
                 type: 'success',
                 center: true

@@ -1,0 +1,104 @@
+.content-page{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    .content-left{
+        width: 100%;
+        .el-row{
+            @include flex-center;
+            .el-col{
+                position: relative;
+                transition: all .6s;
+                min-height: 500px;
+                padding: 20px;
+                background: rgba($color: #ffffff, $alpha: .7);
+                border: 1px solid #e6e6e6;
+                .el-header{
+                    line-height: 60px;
+                    text-align: center;
+                }
+                .basic-info{
+                    text-align: center;
+                    i{
+                        font-size: 13px;
+                    }
+                }
+                .content{
+                    padding: 20px 0;
+                    word-break: break-all;
+                    font-size: 14px;
+                    p{
+                        text-indent: 2em;
+                    }
+                    .img-content{
+                        text-align: center;
+                        max-width: 100%;
+                        max-height: 400px;
+                        img{ 
+                            max-width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+                .like{
+                    position: absolute;
+                    bottom: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    .el-button{
+                        width: 50px;
+                        height: 50px;
+                        background: rgba($color: #ffffff, $alpha: .7);
+                        font-size: 17px;
+                        &:hover,&:focus{
+                            background: rgba($color: #ffffff, $alpha: .7);
+                            border-color: #E36049;
+                            color: #E36049;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .content-right{
+        min-width: 280px;
+        margin-left: 30px;
+        .el-row{
+            .el-col{
+                transition: all 0.6s;
+                .el-card{
+                    background: rgba($color: #ffffff, $alpha: .7);
+                    .sort_li{
+                        width: 100%;
+                        .item{
+                            list-style: none;
+                            li{
+                                position: relative;
+                                padding: 10px 0;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                cursor: pointer;
+                                &:hover{
+                                    &::after{
+                                        width: 100%;
+                                    }
+                                }
+                                &::after{
+                                    content: '';
+                                    transition: all 0.6s;
+                                    position: absolute;
+                                    bottom: 0px;
+                                    left: 0;
+                                    height: 2px;
+                                    width: 0%;
+                                    background-color: #E36049;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

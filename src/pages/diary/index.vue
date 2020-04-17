@@ -1,15 +1,16 @@
 <template>
     <layout-main>
-        <transition name="bottomY" tag="div" mode="out-in" appear>
-            <div class="time-item" v-if="$store.state.home_get.diary">
+        <transition name="bottomY" tag="div" mode="out-in" appear  v-if="$store.state.home_get.diary">
+            <div class="time-item">
                 <div class="diary-left">
                     <el-row>
                         <el-col :xs="24" :sm="24" :md="24" :lg="24">
-                            <central-slot></central-slot>
+                            <central-slot :num="dataNum"></central-slot>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" v-loading="loading">
+                            {{ message }}
                         </el-col>
                     </el-row>
                 </div>
@@ -24,6 +25,7 @@
                 </div>
             </div>
         </transition>
+        <div v-else v-loading="true" style="min-height: 400px"></div>
     </layout-main>
 </template>
 
@@ -37,7 +39,10 @@ export default {
     name: 'diary',
     data () {
         return {
-            loading: false
+            loading: false,
+            dataNum: 10,
+            time: null,
+            message: ''
         }
     },
     created (){
@@ -62,11 +67,23 @@ export default {
             }
         },
         morePhoto () {
-            this.loading = true
-            setTimeout(() => {
-                this.loading = false
-            },1000)
+            if(this.$store.state.home_get.diary.length > this.dataNum){
+                this.loading = true
+                this.message = ''
+                this.time = setTimeout(() => {
+                    this.dataNum += 10
+                    this.loading = false
+                },1000)
+            }else{
+                this.message = '到底了哟~'
+                this.time = setTimeout(() => {
+                    this.message = ''
+                },1000)
+            }
         }
+    },
+    beforeDestroy(){
+        clearTimeout(this.time)
     }
 }
 </script>
@@ -88,6 +105,9 @@ export default {
                 &:last-child{
                     .el-col{
                         height: 60px;
+                        text-align: center;
+                        line-height: 60px;
+                        font-size: 18px;
                         .el-loading-mask{
                             background: none;
                             .path{

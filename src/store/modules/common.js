@@ -11,6 +11,7 @@ const state = {
         { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
         { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
     ],//页面背景图
+    siteDiary: '',
 }
 
 const mutations = {
@@ -28,6 +29,9 @@ const mutations = {
     },
     SET_MUSIC: ( state,showMusic ) => {
         state.showMusic = showMusic
+    },
+    SET_SITEDIARY: ( state,data ) => {
+        state.siteDiary = data
     }
 }
 
@@ -46,7 +50,10 @@ const actions = {
     },
     music ( {commit},music ) {
         commit('SET_MUSIC',music)
-    }
+    },
+    siteDiary ( {commit},data ) {
+        commit('SET_SITEDIARY',data)
+    },
 }
 
 export default {

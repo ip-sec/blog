@@ -1,7 +1,7 @@
 <template>
     <layout-main>
-        <transition name="bottomY" mode="out-in" appear>
-            <div class="trans-top" v-if="$store.state.home_get.tutorial">
+        <transition name="bottomY" tag="div" mode="out-in" appear v-if="$store.state.home_get.tutorial">
+            <div class="trans-top">
                 <div class="tutorial-left">
                     <el-row style="min-height:400px;">
                         <el-col :xs="24" :sm="24" :md="24" :lg="24">
@@ -30,9 +30,7 @@
                 </div>
             </div>
         </transition>
-            <!-- <div style="min-height:400px" v-else v-loading="true">
-
-            </div> -->
+        <div style="min-height:400px" v-else v-loading="true"></div>
     </layout-main>
 </template>
 
