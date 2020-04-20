@@ -12,11 +12,6 @@ export default {
 
         }
     },
-    created () {
-        // if(document.getElementById('loading')){
-        //     document.body.removeChild(document.getElementById('loading'))
-        // }
-    },
     watch:{
         '$route' : function(to, from) {
             from.meta.index > to.meta.index ? this.$store.dispatch('common/trans','left') : this.$store.dispatch('common/trans','right')

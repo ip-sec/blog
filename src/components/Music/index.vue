@@ -77,9 +77,11 @@ export default {
 
 <style lang="scss">
     .music{
-        width: 350px;
+        width: 95%;
+        min-width: 310px;
         height: 100%;
         padding: 5px;
+        margin: 5px;
         .title{
             .el-avatar{
                 float: left;

@@ -18,7 +18,8 @@
                     <el-button icon="el-icon-full-screen" @click="maxPage" circle></el-button>
                     <el-button icon="el-icon-date" @click="setDialogTableVisible" circle></el-button>
                     <el-popover
-                        placement="bottom-start"
+                        placement="bottom-end"
+                        trigger="hover"
                         width="362">
                         <music :color="black"></music>
                         <el-button icon="el-icon-headset" slot="reference" circle></el-button>

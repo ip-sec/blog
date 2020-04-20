@@ -27,6 +27,7 @@
 <script>
 import layoutMain from './layoutMain'
 import getDomScroll from '@/utils/mixins/getDomScroll'
+import {throttle} from '@/utils/common.js'
 export default {
     name: 'layoutChildren',
     data() {
@@ -41,7 +42,7 @@ export default {
     },
     mixins:[getDomScroll],
     methods:{
-        getDomScroll () {
+        getDomScroll: throttle(function() {
             let _this = this
             if(_this.$refs.refScroll !== undefined){
                 let domTop = _this.$refs.refScroll.getBoundingClientRect().top
@@ -49,7 +50,7 @@ export default {
             }else{
                 return false
             }
-        },
+        },200),
     }
 }
 </script>

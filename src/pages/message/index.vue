@@ -14,9 +14,9 @@
                             :rules="rules" ref="ruleForm" 
                             @submit.native.prevent="setInfo" 
                             label-width="80px" :model="messageInfo">
-                                <el-form-item label="发送小星星⭐⭐⭐" prop="info">
+                                <el-form-item label="发送小星星⭐⭐⭐" prop="message">
                                     <el-input 
-                                    v-model="messageInfo.info"
+                                    v-model="messageInfo.message"
                                     maxlength="50"
                                     show-word-limit
                                     placeholder="留言（￣︶￣）↗　" 
@@ -44,11 +44,11 @@ export default {
     data () {
         return {
             messageInfo: {
-                info: '',
+                message: '',
                 avatar: ''
             },
             rules: {
-                info: [
+                message: [
                     { required: true, message: '输入你想说的( •̀ ω •́ )', trigger: 'blur' }
                 ]
             }
@@ -63,19 +63,20 @@ export default {
             let _this = this
             _this.$refs.ruleForm.validate((valid) => {
                 if (valid) {
-                    _this.$store.state.home_get.photo == null 
+                    let data = _this.$store.state.home_get.photo
+                    data == [] || data == null
                     ? _this.messageInfo.avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
-                    : _this.messageInfo.avatar = _this.$store.state.home_get.photo[0][myRandom(0,_this.$store.state.home_get.photo[0].length)].url
+                    : _this.messageInfo.avatar = data[0][myRandom(0,data[0].length)].url
                     _this.messageInfo['datetime'] = new Date().getTime()
                     _this.$store.dispatch('home_post/saveMessage',_this.messageInfo).then(() => {
                         let data = {
-                            id: _this.$store.state.home_get.message.length + 1,
-                            message: _this.messageInfo.info,
+                            id: _this.$store.state.home_get.message.length + 1 || 1,
+                            message: _this.messageInfo.message,
                             avatar: _this.messageInfo.avatar,
                             datetime: new Date().toLocaleDateString()
                         }
                         _this.$store.state.home_get.message.push(data)
-                        _this.messageInfo.info = ''
+                        _this.messageInfo.message = ''
                     }).catch(() => {})
                 } else {
                     return false;

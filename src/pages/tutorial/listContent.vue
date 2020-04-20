@@ -14,7 +14,7 @@
                 </div>
                 <article v-html="$store.state.home_get.children.html" class="markdown-body"></article>
                 <div class="like">
-                    <el-button @click="saveLike" icon="el-icon-thumb" circle ></el-button>
+                    <el-button @click="saveLike" icon="el-icon-thumb"></el-button>
                 </div>
             </div>
             <div v-else style="min-height:500px" v-loading="true"></div>

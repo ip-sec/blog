@@ -35,6 +35,7 @@
 
 <script>
 import getDomScroll from '@/utils/mixins/getDomScroll'
+import {throttle} from '@/utils/common.js'
 export default {
     data(){
         return {
@@ -57,7 +58,7 @@ export default {
         },
     },
     methods:{
-        getDomScroll () {
+        getDomScroll: throttle(function(){
             let _this = this
             if(_this.$refs.refScroll !== undefined){
                 let domTop = _this.$refs.refScroll.getBoundingClientRect().top + _this.$refs['refScrollCol'].$el.offsetHeight
@@ -65,7 +66,7 @@ export default {
             }else{
                 return false
             }
-        },
+        },200),
         siteData(data){
             this.ifSort = data
         }

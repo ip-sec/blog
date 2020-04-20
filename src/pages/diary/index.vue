@@ -35,6 +35,7 @@ import CentralSlot from './components/about'
 import CentralSort from './components/sort'
 import getPageScroll from '@/utils/mixins/getPageScroll'
 import getDomScroll from '@/utils/mixins/getDomScroll'
+import {throttle} from '@/utils/common.js'
 export default {
     name: 'diary',
     data () {
@@ -57,7 +58,7 @@ export default {
     },
     mixins:[getPageScroll,getDomScroll],
     methods:{
-        getDomScroll () {
+        getDomScroll: throttle(function(){
             let _this = this
             if(_this.$refs.refScroll !== undefined){
                 let domTop = _this.$refs.refScroll.getBoundingClientRect().top
@@ -65,7 +66,7 @@ export default {
             }else{
                 return false
             }
-        },
+        },200),
         morePhoto () {
             if(this.$store.state.home_get.diary.length > this.dataNum){
                 this.loading = true
@@ -95,6 +96,7 @@ export default {
         justify-content: space-between;
         .diary-left{
             width: 100%;
+            min-height: 400px;
             .el-row{
                 &:first-child{
                     .el-col{

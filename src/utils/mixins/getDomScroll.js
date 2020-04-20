@@ -1,4 +1,3 @@
-import {throttle} from '@/utils/common.js'
 export default {
     data() {
         return {
@@ -6,10 +5,10 @@ export default {
         }
     },
     mounted() {
-        window.addEventListener('scroll',throttle(this.getDomScroll,100),false)
+        window.addEventListener('scroll',this.getDomScroll,true)
     },
     beforeDestroy () {
-        window.removeEventListener('scroll',throttle(this.getDomScroll,100),false)
+        window.removeEventListener('scroll',this.getDomScroll,true)
     },
     watch: {
         'isFixed':function(to,from){

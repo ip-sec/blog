@@ -11,20 +11,17 @@ export default {
         this.getPageResize()
     },
     beforeDestroy () {
-        window.removeEventListener('resize',throttleTwo(this.getPageSize,300),false)
+        window.removeEventListener('resize',this.getPageSize,true)
     },
     methods:{
-        getPageSize () {
+        getPageSize: throttleTwo(function () {
             let width = window.innerWidth
             let height = window.innerHeight
             this.pageWidth = width + 'px'
             this.pageHeight = height + 'px'
-            parseInt(this.pageWidth)  < 992 ? this.isCollapse = true : this.isCollapse = false
-            parseInt(this.pageWidth)  < 992 ? this.headLogo = 'small-logo' : this.headLogo = 'logo'
-            this.isCollapse ? this.$store.dispatch('common/isTop','top') : this.$store.dispatch('common/isTop','right')
-        },
+        },300),
         getPageResize () {
-            window.addEventListener('resize',throttleTwo(this.getPageSize,300),false)
+            window.addEventListener('resize',this.getPageSize,true)
         }
     }
 }
