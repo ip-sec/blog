@@ -20,6 +20,9 @@ export default {
             
         }
     },
+    created(){
+        this.$store.dispatch('common/photoNum')
+    },
     components:{
         CentralSlot,
         layoutMain

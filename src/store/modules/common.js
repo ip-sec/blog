@@ -11,7 +11,15 @@ const state = {
         { id: 4, imgUrl: require('@/assets/img/layout-img-4.jpg')},
         { id: 5, imgUrl: require('@/assets/img/layout-img-5.jpg')}
     ],//页面背景图
-    siteDiary: '',
+    siteDiary: '',//日志过滤条件
+    counts:{
+        tutorial_num: 0,//查看数量
+        diary_num: 0,//查看数量
+        message_num: 0,//查看数量
+        photo_num: 0,//查看数量
+        isme_num: 0,//查看数量
+        datetime: new Date().toLocaleDateString()
+    }
 }
 
 const mutations = {
@@ -32,6 +40,21 @@ const mutations = {
     },
     SET_SITEDIARY: ( state,data ) => {
         state.siteDiary = data
+    },
+    SET_TUTORIALNUM: ( state ) => {
+        state.counts.tutorial_num += 1
+    },
+    SET_DIARYNUM: ( state ) => {
+        state.counts.diary_num += 1
+    },
+    SET_MESSAGENUM: ( state ) => {
+        state.counts.message_num += 1
+    },
+    SET_PHOTONUM: ( state ) => {
+        state.counts.photo_num += 1
+    },
+    SET_ISMENUM: ( state ) => {
+        state.counts.isme_num += 1
     }
 }
 
@@ -53,6 +76,21 @@ const actions = {
     },
     siteDiary ( {commit},data ) {
         commit('SET_SITEDIARY',data)
+    },
+    tutorialNum ( {commit} ) {
+        commit('SET_TUTORIALNUM')
+    },
+    diaryNum ( {commit} ) {
+        commit('SET_DIARYNUM')
+    },
+    messageNum ( {commit} ) {
+        commit('SET_MESSAGENUM')
+    },
+    photoNum ( {commit} ) {
+        commit('SET_PHOTONUM')
+    },
+    ismeNum ( {commit} ) {
+        commit('SET_ISMENUM')
     },
 }
 

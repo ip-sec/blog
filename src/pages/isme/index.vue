@@ -32,6 +32,9 @@ export default {
             
         }
     },
+    created(){
+        this.$store.dispatch('common/ismeNum')
+    },
     components:{
         CentralSlot,
         layoutMain

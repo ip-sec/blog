@@ -39,20 +39,25 @@ export default {
     },
     mounted() {
         this.$store.state.home_get.photo != null ? this.watchPage() : ''
-        window.addEventListener('resize',() => this.watchPage(), false)
+        window.addEventListener('resize',this.watchPage(), true)
+    },
+    beforeDestroy(){
+        window.removeEventListener('resize',this.watchPage(), true)
     },
     methods: {
         watchPage: debounce(function(){
-            this.$store.state.home_get.photo.forEach((item,index)=>{
-                if(this.$refs.getHeight[index] != undefined){
-                    photoLayout(
-                        item,
-                        this.$refs.getHeight[index].$children,
-                        this.$refs.getHeight[index],
-                        this.$refs.getHeightCol.$el.offsetWidth-30
-                    )
-                }
-            })
+            if(this.$store.state.home_get.photo){
+                this.$store.state.home_get.photo.forEach((item,index)=>{
+                    if(this.$refs.getHeight[index] != undefined){
+                        photoLayout(
+                            item,
+                            this.$refs.getHeight[index].$children,
+                            this.$refs.getHeight[index],
+                            this.$refs.getHeightCol.$el.offsetWidth-30
+                        )
+                    }
+                })
+            }
         },400)
     }
 }

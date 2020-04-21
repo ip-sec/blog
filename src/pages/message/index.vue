@@ -54,6 +54,9 @@ export default {
             }
         }
     },
+    created(){
+        this.$store.dispatch('common/messageNum')
+    },
     components:{
         CentralSlot,
         layoutMain

@@ -47,6 +47,7 @@ export default {
         }
     },
     created (){
+        this.$store.dispatch('common/diaryNum')
         this.$store.state.home_get.diary == null 
         ? this.$store.dispatch('home_get/diary', '').then(()=>{}).catch(()=>{}) 
         : ''

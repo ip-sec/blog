@@ -9,6 +9,15 @@ const mutations = {
 }
 
 const actions = {
+    saveDataNum( {commit},info ){
+        return new Promise((resolve,reject)=>{
+            handle.saveDataNum(info).then(response => {
+                resolve()
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
     saveMessage( {commit},info ){
         return new Promise((resolve,reject)=>{
             handle.saveMessage(info).then(response => {

@@ -24,3 +24,12 @@ export function updateTutorial(params, data){
         data
     })
 }
+
+//提交前台访问数据
+export function saveDataNum(data){
+    return service({
+        url: '/home/base/saveCounts',
+        method: 'post',
+        data
+    })
+}

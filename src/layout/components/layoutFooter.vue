@@ -34,7 +34,7 @@ export default {
             let minu = parseInt((time % (3600 * 24) % 3600 / 60))
             let secon = parseInt(time % (3600 * 24) % 3600 % 60)
             return day+'天'+hours+'时'+minu+'分'+secon+'秒'
-        }
+        },
     }
 }
 </script>

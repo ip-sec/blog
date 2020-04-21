@@ -28,6 +28,7 @@ import layoutNav from '../components/Nav/index'
 import layoutMusic from '../components/Music/index'
 import layoutCaledar from '../components/Caledar/index'
 import getPageWheel from '@/utils/mixins/getPageWheel'
+import getPageUnload from '@/utils/mixins/getPageUnload'
 export default {
     name: 'layoutPage',
     data () {
@@ -50,7 +51,18 @@ export default {
     mounted(){
         this.checkBgColor()
     },
-    mixins:[getPageWheel],
+    // beforeDestroy(){
+    //     let data = {
+    //         tutorial_num: this.$store.state.common.tutorialNum,
+    //         diary_num: this.$store.state.common.diaryNum,
+    //         photo_num: this.$store.state.common.photoNum,
+    //         message_num: this.$store.state.common.messageNum,
+    //         isme_num: this.$store.state.common.ismeNum,
+    //         datetime: new Date().toLocaleDateString()
+    //     }
+    //     this.$store.dispatch('home_post/saveDataNum',data).then(()=>{}).catch(()=>{})
+    // },
+    mixins:[getPageWheel,getPageUnload],
     components:{
         layoutHeader,
         layoutNav,
@@ -86,7 +98,7 @@ export default {
     width: 80%;
     margin: 0 auto;
     .el-header{
-        z-index: 99999;
+        z-index: 2000;
         position: fixed;
         width: 80%;
         transition: all 0.6s;

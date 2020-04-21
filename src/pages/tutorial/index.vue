@@ -48,6 +48,7 @@ export default {
         }
     },
     created (){
+        this.$store.dispatch('common/tutorialNum')
         this.$store.state.home_get.tutorial == null 
         ? this.$store.dispatch('home_get/tutorial', '').then(()=>{
             this.$nextTick(()=>{
