@@ -39,10 +39,10 @@ export default {
     },
     mounted() {
         this.$store.state.home_get.photo != null ? this.watchPage() : ''
-        window.addEventListener('resize',this.watchPage(), true)
+        window.addEventListener('resize',this.watchPage, true)
     },
     beforeDestroy(){
-        window.removeEventListener('resize',this.watchPage(), true)
+        window.removeEventListener('resize',this.watchPage, true)
     },
     methods: {
         watchPage: debounce(function(){
