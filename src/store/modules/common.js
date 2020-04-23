@@ -18,7 +18,7 @@ const state = {
         message_num: 0,//查看数量
         photo_num: 0,//查看数量
         isme_num: 0,//查看数量
-        datetime: new Date().toLocaleDateString()
+        date_time: new Date().toLocaleDateString()
     }
 }
 

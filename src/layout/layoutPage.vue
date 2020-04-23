@@ -51,17 +51,6 @@ export default {
     mounted(){
         this.checkBgColor()
     },
-    // beforeDestroy(){
-    //     let data = {
-    //         tutorial_num: this.$store.state.common.tutorialNum,
-    //         diary_num: this.$store.state.common.diaryNum,
-    //         photo_num: this.$store.state.common.photoNum,
-    //         message_num: this.$store.state.common.messageNum,
-    //         isme_num: this.$store.state.common.ismeNum,
-    //         datetime: new Date().toLocaleDateString()
-    //     }
-    //     this.$store.dispatch('home_post/saveDataNum',data).then(()=>{}).catch(()=>{})
-    // },
     mixins:[getPageWheel,getPageUnload],
     components:{
         layoutHeader,
