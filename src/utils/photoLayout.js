@@ -1,5 +1,5 @@
 const photoLayout = (arr,dom,parent,size) => {
-    let pushArr = arr.concat()
+    let pushArr = arr
     let winWidth = window.innerWidth
     let padLeft = 10
     let padTop = 10
@@ -8,21 +8,21 @@ const photoLayout = (arr,dom,parent,size) => {
     let width = (imgWidth/col)-padLeft
     let divWidth = width
     let domHeight = []
+    let domIndex = []
     for( let i = 0; i < pushArr.length; i++){
         dom[i].$el.style.width = divWidth+'px'
-        pushArr[i]['height'] = dom[i].$el.offsetHeight
+        pushArr[i]['height'] = dom[i].$el.clientHeight
         if((i + 1) <= col){
             pushArr[i]['top'] = padTop
             pushArr[i]['left'] = (i * divWidth) + (padLeft * (i + 1))
             domHeight[i] = pushArr[i]['height'] + pushArr[i]['top']
+            domIndex[i] = i
         }else{
             pushArr[i]['top'] = Math.min.apply(null,domHeight) + padTop
-            domHeight[domHeight.indexOf(Math.min.apply(null,domHeight))] += (pushArr[i]['height'] +  + padTop)
-            for(let j = 0; j <= i; j++){
-                if((pushArr[j]['height'] + pushArr[j]['top']) == (pushArr[i]['top'] - padTop)){
-                    pushArr[i]['left'] = pushArr[j]['left']
-                }
-            }
+            let index = domHeight.indexOf(Math.min.apply(null,domHeight))
+            domHeight[index] += (pushArr[i]['height'] + padTop)
+            pushArr[i]['left'] = pushArr[domIndex[index]]['left']
+            domIndex[index] = i
         }
     }
     parent.$el.style.height = Math.max.apply(null,domHeight) + 'px'

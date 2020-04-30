@@ -30,6 +30,11 @@
 import getPageSize from '@/utils/mixins/getPageSize'
 export default {
     name: 'error-404',
+    beforeCreate(){
+        if(document.getElementById('loading')){
+            document.body.removeChild(document.getElementById('loading'))
+        }
+    },
     mixins: [getPageSize],
     methods: {
         pageRefresh () {

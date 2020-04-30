@@ -1,6 +1,6 @@
 <template>
     <el-col ref="getHeightCol" :xs="24" :sm="24" :md="24" :lg="24">
-        <el-tabs v-if="this.$store.state.home_get.photo" tab-position="top" @tab-click="watchPage">
+        <el-tabs v-if="this.$store.state.home_get.photo" tab-position="top" name="1" @tab-click="watchPage">
             <el-tab-pane v-for="(item, index) in $store.state.home_get.photo_class" :key="item.id" :label="item.name">
                 <transition-group ref="getHeight" class="getDom" tag="div" name="scaleC" mode="out-in" appear>
                     <div class="image-preview" 
@@ -9,6 +9,7 @@
                     :style="{height: value.height+'px',left: value.left+'px',top: value.top+'px',}">
                         <el-image
                         :src="value.url"
+                        @load="loads"
                         :preview-src-list="[value.url]"
                         ></el-image>
                     </div>
@@ -27,24 +28,40 @@ export default {
         return {
             clickTab: false,
             dialogVisible: false,
-            showImage: ''
+            showImage: '',
+            imgIndex: 0,
+            num: 0
         }
     },
     created() {
         this.$store.state.home_get.photo == null 
         ? this.$store.dispatch('home_get/photo').then(()=>{
-            this.watchPage()
+            this.handleNum()
         }).catch(()=>{})
-        : ''
+        : this.watchPage()
     },
     mounted() {
-        this.$store.state.home_get.photo != null ? this.watchPage() : ''
-        window.addEventListener('resize',this.watchPage, true)
+        this.$store.state.home_get.photo == null ? '' : this.handleNum()
+        window.addEventListener('resize',this.watchPage,false)
     },
-    beforeDestroy(){
-        window.removeEventListener('resize',this.watchPage, true)
+    beforeDestroy() {
+        window.removeEventListener('resize',this.watchPage,false)
+    },
+    watch:{
+        'imgIndex':function(to,from){
+            to == this.num ? this.watchPage() : ''
+        }
     },
     methods: {
+        loads(e){
+            this.imgIndex++
+        },
+        handleNum(){
+            let data = this.$store.state.home_get.photo
+            data.forEach((item)=>{
+                this.num += item.length
+            })
+        },
         watchPage: debounce(function(){
             if(this.$store.state.home_get.photo){
                 this.$store.state.home_get.photo.forEach((item,index)=>{

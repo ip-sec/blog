@@ -11,7 +11,7 @@
             <el-button ref="refNext" @click="next" icon="el-icon-arrow-right"  :style="{border: '1px solid ' + color,color: color}"></el-button>
         </div>
         <audio ref="refAudio" @ended="watchAudio">
-            <source :src="'http://localhost:80/0/4/'+num+'.mp3'" type="audio/mpeg">
+            <source :src="'http://localhost:80/'+num+'.mp3'" type="audio/mpeg">
         </audio>
     </div>
 </template>
@@ -33,12 +33,12 @@ export default {
     },
     watch: {
         'num': function(to, from){
-            to == 21 ? this.$refs.refNext.$el.disabled = true : this.$refs.refNext.$el.disabled = false
+            to == 20 ? this.$refs.refNext.$el.disabled = true : this.$refs.refNext.$el.disabled = false
             from == 1 ? this.$refs.refPrev.$el.disabled = true : this.$refs.refPrev.$el.disabled = false
         },
         '$refs.refAudio.ended': function(to, from){
             if(to){
-                this.num = myRandom(1,21)
+                this.num = myRandom(1,20)
                 this.$refs.refAudio.load()
                 this.$refs.refAudio.play()
             }

@@ -25,7 +25,7 @@ export default {
         },
         beforeunloadHandler(e){
             var request = new XMLHttpRequest();
-            request.open('POST', 'http://localhost:80/home/base/saveCounts',true);
+            request.open('POST', 'http://localhost:80/api/home/base/saveCounts',true);
             request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
             var send_data = this.postStr
             request.send(send_data)

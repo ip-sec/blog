@@ -28,9 +28,9 @@ export default {
         'setStyle':function(to,from){
             let headStyle = this.$refs.refHead.$el.style
             if(to){
-                headStyle.transform = 'translateY(0)'
+                headStyle.WebkitTransform = 'translateY(0)'
             }else{
-                headStyle.transform = 'translateY(-101%)'
+                headStyle.WebkitTransform = 'translateY(-101%)'
             }
         }
     },

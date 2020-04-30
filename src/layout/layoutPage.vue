@@ -1,6 +1,6 @@
 <template>
     <el-container direction="vertical" class="layout-page">
-        <el-header ref="refHead" height="70px">
+        <el-header ref="refHead" height="71px">
             <transition name="topY" appear>
                 <keep-alive>
                     <layout-header></layout-header>

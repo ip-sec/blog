@@ -23,20 +23,16 @@
                         font-size: 13px;
                     }
                 }
-                .content{
-                    padding: 20px 0;
-                    word-break: break-all;
-                    font-size: 14px;
-                    p{
-                        text-indent: 2em;
-                    }
-                    .img-content{
-                        text-align: center;
-                        max-width: 100%;
-                        max-height: 400px;
-                        img{ 
+                .markdown-body{
+                    margin: 30px 0px;
+                    .hljs-center{
+                        p{
+                            text-align: center;
                             max-width: 100%;
-                            object-fit: cover;
+                            img{ 
+                                max-width: 100%;
+                                object-fit: cover;
+                            }
                         }
                     }
                 }
@@ -49,10 +45,10 @@
                     .el-button{
                         width: 100px;
                         border-radius: 0px !important;
-                        background: rgba($color: #ffffff, $alpha: .7);
+                        background: rgba($color: #ffffff, $alpha: .5) !important;
                         font-size: 17px;
                         &:hover,&:focus{
-                            background: rgba($color: #ffffff, $alpha: .7);
+                            background: rgba($color: #ffffff, $alpha: .5) !important;
                             border-color: #E36049;
                             color: #E36049;
                         }

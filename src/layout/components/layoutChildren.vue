@@ -11,14 +11,13 @@
                 </transition>
             </div>
             <div ref="refScroll" class="content-right hidden-sm-and-down">
-                    <el-row>
-                        <el-col ref="refScrollCol" :xs="24" :sm="24" :md="22" :lg="22">
-                            
-                <transition name="bottomDelY" mode="out-in" appear>
+                <el-row>
+                    <el-col ref="refScrollCol" :xs="24" :sm="24" :md="22" :lg="22" style="max-width:280px" >
+                        <transition name="bottomDelY" mode="out-in" tag="div" appear>
                             <slot name="card"></slot>
-                </transition>
-                        </el-col>
-                    </el-row>
+                        </transition>
+                    </el-col>
+                </el-row>
             </div>
         </div>
     </layout-main>

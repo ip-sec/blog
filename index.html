@@ -47,11 +47,15 @@
     })
     
   </script>
-  <!-- <script>  
+  <script>  
     window.oncontextmenu=function(){return false;} 
-    window.onkeydown = window.onkeyup = window.onkeypress = function () { 
-    window.event.returnValue = false; 
-        return false; 
+    window.onkeydown = window.onkeyup = window.onkeypress = function (event) { 
+      event = event || window.event
+      if(event.keyCode == 123){
+        event.preventDefault()
+        window.event.returnValue = false
+        return false
+      }
     } 
     var h = window.innerHeight,w=window.innerWidth; 
     window.onresize = function () { 
@@ -60,5 +64,5 @@
             window.location = "about:blank"; 
         } 
     } 
-  </script>  -->
+  </script> 
 </html>

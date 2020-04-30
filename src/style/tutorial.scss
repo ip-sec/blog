@@ -19,6 +19,9 @@
                     .el-image{
                         transition: all 0.6s;
                         overflow: initial !important;
+                        .image-slot{
+                            min-width: 100%;
+                        }
                     }
                     .tag_li{
                         display: none;

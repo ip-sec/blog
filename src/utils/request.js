@@ -4,9 +4,11 @@ import httpStatus from './http-status'
 import {getTime} from './datetime'
 
 const service = axios.create({
-    baseURL: process.env.BASE_API,
+    baseURL: process.env.BASE_API + '/api',
     timeout: 5000,
-    withCredentials: true
+    headers:{
+        'Content-Type': 'application/json;charset=utf-8'
+    }
 })
 
 service.interceptors.request.use(

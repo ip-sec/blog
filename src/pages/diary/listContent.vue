@@ -58,10 +58,11 @@ export default {
         }).catch(()=>{}) 
         : ''
         _this.$store.dispatch('home_get/diary', '/'+_this.$route.params.id ).then(()=>{
-            document.title = _this.$store.state.home_get.children.title
+            let children = _this.$store.state.home_get.children
+            document.title = children.title
             _this.timeData = _this.$store.state.home_get.diary.concat()
-            _this.view_num = _this.$store.state.home_get.children.view_num + 1
-            _this.like_num = _this.$store.state.home_get.children.like_num
+            _this.view_num = parseInt(children.view_num) + 1
+            _this.like_num = parseInt(children.like_num)
         }).catch(()=>{})
         _this.$store.dispatch('home_post/updateDiary', { id: '/'+_this.$route.params.id , view_num: '0' } ).then(()=>{}).catch(()=>{})
     },
@@ -82,9 +83,10 @@ export default {
             let _this = this
             _this.$store.dispatch('home_get/delChildren').then(()=>{
                 _this.$store.dispatch('home_get/tutorial', '/'+data ).then(()=>{}).catch(()=>{
-                    document.title = _this.$store.state.home_get.children.title
-                    _this.view_num = _this.$store.state.home_get.children.view_num + 1
-                    _this.like_num = _this.$store.state.home_get.children.like_num
+                    let children = _this.$store.state.home_get.children
+                    document.title = children.title
+                    _this.view_num = parseInt(children.view_num) + 1
+                    _this.like_num = parseInt(children.like_num)
                 })
                 _this.$store.dispatch('home_post/updateDiary', { id: '/'+_this.$route.params.id , view_num: '0' } ).then(()=>{}).catch(()=>{})
             }).catch(()=>{})

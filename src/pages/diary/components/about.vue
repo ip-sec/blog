@@ -24,7 +24,7 @@
 export default {
     data () {
         return {
-            handleData: this.$store.state.home_get.diary.concat()
+            handleData: this.$store.state.home_get.diary
         }
     },
     props:{
